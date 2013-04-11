@@ -12,10 +12,10 @@ programming algorithm. This algorithm's cost is O(4^n).
 
 # Usage
 
-`$ git clone https://github.com/jervisfm/W4112_Project2`
-`$ cd W4112_Project2`
-`$ make`
-`$ ./stage2.sh query.txt config.txt`
+1. `$ git clone https://github.com/jervisfm/W4112_Project2`
+2. `$ cd W4112_Project2`
+3. `$ make`
+4. `$ ./stage2.sh query.txt config.txt`
 
 
 [Selection Conditions in Main Memory]: http://www.cs.columbia.edu/~kar/pubsk/selcondsTODS.pdf
