@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class QueryDriver
@@ -7,6 +8,7 @@ public class QueryDriver
 		String queryPath = args[0];
 		String configPath = args[1];
 
-		Properties prop = QueryParser.parseConfig(configPath);
+		ArrayList<double[]> query = QueryParser.parseQuery(queryPath);
+		Properties config = QueryParser.parseConfig(configPath);
 	}
 }
