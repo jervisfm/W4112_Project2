@@ -43,6 +43,9 @@ public class PlanRecord {
 	 */
 	public PlanRecord(int n, double p, boolean b, double c,
 					   long left, long right) {
+		if (n < 1)
+			throw new IllegalArgumentException("Cannot have empty subsets - "+ 
+												 n); 		
 		this.n = n; 
 		this.p = p; 
 		this.b = b; 
