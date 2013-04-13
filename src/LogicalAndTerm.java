@@ -13,6 +13,9 @@ public class LogicalAndTerm {
 		this.data  = new ArrayList<BasicTerm>();
 		data.add(term);		
 	}
+	public LogicalAndTerm() {
+		this.data  = new ArrayList<BasicTerm>();		
+	}
 	
 	public void add(BasicTerm term) {
 		data.add(term); 
@@ -20,5 +23,19 @@ public class LogicalAndTerm {
 	
 	public ArrayList<BasicTerm> getTerms() {
 		return data; 
+	}
+	
+	public int size() {
+		return data.size(); 
+	}
+	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		for (BasicTerm t : data) {
+			sb.append(t.toString());
+			sb.append(" & "); 
+			sb.append("\n");
+		}
+		return sb.toString(); 
 	}
 }
