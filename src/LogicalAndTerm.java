@@ -47,6 +47,9 @@ public class LogicalAndTerm {
 	}
 	
 	
+	public double getNoBranchAlgCost() {
+		return Util.computeNoBranchCost(data, CostModel.getDefaultCostModel());
+	}
 	
 	public double getCost(CostModel cost) {
 		/**
@@ -59,7 +62,7 @@ public class LogicalAndTerm {
 		 * f1 ... fk = Cost of doing function evals on all K functions. 
 		 * t = Cost of an if test evaluation
 		 * m = Cost of branch misprediction
-		 * p1 *...*pk = Compound / combined selectivity of all K basic terms
+		 * p1 *...* pk = Compound / combined selectivity of all K basic terms
 		 * r = Cost of accessing an array element
 		 * q = p1*...*pk if p1*...*pk <= 0.5 ; else q = 1 - (p1*...*pk)
 		 * a = cost of writing an answer to the answer array. 
