@@ -27,8 +27,6 @@ public class PlanRecord {
 	 */
 	public long right; 
 	
-	
-	
 	/**
 	 * Creates a Plan Record. 
 	 * @param n - Number of basic terms in matching subset
