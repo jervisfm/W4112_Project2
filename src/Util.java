@@ -77,9 +77,13 @@ public class Util {
 		return result;
 	}
 	
-	
-	public static void createPlanRecordsArray(LogicalAndTerm terms) 
-													throws Exception {
+	/**
+	 * Creates an array of 2^k possible plan records from the given terms. 
+	 * This corresponds to the 'Array A' in the 'Selection Conditions in Main
+	 * Memory' paper by Ken Ross. 
+	 * @param terms
+	 */
+	public static void createPlanRecordsArray(LogicalAndTerm terms) {
 		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
 		subsets = Util.removeEmptySubset(subsets);
 		

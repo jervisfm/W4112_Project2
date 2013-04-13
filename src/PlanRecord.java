@@ -27,6 +27,7 @@ public class PlanRecord {
 	 */
 	public int right; 
 	
+	
 	public PlanRecord() {
 		
 	}
