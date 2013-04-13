@@ -11,12 +11,14 @@ public class BitVector {
 	 * @param setSize - # of bits in vector. Maximum allowed value is 63 bits. 
 	 * @throws Exception if setSize > 63 or < 1
 	 */
-	public BitVector(int setSize) throws Exception {
+	public BitVector(int setSize) {
 		if (setSize > MAX_LIMIT) {
-			throw new Exception("Max set size supported 63. | " + setSize);
+			throw new IllegalArgumentException(
+									"Max set size supported 63. | " + setSize);
 		}
 		if (setSize < 1) {
-			throw new Exception("Cannot not create empty bit set");
+			throw new IllegalArgumentException(
+									"Cannot not create empty bit set");
 		}
 		this.data = 0; 
 		this.setSize = setSize;
@@ -46,7 +48,7 @@ public class BitVector {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean isSet(int bit) throws Exception {
+	public boolean isSet(int bit) {
 		if (bit > setSize - 1 || bit < 0) {
 			throw new IllegalArgumentException ("Out of Range Bit: " + bit + 
 								  				". SetSize=" +setSize);
