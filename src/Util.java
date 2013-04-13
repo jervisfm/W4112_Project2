@@ -8,6 +8,13 @@ import java.util.BitSet;
  */
 public class Util {
 
+	/**
+	 * Returns all 2^k subsets of the given terms, including the
+	 * empty subset. 
+	 * @param terms
+	 * @return
+	 * @throws Exception if the # of terms > 63
+	 */
 	public static ArrayList<LogicalAndTerm> 
 				getAllSubsets(LogicalAndTerm terms)	throws Exception {
 		int setSize = terms.size();  
