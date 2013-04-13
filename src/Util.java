@@ -43,6 +43,7 @@ public class Util {
 				String arg = String.format("o%d[i]", count);
 				BasicTerm term = new BasicTerm(functionName, arg, selectivity);
 				lat.add(term);
+				++count;
 			}
 			if (lat.size() > 0)
 				result.add(lat);
