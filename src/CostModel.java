@@ -48,4 +48,21 @@ public class CostModel {
 		this.t = t;
 		this.r = r;
 	}
+	
+	/**
+	 * Gets a default cost model that is suitable for running
+	 * on machines in the CLIC lab. 
+	 * @return
+	 */
+	public static CostModel getDefaultCostModel() {
+		
+		int a = 2; 
+		int f = 4; 
+		int l = 1; 
+		int m = 16; 
+		int t = 2; 
+		int r = 1;
+		
+		return new CostModel(a, f, l, m, t, r);
+	}
 }
