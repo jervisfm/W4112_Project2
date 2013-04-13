@@ -16,7 +16,7 @@ public class Util {
 	 * @throws Exception if the # of terms > 63
 	 */
 	public static ArrayList<LogicalAndTerm> 
-				getAllSubsets(LogicalAndTerm terms)	throws Exception {
+				getAllSubsets(LogicalAndTerm terms) {
 		int setSize = terms.size();  
 		long maxLimit = 1 << setSize;  
 		BitVector bv = new BitVector(setSize);		
@@ -75,5 +75,13 @@ public class Util {
 				result.add(lat);
 		}
 		return result;
+	}
+	
+	
+	public static void createPlanRecordsArray(LogicalAndTerm terms) 
+													throws Exception {
+		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
+		subsets = Util.removeEmptySubset(subsets);
+		
 	}
 }
