@@ -18,6 +18,21 @@ public class UnitTests {
 	}
 	
 	@Test
+	public void testGetBasicTerms() {
+		double [] selectionConditions = {0.700000, 0.800000, 
+				  0.800000, 0.900000};
+		ArrayList<double[]> queries = new ArrayList<double[]>();
+		queries.add(selectionConditions); 
+		LogicalAndTerm lat = Util.getBasicTerms(queries).get(0);
+		assertTrue(lat.size() == 4); 
+		int count = 0; 
+		for (BasicTerm b : lat.getTerms()) {
+			assertTrue(b.selectivity == selectionConditions[count]); 
+			++count;
+		}
+	}
+	
+	@Test
 	public void testGetAllSubSets() throws Exception {
 		LogicalAndTerm lat = getSampleTerms();
 		int setSize = lat.size(); 
