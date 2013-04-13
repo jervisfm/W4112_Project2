@@ -29,6 +29,23 @@ public class Util {
 	}
 	
 	/**
+	 * Returns the given set but without any empty subsets. 
+	 * Passed in set is left untouched. 
+	 * @param subsets
+	 * @return
+	 */
+	public static ArrayList<LogicalAndTerm> removeEmptySubset(
+											ArrayList<LogicalAndTerm> subsets) {
+		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>();
+		for(LogicalAndTerm subset : subsets) {
+			if (!subset.isEmpty())
+				result.add(subset);
+		}
+		return result; 
+	}
+	
+	
+	/**
 	 * Gets a list of of selection queries/conditions returned in a 
 	 * format of LogicalAndTerms.
 	 * @param queries - list of queries to process

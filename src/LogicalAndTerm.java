@@ -33,6 +33,10 @@ public class LogicalAndTerm {
 		return data.size(); 
 	}
 	
+	public boolean isEmpty() {
+		return size() == 0; 
+	}
+	
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		for (BasicTerm t : data) {

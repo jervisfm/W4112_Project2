@@ -49,7 +49,25 @@ public class UnitTests {
 		int expectedSize = 1 << setSize; 
 		int actualSize = subsets.size(); 
 		assertTrue("Expected Size = " + expectedSize + " but got " + actualSize, 
-				   actualSize == expectedSize);			
+				   actualSize == expectedSize);								
+	}
+	
+	@Test
+	public void testRemoveEmptyTerm() throws Exception {
+		LogicalAndTerm lat = getSampleTerms();
+		int setSize = lat.size(); 
+		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(lat);
+		
+		int expectedSize = 1 << setSize; 
+		int actualSize = subsets.size(); 
+		assertTrue("Expected Size = " + expectedSize + " but got " + actualSize, 
+				   actualSize == expectedSize);
+		
+		subsets = Util.removeEmptySubset(subsets); 
+		expectedSize -= 1; 
+		actualSize = subsets.size(); 
+		assertTrue("Expected Size = " + expectedSize + " but got " + actualSize, 
+				   actualSize == expectedSize);
 	}
 
 }
