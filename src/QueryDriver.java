@@ -17,10 +17,9 @@ public class QueryDriver
 	}
 
 	private static ArrayList<LogicalAndTerm> 
-					getBasicTerms(ArrayList<double[]> queries){
+					getBasicTerms(ArrayList<double[]> queries){		
 		int count = 1; 
 		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>(); 
-		
 		for(double[] query : queries) {
 			LogicalAndTerm lat = new LogicalAndTerm();
 			for(double selectivity: query) {
@@ -29,7 +28,8 @@ public class QueryDriver
 				BasicTerm term = new BasicTerm(functionName, arg, selectivity);
 				lat.add(term);
 			}
-			result.add(lat); 						
+			if (lat.size() > 0)
+				result.add(lat); 						
 		}
 		return result; 
 	}
