@@ -22,14 +22,16 @@ public class QueryDriver
 		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>(); 
 		
 		for(double[] query : queries) {
-			String functionName = String.format("t%d", count);
-			String arg = String.format("o%d[i]", count);
-			BasicTerm term = new BasicTerm(functionName, arg);
-			LogicalAndTerm lat = new LogicalAndTerm(term);
+			LogicalAndTerm lat = new LogicalAndTerm();
+			for(double selectivity: query) {
+				String functionName = String.format("t%d", count);
+				String arg = String.format("o%d[i]", count);
+				BasicTerm term = new BasicTerm(functionName, arg, selectivity);
+				lat.add(term);
+			}
 			result.add(lat); 						
 		}
 		return result; 
-		
 	}
 	
 	private static void printList(ArrayList<double[]> query) {
