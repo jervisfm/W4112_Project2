@@ -8,11 +8,30 @@ public class QueryDriver
 		String queryPath = args[0];
 		String configPath = args[1];
 				
-		ArrayList<double[]> query = QueryParser.parseQuery(queryPath);
+		ArrayList<double[]> queries = QueryParser.parseQuery(queryPath);
 		Properties config = QueryParser.parseConfig(configPath);
-		printList(query);
+		
+		
+		printList(queries);
 		System.out.println(config);
 	}
+
+	private static ArrayList<LogicalAndTerm> 
+					getBasicTerms(ArrayList<double[]> queries){
+		int count = 1; 
+		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>(); 
+		
+		for(double[] query : queries) {
+			String functionName = String.format("t%d", count);
+			String arg = String.format("o%d[i]", count);
+			BasicTerm term = new BasicTerm(functionName, arg);
+			LogicalAndTerm lat = new LogicalAndTerm(term);
+			result.add(lat); 						
+		}
+		return result; 
+		
+	}
+	
 	private static void printList(ArrayList<double[]> query) {
 		for(double[] array : query) {
 			for(double d : array)  {
