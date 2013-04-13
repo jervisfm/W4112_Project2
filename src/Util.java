@@ -85,6 +85,23 @@ public class Util {
 		}
 	}
 	
+	
+	public static double computeNoBranchCost(ArrayList<BasicTerm> terms,
+											 CostModel cm) {
+		if (cm == null || terms == null) 
+			throw new NullPointerException("terms or cost model is null"); 
+		if (terms.size() < 1)
+			throw new IllegalArgumentException("Need at least 1 term"); 
+		
+		int k = terms.size(); 
+		int r = cm.r; 
+		int l = cm.l; 
+		int f = cm.f; 
+		int a = cm.a; 
+		
+		return k*r + (k-1)*l + f*k + a; 
+	}
+	
 	/**
 	 * Creates an array of 2^k possible plan records from the given terms. 
 	 * This corresponds to the 'Array A' in the 'Selection Conditions in Main
@@ -106,7 +123,5 @@ public class Util {
 			
 			PlanRecord record = new PlanRecord(n,p,b,c,left,right); 
 		}
-		
-		
 	}
 }
