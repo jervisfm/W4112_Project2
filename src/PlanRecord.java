@@ -20,16 +20,35 @@ public class PlanRecord {
 	/**
 	 * Index of left child subplan (in overall set) giving the best cost
 	 */
-	public int left;
+	public long left;
 	
 	/**
 	 * Index of right child subplan (in overall set) giving the best cost
 	 */
-	public int right; 
+	public long right; 
 	
 	
-	public PlanRecord() {
-		
+	
+	/**
+	 * Creates a Plan Record. 
+	 * @param n - Number of basic terms in matching subset
+	 * @param p - Selectivies of all terms in the subset
+	 * @param b - Indicates whether no branch optimization was used to 
+	 *   		   compute best cost
+	 * @param c - Best cost C for the subset
+	 * @param left - Index # of left child subplan (in overall set) 
+	 * 				  giving best cost
+	 * @param right - Index # of right child subplan (overall set) giving 
+	 * 				   best cost
+	 */
+	public PlanRecord(int n, double p, boolean b, double c,
+					   long left, long right) {
+		this.n = n; 
+		this.p = p; 
+		this.b = b; 
+		this.c = c; 
+		this.left = left;
+		this.right = right; 
 	}
 	
 }
