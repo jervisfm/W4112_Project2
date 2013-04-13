@@ -26,23 +26,7 @@ public class QueryDriver
 		}
 	}
 	
-	private static ArrayList<LogicalAndTerm> 
-					getBasicTerms(ArrayList<double[]> queries){		
-		int count = 1; 
-		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>(); 
-		for(double[] query : queries) {
-			LogicalAndTerm lat = new LogicalAndTerm();
-			for(double selectivity: query) {
-				String functionName = String.format("t%d", count);
-				String arg = String.format("o%d[i]", count);
-				BasicTerm term = new BasicTerm(functionName, arg, selectivity);
-				lat.add(term);
-			}
-			if (lat.size() > 0)
-				result.add(lat); 						
-		}
-		return result; 
-	}
+	
 	
 	private static void printList(ArrayList<double[]> query) {
 		for(double[] array : query) {
