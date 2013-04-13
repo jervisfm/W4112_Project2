@@ -14,8 +14,18 @@ public class QueryDriver
 		
 		printList(queries);
 		System.out.println(config);
+		t0(); 
 	}
 
+	private static void t0 () {
+		long mask = 1; 
+		System.out.println(mask); 
+		for (int i = 0; i < 10; ++i) {
+			mask <<= 1; 
+			System.out.println(mask);
+		}
+	}
+	
 	private static ArrayList<LogicalAndTerm> 
 					getBasicTerms(ArrayList<double[]> queries){		
 		int count = 1; 

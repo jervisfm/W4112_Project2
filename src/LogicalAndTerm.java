@@ -25,6 +25,10 @@ public class LogicalAndTerm {
 		return data; 
 	}
 	
+	public BasicTerm get(int i ) {
+		return data.get(i);
+	}
+	
 	public int size() {
 		return data.size(); 
 	}

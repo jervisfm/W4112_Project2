@@ -10,7 +10,7 @@ public class BitVector {
 		if (setSize > LIMIT) {
 			throw new Exception("Max set size supported 63. | " + setSize);
 		}
-		this.data = 1; 
+		this.data = 0; 
 	}
 	
 	public void increment() {
