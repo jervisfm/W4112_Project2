@@ -41,11 +41,11 @@ public class CostModel {
 	 * @param r - Cost of accesing an array element rj[i]
 	 */
 	public CostModel(int a, int f, int l, int m, int t, int r) {
-		this.a=a;
-		this.f=f;
-		this.l=l;
-		this.m=m;
-		this.t=t;
-		this.r=r;		
+		this.a = a;
+		this.f = f;
+		this.l = l;
+		this.m = m;
+		this.t = t;
+		this.r = r;
 	}
 }
