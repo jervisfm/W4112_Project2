@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 /**
  * This represents a plan where by the basic terms
@@ -12,4 +14,12 @@ public class LogicalAndPlan extends Plan {
 	public LogicalAndPlan() {
 		super(); 
 	}
+
+	public LogicalAndPlan(Plan left, Plan right, ArrayList<BasicTerm> terms) {
+		this.left = left;
+		this.right = right; 
+		this.terms = terms;  
+	}
+	
+	
 }

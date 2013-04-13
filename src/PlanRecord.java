@@ -26,11 +26,16 @@ public class PlanRecord {
 	 * Index of right child subplan (in overall set) giving the best cost
 	 */
 	public long right; 
+
+	/**
+	 * The plan for this. 
+	 */
+	public Plan plan; 
 	
 	/**
 	 * Creates a Plan Record. 
 	 * @param n - Number of basic terms in matching subset
-	 * @param p - Selectivies of all terms in the subset
+	 * @param p - Selectivities of all terms in the subset
 	 * @param b - Indicates whether no branch optimization was used to 
 	 *   		   compute best cost
 	 * @param c - Best cost C for the subset
@@ -40,7 +45,7 @@ public class PlanRecord {
 	 * 				   best cost
 	 */
 	public PlanRecord(int n, double p, boolean b, double c,
-					   long left, long right) {
+					   Plan plan, long left, long right) {
 		if (n < 1)
 			throw new IllegalArgumentException("Cannot have empty subsets - "+ 
 												 n); 		
@@ -50,6 +55,7 @@ public class PlanRecord {
 		this.c = c; 
 		this.left = left;
 		this.right = right; 
+		this.plan = plan; 
 	}
 	
 }

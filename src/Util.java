@@ -108,7 +108,8 @@ public class Util {
 	 * Memory' paper by Ken Ross. 
 	 * @param terms
 	 */
-	public static void createPlanRecordsArray(LogicalAndTerm terms) {
+	public static ArrayList<PlanRecord> createPlanRecordsArray(LogicalAndTerm
+																terms) {
 		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
 		subsets = Util.removeEmptySubset(subsets);
 		Util.numberSubsets(subsets);
@@ -120,8 +121,16 @@ public class Util {
 			double p = subset.getSelectivity(); 
 			boolean b = false; 
 			double c = subset.getCost(CostModel.getDefaultCostModel());
-			
-			PlanRecord record = new PlanRecord(n,p,b,c,left,right); 
+			if (subset.getNoBranchAlgCost() < c) {
+				c = subset.getNoBranchAlgCost(); 
+				b = true;
+			}
+			Plan plan = new LogicalAndPlan(null, null, subset.getTerms());
+			PlanRecord record = new PlanRecord(n,p,b,c,plan,left,right); 
+			plans.add(record);
 		}
+		return plans;
 	}
+	
+	
 }

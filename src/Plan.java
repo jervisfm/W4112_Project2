@@ -8,12 +8,16 @@ public abstract class Plan {
 	public ArrayList<BasicTerm> terms; 
 
 	public Plan() {
-		this(null,null);
+		this(null,null, new ArrayList<BasicTerm>());
 	}
 	
-	public Plan(Plan left, Plan right) {		
+	public Plan(Plan left, Plan right) {
+		this(left, right, new ArrayList<BasicTerm>());
+	}
+	
+	public Plan(Plan left, Plan right, ArrayList<BasicTerm> terms) {		
 		this.left = left;
 		this.right = right; 
-		this.terms = new ArrayList<BasicTerm>(); 
+		this.terms = terms;  
 	}
 }
