@@ -70,4 +70,13 @@ public class UnitTests {
 				   actualSize == expectedSize);
 	}
 
+	@Test
+	public void testgetSelectivity() {
+		LogicalAndTerm lat = getSampleTerms(); 
+		double expected = 0.7 * 0.8 * 0.8 * 0.9; 
+		double actual = lat.getSelectivity(); 
+		assertTrue("Expected Selectivty = " + expected + " but got " + actual, 
+				   actual == expected);
+	}
+	
 }
