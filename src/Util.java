@@ -8,7 +8,8 @@ import java.util.BitSet;
  */
 public class Util {
 
-	public static void getAllSubsets(LogicalAndTerm terms) throws Exception {
+	public static ArrayList<LogicalAndTerm> 
+				getAllSubsets(LogicalAndTerm terms)	throws Exception {
 		int setSize = terms.size();  
 		long maxLimit = 1 << setSize;  
 		BitVector bv = new BitVector(setSize);		
@@ -24,6 +25,7 @@ public class Util {
 			}
 			result.add(subset);
 		}
+		return result; 
 	}
 	
 	/**s
