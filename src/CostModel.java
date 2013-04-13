@@ -31,6 +31,15 @@ public class CostModel {
 	 */
 	public final int f; 
 	
+	/**
+	 * Creates a non-modifable Cost Model object. 
+	 * @param a - Cost of writing an answer to the answer array
+	 * @param f - Cost of applying function f to its argument
+	 * @param l - Cost of performing a logical 'and' test
+	 * @param m - Cost of branch mis-prediction
+	 * @param t - Cost of performing an if test
+	 * @param r - Cost of accesing an array element rj[i]
+	 */
 	public CostModel(int a, int f, int l, int m, int t, int r) {
 		this.a=a;
 		this.f=f;
