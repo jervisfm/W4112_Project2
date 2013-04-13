@@ -46,6 +46,40 @@ public class LogicalAndTerm {
 		return this.subset_no; 
 	}
 	
+	
+	
+	public double getCost(CostModel cost) {
+		/**
+		 * General Cost Formula is as follows: 
+		 * 
+		 * kr * (k-1)*l + (f1 + ... + fk) + t + mq + (p1*...*pk)*a
+		 * Where: 
+		 * k = # of Basic terms
+		 * l = cost of performing a 'logical' "and" (i.e. & op)
+		 * f1 ... fk = Cost of doing function evals on all K functions. 
+		 * t = Cost of an if test evaluation
+		 * m = Cost of branch misprediction
+		 * p1 *...*pk = Compound / combined selectivity of all K basic terms
+		 * r = Cost of accessing an array element
+		 * q = p1*...*pk if p1*...*pk <= 0.5 ; else q = 1 - (p1*...*pk)
+		 * a = cost of writing an answer to the answer array. 
+		 */
+		double total = 0; 
+		double selectivities = getSelectivity(); 
+		double k = size();
+		int l = cost.l;
+		int t = cost.t;
+		int m = cost.m;
+		int r = cost.r; 
+		int f = cost.f; 
+		double q = selectivities <= 0.5 ? selectivities : 1 - selectivities;
+		int a = cost.a; 
+		
+		// Note: we assume each function has equal cost that's wy
+		// we multiply it (f) by # of terms (k)	
+		return k*r + (k-1)*l + k*f + t + m*q + selectivities*a;
+	}
+	
 	public int size() {
 		return data.size(); 
 	}
