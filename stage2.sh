@@ -2,4 +2,4 @@
 
 args=("$@")
 
-java QueryDriver ${args[0]} ${args[1]}
+java -cp bin/ QueryDriver ${args[0]} ${args[1]}
