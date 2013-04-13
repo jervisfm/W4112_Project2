@@ -34,10 +34,7 @@ public class UnitTests {
 		int expectedSize = 1 << setSize; 
 		int actualSize = subsets.size(); 
 		assertTrue("Expected Size = " + expectedSize + " but got " + actualSize, 
-				   actualSize == expectedSize);
-
-		//assertTrue("no way", 1 == 2);
-		
+				   actualSize == expectedSize);			
 	}
 
 }
