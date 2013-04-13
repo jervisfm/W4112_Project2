@@ -79,4 +79,14 @@ public class UnitTests {
 				   actual == expected);
 	}
 	
+	@Test
+	public void testgetCostLogicalAndTerm() {
+		CostModel c = CostModel.getDefaultCostModel();
+		LogicalAndTerm lat = getSampleTerms();
+		double actual = lat.getCost(c);
+		double s = lat.getSelectivity(); 
+		double expected  = 4*c.r + 3*c.l + 4*c.f + c.t + s*c.m + s*c.a;
+		assertTrue("Expected Cost = " + expected + " but got " + actual, 
+				   actual == expected);
+	}
 }
