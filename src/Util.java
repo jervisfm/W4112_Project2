@@ -77,6 +77,14 @@ public class Util {
 		return result;
 	}
 	
+	public static void numberSubsets(ArrayList<LogicalAndTerm> subsets) {
+		int count = 0;
+		for(LogicalAndTerm subset: subsets) {
+			subset.setSubsetNo(count);
+			++count;
+		}
+	}
+	
 	/**
 	 * Creates an array of 2^k possible plan records from the given terms. 
 	 * This corresponds to the 'Array A' in the 'Selection Conditions in Main
@@ -86,6 +94,18 @@ public class Util {
 	public static void createPlanRecordsArray(LogicalAndTerm terms) {
 		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
 		subsets = Util.removeEmptySubset(subsets);
+		Util.numberSubsets(subsets);
+		ArrayList<PlanRecord> plans = new ArrayList<PlanRecord>(); 
+		for (LogicalAndTerm subset : subsets) {
+			long left, right; 
+			left = right = 0; 
+			int n = subset.size(); 
+			double p = subset.getSelectivity(); 
+			boolean b = false; 
+			
+			PlanRecord record = new PlanRecord(n,p,b,c,left,right); 
+		}
+		
 		
 	}
 }
