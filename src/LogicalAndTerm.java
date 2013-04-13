@@ -50,6 +50,22 @@ public class LogicalAndTerm {
 		return data.size(); 
 	}
 	
+	/**
+	 * Computes the compound selectivity of all the basic terms
+	 * that we have. 
+	 * @return
+	 */
+	public double getSelectivity() {
+		if (isEmpty())
+			return 0; 
+		double start = data.get(0).selectivity;
+		double result = start; 
+		for (int i = 1; i < data.size(); ++i) {
+			result *= data.get(i).selectivity;
+		}
+		return result; 
+	}
+	
 	public boolean isEmpty() {
 		return size() == 0; 
 	}
