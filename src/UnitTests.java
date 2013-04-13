@@ -100,4 +100,11 @@ public class UnitTests {
 		assertTrue("Expected Cost = " + expected + " but got " + actual, 
 				   actual == expected);
 	}
+	
+	@Test
+	public void testCreatePlanRecordsArray() {
+		LogicalAndTerm lat = getSampleTerms();
+		ArrayList<PlanRecord> plans = Util.createPlanRecordsArray(lat);
+		assertTrue(plans.size() == (long) (Math.pow(2, lat.size()) - 1));
+	}
 }
