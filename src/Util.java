@@ -102,6 +102,7 @@ public class Util {
 			int n = subset.size(); 
 			double p = subset.getSelectivity(); 
 			boolean b = false; 
+			double c = subset.getCost(CostModel.getDefaultCostModel());
 			
 			PlanRecord record = new PlanRecord(n,p,b,c,left,right); 
 		}
