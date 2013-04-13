@@ -14,11 +14,11 @@ public class Util {
 		long maxLimit = 1 << setSize;  
 		BitVector bv = new BitVector(setSize);		
 		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>(); 
-		for (long i = 0; i <= maxLimit; ++i) {
-			bv.increment(); 
+		for (long i = 0; i < maxLimit; ++i, bv.increment()) {
 			BitSet bs = bv.getBitsSet(); 
+			int bitVectorSize = bv.getSetSize(); 
 			LogicalAndTerm subset = new LogicalAndTerm();
-			for (int j = 0; j < bs.size(); ++j) {
+			for (int j = 0; j < bitVectorSize; ++j) {
 				if(bs.get(j)) {
 					subset.add(terms.get(j));
 				}
@@ -28,7 +28,7 @@ public class Util {
 		return result; 
 	}
 	
-	/**s
+	/**
 	 * Gets a list of of selection queries/conditions returned in a 
 	 * format of LogicalAndTerms.
 	 * @param queries - list of queries to process
