@@ -110,6 +110,16 @@ public class Util {
 		
 		return k*r + (k-1)*l + f*k + a; 
 	}
+
+	/**
+	 * Compute the cost for the combined branching And plan. 
+	 * @param p
+	 * @return
+	 */
+	public static double planCost(BranchingAndPlan p) {
+		// TODO(jervis): Implement this. 
+		return 0;
+	}
 	
 	
 }
