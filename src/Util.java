@@ -102,35 +102,5 @@ public class Util {
 		return k*r + (k-1)*l + f*k + a; 
 	}
 	
-	/**
-	 * Creates an array of 2^k possible plan records from the given terms. 
-	 * This corresponds to the 'Array A' in the 'Selection Conditions in Main
-	 * Memory' paper by Ken Ross. 
-	 * @param terms
-	 */
-	public static ArrayList<PlanRecord> createPlanRecordsArray(LogicalAndTerm
-																terms) {
-		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
-		subsets = Util.removeEmptySubset(subsets);
-		Util.numberSubsets(subsets);
-		ArrayList<PlanRecord> plans = new ArrayList<PlanRecord>(); 
-		for (LogicalAndTerm subset : subsets) {
-			long left, right; 
-			left = right = 0; 
-			int n = subset.size(); 
-			double p = subset.getSelectivity(); 
-			boolean b = false; 
-			double c = subset.getCost(CostModel.getDefaultCostModel());
-			if (subset.getNoBranchAlgCost() < c) {
-				c = subset.getNoBranchAlgCost(); 
-				b = true;
-			}
-			Plan plan = new LogicalAndPlan(null, null, subset.getTerms());
-			PlanRecord record = new PlanRecord(n,p,b,c,plan,left,right); 
-			plans.add(record);
-		}
-		return plans;
-	}
-	
 	
 }
