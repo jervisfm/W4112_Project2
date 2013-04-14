@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 
 public class Algorithm {
@@ -20,8 +21,31 @@ public class Algorithm {
 	public void findOptimialPlan() {
 		generateAllPlans(terms);
 		
+		for(PlanRecord p1 : plans) {
+			LinkedHashSet<BasicTerm> set1 = Util.convertToSet(p1.subset);
+			for(PlanRecord p2 : plans) {
+				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
+				set1.retainAll(set2); 
+				if (set1.size() > 1) {
+					System.out.println("Debug: Skipping Common set: "+ set1);
+					continue; 
+				}
+				
+				Plan p = makeBranchingAndPlanFromSubsets(p1.subset, p2.subset);
+				
+			}
 		
+		}
 		
+	}
+
+	private Plan makeBranchingAndPlanFromSubsets(LogicalAndTerm leftSubset, 
+												  LogicalAndTerm rightSubset) {
+		Plan left = new LogicalAndPlan(null, null, leftSubset.getTerms());
+		// TODO:(jervis): double-check that expression below is OK. 
+		Plan right = new LogicalAndPlan(null,null, rightSubset.getTerms());
+		Plan p = new BranchingAndPlan(left, right, null);
+		return p; 
 	}
 	
 	public ArrayList<PlanRecord> generateAllPlans(LogicalAndTerm terms) {
@@ -53,9 +77,14 @@ public class Algorithm {
 				b = true;
 			}
 			Plan plan = new LogicalAndPlan(null, null, subset.getTerms());
-			PlanRecord record = new PlanRecord(n,p,b,c,plan,left,right); 
+			PlanRecord record = new PlanRecord(n,p,b,c,plan,left,right, subset); 
 			plans.add(record);
 		}
 		return plans;
 	}
+	
+	public static void isDisjoint(PlanRecord p1, PlanRecord p2) {
+		
+	}
+	
 }

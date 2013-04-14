@@ -33,6 +33,11 @@ public class PlanRecord {
 	public Plan plan; 
 	
 	/**
+	 * Associated subset 
+	 */
+	public LogicalAndTerm subset; 
+	
+	/**
 	 * Creates a Plan Record. 
 	 * @param n - Number of basic terms in matching subset
 	 * @param p - Selectivities of all terms in the subset
@@ -45,7 +50,7 @@ public class PlanRecord {
 	 * 				   best cost
 	 */
 	public PlanRecord(int n, double p, boolean b, double c,
-					   Plan plan, long left, long right) {
+					   Plan plan, long left, long right, LogicalAndTerm subset) {
 		if (n < 1)
 			throw new IllegalArgumentException("Cannot have empty subsets - "+ 
 												 n); 		
@@ -56,6 +61,7 @@ public class PlanRecord {
 		this.left = left;
 		this.right = right; 
 		this.plan = plan; 
+		this.subset = subset; 
 	}
 	
 }

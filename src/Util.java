@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.LinkedHashSet;
 
 /**
  * Contains useful utility methods
@@ -51,6 +52,14 @@ public class Util {
 		return result; 
 	}
 	
+	public static LinkedHashSet<BasicTerm> convertToSet(LogicalAndTerm terms) {
+		
+		LinkedHashSet<BasicTerm> result = new LinkedHashSet<BasicTerm>();
+		for (BasicTerm t : terms.getTerms()) {
+			result.add(t);
+		}
+		return result; 
+	}
 	
 	/**
 	 * Gets a list of of selection queries/conditions returned in a 
