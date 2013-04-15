@@ -26,7 +26,7 @@ public class Algorithm {
 			for(PlanRecord p2 : plans) {
 				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
 				set1.retainAll(set2); 
-				if (set1.size() > 1) {
+				if (set1.size() > 0) {
 					System.out.println("Debug: Skipping Common set: "+ set1);
 					continue; 
 				}
