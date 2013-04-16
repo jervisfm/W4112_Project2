@@ -31,4 +31,14 @@ public class Pair {
 	public void setY(double y) {
 		this.y = y;
 	}
+	
+	public double[] toArray() {
+		double[] ans = {x,y};
+		return ans; 
+		
+	}
+		
+	public boolean equals(Pair other) {
+		return this.x == other.x && this.y == other.y; 		
+	}
 }
