@@ -15,6 +15,13 @@ public class UnitTests {
 		queries.add(selectionConditions);
 		return Util.getBasicTerms(queries).get(0);
 	}
+	
+	private LogicalAndTerm getSampleTerms2() {
+		double [] selectionConditions = {0.700000, 0.800000};
+		ArrayList<double[]> queries = new ArrayList<double[]>();
+		queries.add(selectionConditions);
+		return Util.getBasicTerms(queries).get(0);
+	}
 
 	@Test
 	public void testGetBasicTerms() {
@@ -105,6 +112,7 @@ public class UnitTests {
 		LogicalAndTerm lat = getSampleTerms();
 		ArrayList<PlanRecord> plans = Algorithm.createPlanRecordsArray(lat);
 		assertTrue(plans.size() == (long) (Math.pow(2, lat.size()) - 1));
+		
 	}
 
 	@Test
@@ -142,5 +150,10 @@ public class UnitTests {
 		Pair actual = lat.getDMetric(cm);
 		assertTrue("Expected DMetric Cost = " + expected + " but got " + actual,
 				   actual.equals(expected));
+	}
+	
+	@Test
+	public void testAlgorithmOnSmallInputs() {
+		
 	}
 }
