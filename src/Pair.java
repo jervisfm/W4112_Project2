@@ -41,4 +41,10 @@ public class Pair {
 	public boolean equals(Pair other) {
 		return this.x == other.x && this.y == other.y; 		
 	}
+	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(x + "," + y + "\n");
+		return sb.toString(); 		
+	}
 }
