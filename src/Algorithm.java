@@ -63,7 +63,7 @@ public class Algorithm {
 				d(String.valueOf(p2.subset.getSubsetNo()));				
 								
 				if (!Util.isDisjointSets(set1, set2)) {
-					dln(". Debug: Skipping Common sets:");					
+					dln(". Debug: Skipping Common sets");					
 					continue;
 				}
 				System.out.println("");
@@ -87,7 +87,7 @@ public class Algorithm {
 						   s2DMetric.x < s1DMetric.x) {
 					continue;
 				} else {
-					double combinedCost = Util.planCost(p);
+					double combinedCost = Util.planCost(p,cm);
 					int lastIdx = plans.size() - 1;
 					if (combinedCost < plans.get(lastIdx).c) {
 						PlanRecord ans = plans.get(lastIdx);
