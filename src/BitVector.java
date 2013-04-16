@@ -7,15 +7,15 @@ public class BitVector {
 	 * Stores the bit vector
 	 */
 	private long data;
-	
+
 	/**
-	 * We ignore the left-most (sign) bit. 
+	 * We ignore the left-most (sign) bit.
 	 */
-	private static final int MAX_LIMIT = 63; 
-	private final int setSize; 
+	private static final int MAX_LIMIT = 63;
+	private final int setSize;
 	/**
-	 * Creates a bit vector that has that many bits available to it. 
-	 * @param setSize - # of bits in vector. Maximum allowed value is 63 bits. 
+	 * Creates a bit vector that has that many bits available to it.
+	 * @param setSize - # of bits in vector. Maximum allowed value is 63 bits.
 	 * @throws IllegalArgumentException if setSize > 63 or < 1
 	 */
 	public BitVector(int setSize) {
@@ -27,66 +27,66 @@ public class BitVector {
 			throw new IllegalArgumentException(
 									"Cannot not create empty bit set");
 		}
-		this.data = 0; 
+		this.data = 0;
 		this.setSize = setSize;
 	}
-	
+
 	public void increment() {
-		++data; 
+		++data;
 	}
-	
+
 	public void decrement() {
-		--data; 
+		--data;
 	}
-	
+
 	/**
-	 * Gets the set size this vector was created with initially. 
+	 * Gets the set size this vector was created with initially.
 	 * @return
 	 */
 	public int getSetSize() {
-		return setSize; 
+		return setSize;
 	}
-	
+
 	/**
 	 * Determines if the bit at given position is set.
 	 * Position schemed being used is zero-index. (i.e. very first bit
-	 * on the right will have index 0). 
+	 * on the right will have index 0).
 	 * @param bit
 	 * @return
 	 * @throws Exception
 	 */
 	public boolean isSet(int bit) {
 		if (bit > setSize - 1 || bit < 0) {
-			throw new IllegalArgumentException ("Out of Range Bit: " + bit + 
-								  				". SetSize=" +setSize);
-		}		
+			throw new IllegalArgumentException ("Out of Range Bit: " + bit +
+												". SetSize=" +setSize);
+		}
 		long mask = 1 << bit;
-		long result = data & mask; 
-		if (result > 0) 
+		long result = data & mask;
+		if (result > 0)
 			return true;
-		else 
+		else
 			return false;
 	}
-	
-	
+
+
 	/**
-	 * Return a bitset representation of bits in this vector. 
+	 * Return a bitset representation of bits in this vector.
 	 * This bitset is always be of size 64 (due to its java implementation) so
-	 * you need to be careful to ignore bits not relevant to you 
-	 * (by using the actual setSize of the vector). 
+	 * you need to be careful to ignore bits not relevant to you
+	 * (by using the actual setSize of the vector).
 	 * @return
 	 */
-	public BitSet getBitsSet() {		
+	public BitSet getBitsSet() {
 		long mask = 1;
-		int size = setSize; 
-		BitSet bs = new BitSet(size); 
+		int size = setSize;
+		BitSet bs = new BitSet(size);
 		for(int i = 0; i < size; ++i) {
-			long result = data & mask; 
+			long result = data & mask;
 			if (result > 0) {
 				bs.set(i);
 			}
 			mask <<= 1;
 		}
-		return bs; 
+		return bs;
 	}
 }

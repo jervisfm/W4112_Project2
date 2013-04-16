@@ -1,8 +1,8 @@
 Title: COMS W4112 Project 2    
 Author: Varun Ravishankar    
 		Jervis Muindi     
-Email:  vr2263 [at] columbia.edu    
-       jjm2190 [at] columbia.edu   
+Email:  vr2263@columbia.edu    
+       jjm2190@columbia.edu   
 Date: April 11th, 2013     
 
 # COMS W4112 Project 2
