@@ -17,11 +17,11 @@ public class CostModel {
 	/**
 	 * Cost of performing a logical "and" test
 	 */
-	public final int l; 
+	public final int l;
 	/**
 	 * Cost of Branch mis-prediction
 	 */
-	public final int m; 
+	public final int m;
 	/**
 	 * Cost of writing an answer to the answer array
 	 */
@@ -29,10 +29,10 @@ public class CostModel {
 	/**
 	 * Cost of apply function f to its argument
 	 */
-	public final int f; 
-	
+	public final int f;
+
 	/**
-	 * Creates a non-modifiable Cost Model object. 
+	 * Creates a non-modifiable Cost Model object.
 	 * @param a - Cost of writing an answer to the answer array
 	 * @param f - Cost of applying function f to its argument
 	 * @param l - Cost of performing a logical 'and' test
@@ -48,21 +48,21 @@ public class CostModel {
 		this.t = t;
 		this.r = r;
 	}
-	
+
 	/**
 	 * Gets a default cost model that is suitable for running
-	 * on machines in the CLIC lab. 
+	 * on machines in the CLIC lab.
 	 * @return
 	 */
 	public static CostModel getDefaultCostModel() {
-		
-		int a = 2; 
-		int f = 4; 
-		int l = 1; 
-		int m = 16; 
-		int t = 2; 
+
+		int a = 2;
+		int f = 4;
+		int l = 1;
+		int m = 16;
+		int t = 2;
 		int r = 1;
-		
+
 		return new CostModel(a, f, l, m, t, r);
 	}
 }

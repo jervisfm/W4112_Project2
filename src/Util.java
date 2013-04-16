@@ -16,35 +16,13 @@ public class Util {
 	 * @return
 	 * @throws Exception if the # of terms > 63
 	 */
-	public static ArrayList<LogicalAndTerm> 
+	public static ArrayList 
 				getAllSubsets(LogicalAndTerm terms) {
 		int setSize = terms.size();  
-		long maxLimit = 1 << setSize;  
-		BitVector bv = new BitVector(setSize);		
-		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>(); 
-		for (long i = 0; i < maxLimit; ++i, bv.increment()) {
-			BitSet bs = bv.getBitsSet(); 
-			int bitVectorSize = bv.getSetSize(); 
-			LogicalAndTerm subset = new LogicalAndTerm();
-			for (int j = 0; j < bitVectorSize; ++j) {
-				if(bs.get(j)) {
-					subset.add(terms.get(j));
-				}
-			}
-			result.add(subset);
-		}
-		return result; 
-	}
-	
-	/**
-	 * Returns the given set but without any empty subsets. 
-	 * Passed in set is left untouched. 
-	 * @param subsets
-	 * @return
-	 */
-	public static ArrayList<LogicalAndTerm> removeEmptySubset(
-											ArrayList<LogicalAndTerm> subsets) {
-		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>();
+		long maxLimit = 1  result = new ArrayList(); 
+		for (long i = 0; i  removeEmptySubset(
+											ArrayList subsets) {
+		ArrayList result = new ArrayList();
 		for(LogicalAndTerm subset : subsets) {
 			if (!subset.isEmpty())
 				result.add(subset);
@@ -52,9 +30,9 @@ public class Util {
 		return result; 
 	}
 	
-	public static LinkedHashSet<BasicTerm> convertToSet(LogicalAndTerm terms) {
+	public static LinkedHashSet convertToSet(LogicalAndTerm terms) {
 		
-		LinkedHashSet<BasicTerm> result = new LinkedHashSet<BasicTerm>();
+		LinkedHashSet result = new LinkedHashSet();
 		for (BasicTerm t : terms.getTerms()) {
 			result.add(t);
 		}
@@ -67,10 +45,10 @@ public class Util {
 	 * @param queries - list of queries to process
 	 * @return
 	 */
-	public static ArrayList<LogicalAndTerm> getBasicTerms(
-			ArrayList<double[]> queries) {
+	public static ArrayList getBasicTerms(
+			ArrayList queries) {
 		int count = 1;
-		ArrayList<LogicalAndTerm> result = new ArrayList<LogicalAndTerm>();
+		ArrayList result = new ArrayList();
 		for (double[] query : queries) {
 			LogicalAndTerm lat = new LogicalAndTerm();
 			for (double selectivity : query) {
@@ -86,7 +64,7 @@ public class Util {
 		return result;
 	}
 	
-	public static void numberSubsets(ArrayList<LogicalAndTerm> subsets) {
+	public static void numberSubsets(ArrayList subsets) {
 		int count = 0;
 		for(LogicalAndTerm subset: subsets) {
 			subset.setSubsetNo(count);
@@ -95,7 +73,7 @@ public class Util {
 	}
 	
 	
-	public static double computeNoBranchCost(ArrayList<BasicTerm> terms,
+	public static double computeNoBranchCost(ArrayList terms,
 											 CostModel cm) {
 		if (cm == null || terms == null) 
 			throw new NullPointerException("terms or cost model is null"); 
