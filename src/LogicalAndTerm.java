@@ -88,6 +88,33 @@ public class LogicalAndTerm {
 	}
 	
 	/**
+	 * Computes the fixed cost for this &-term. 
+	 * Fixed cost is the cost that does not vary with the selectivity
+	 * of the terms.  
+	 * @return
+	 */
+	public double getFixedCosst(CostModel cm) {
+		/**
+		 * fixed cost = k*r + (k-1)*l + f1 + ... + fk + t
+		 * where :
+		 *    k = # of basic terms
+		 *    r = cost of accessing an array element
+		 *    l = cost of performing a logical and op
+		 *    f1 + ... fk = cost of applying function 1 through k to its arg
+		 *    t = cost of performing the if test 
+		 */
+		
+		if (cm == null)
+			throw new IllegalArgumentException("Cannot have null cost model");
+		
+		
+		int k = data.size();
+		
+		
+		
+	}
+	
+	/**
 	 * Computes the compound selectivity of all the basic terms
 	 * that we have. 
 	 * @return
