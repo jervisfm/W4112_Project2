@@ -3,13 +3,20 @@ import java.util.BitSet;
 
 public class BitVector {
 
+	/**
+	 * Stores the bit vector
+	 */
 	private long data;
-	private static final int MAX_LIMIT = 63;
+	
+	/**
+	 * We ignore the left-most (sign) bit. 
+	 */
+	private static final int MAX_LIMIT = 63; 
 	private final int setSize; 
 	/**
 	 * Creates a bit vector that has that many bits available to it. 
 	 * @param setSize - # of bits in vector. Maximum allowed value is 63 bits. 
-	 * @throws Exception if setSize > 63 or < 1
+	 * @throws IllegalArgumentException if setSize > 63 or < 1
 	 */
 	public BitVector(int setSize) {
 		if (setSize > MAX_LIMIT) {
