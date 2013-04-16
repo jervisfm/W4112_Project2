@@ -130,4 +130,17 @@ public class UnitTests {
 		assertTrue("Expected CMetric Cost = " + expected + " but got " + actual, 
 				   actual.equals(expected));
 	}
+	
+	@Test
+	public void testGetDMetricLogicalAndTerm() {
+		LogicalAndTerm lat = getSampleTerms(); 
+		CostModel cm = CostModel.getDefaultCostModel(); 
+		double p = lat.getSelectivity(); 
+		double x = lat.getFixedCost(cm); 
+		double y = p ;
+		Pair expected = new Pair(x,y); 
+		Pair actual = lat.getDMetric(cm);
+		assertTrue("Expected DMetric Cost = " + expected + " but got " + actual, 
+				   actual.equals(expected));
+	}
 }
