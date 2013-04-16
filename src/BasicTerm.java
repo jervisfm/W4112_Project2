@@ -22,14 +22,12 @@ public class BasicTerm implements Cloneable {
 	}
 	
 	public boolean equals(BasicTerm other) {		
-		System.out.println("eq1");
 		return this.function.equals(other.function) && 
 			   this.argument.equals(other.argument);				
 	}
 	
 	@Override
 	public boolean equals(Object o) {
-		System.out.println("eq2");
 		if (o instanceof BasicTerm) {
 			BasicTerm other = (BasicTerm) o; 
 			return  this.equals(other); 
