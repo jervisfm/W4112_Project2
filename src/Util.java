@@ -94,6 +94,39 @@ public class Util {
 		}
 	}
 
+	/**
+	 * Gets the number of terms that are in common between
+	 * the two sets. 
+	 * @param s1 - set 1
+	 * @param s2 - set 2
+	 * @return
+	 */
+	public static int getCommonElementsSize(LinkedHashSet<BasicTerm> s1, 
+											LinkedHashSet<BasicTerm> s2) {
+		int count = 0; 
+		for (BasicTerm t1 : s1) {
+			for (BasicTerm t2: s2) {
+				if (t1.equals(t2)) {
+					++count;
+					break;
+				}
+			}
+		}
+		return count;
+	}
+	
+	/**
+	 * Returns true if the two sets are disjoint and have no in common
+	 * elements
+	 * @param s1 - set 1
+	 * @param s2 - set 2
+	 * @return
+	 */
+	public static boolean isDisjointSets(LinkedHashSet<BasicTerm> s1,
+									 LinkedHashSet<BasicTerm> s2) {
+		return getCommonElementsSize(s1, s2) == 0; 
+	}
+	
 
 	public static double computeNoBranchCost(ArrayList<BasicTerm> terms,
 											 CostModel cm) {
@@ -120,6 +153,13 @@ public class Util {
 			System.out.println("====================");
 			++count;
 		}
+	}
+	
+	public static void printSubset(LinkedHashSet<BasicTerm> set) {
+		for(BasicTerm t: set) {
+			System.out.print(t.function + ", ");
+		}
+		System.out.print(" ; ");
 	}
 	
 	/**
