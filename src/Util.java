@@ -155,11 +155,16 @@ public class Util {
 		}
 	}
 	
-	public static void printSubset(LinkedHashSet<BasicTerm> set) {
+	public static String printSubset(LinkedHashSet<BasicTerm> set, boolean doPrint) {
+		StringBuffer sb = new StringBuffer(); 
 		for(BasicTerm t: set) {
-			System.out.print(t.function + ", ");
+			sb.append(t.function + ", ");
 		}
-		System.out.print(" ; ");
+		sb.append(" ; ");
+		if (doPrint) {
+			System.out.println(sb);
+		} 
+		return sb.toString();
 	}
 	
 	/**

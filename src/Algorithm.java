@@ -26,6 +26,17 @@ public class Algorithm {
 		this.plans = new ArrayList<PlanRecord>();
 	}
 
+	
+	private void d(String msg) {
+		if (DEBUG)
+			System.out.print(msg);
+	}
+	
+	private void dln(String msg) {
+		if (DEBUG)
+			System.out.println(msg);
+	}
+	
 	public PlanRecord findOptimialPlan(CostModel cm) {
 
 		if (cm == null)
@@ -40,19 +51,19 @@ public class Algorithm {
 				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
 				
 				// debug, delete me later
-				System.out.print("s1 = ");
-				Util.printSubset(set1); 
-				System.out.print("s2 = ");
-				Util.printSubset(set2); 
-				System.out.print( " my common size  = " + Util.getCommonElementsSize(set1, set2));
-				System.out.print( " ## ");
+				d("s1 = ");
+				d(Util.printSubset(set1, false)); 
+				d("s2 = ");
+				d(Util.printSubset(set2, false)); 
+				d(" my common size  = " + Util.getCommonElementsSize(set1, set2));
+				d(" ## ");
 								 
-				System.out.print(p1.subset.getSubsetNo()); 
-				System.out.print(" | ");
-				System.out.print(p2.subset.getSubsetNo());				
+				d(String.valueOf(p1.subset.getSubsetNo())); 
+				d(" | ");
+				d(String.valueOf(p2.subset.getSubsetNo()));				
 								
 				if (!Util.isDisjointSets(set1, set2)) {
-					System.out.println(". Debug: Skipping Common sets:");					
+					dln(". Debug: Skipping Common sets:");					
 					continue;
 				}
 				System.out.println("");
