@@ -93,7 +93,7 @@ public class LogicalAndTerm {
 	 * of the terms.  
 	 * @return
 	 */
-	public double getFixedCosst(CostModel cm) {
+	public double getFixedCost(CostModel cm) {
 		/**
 		 * fixed cost = k*r + (k-1)*l + f1 + ... + fk + t
 		 * where :
@@ -109,9 +109,12 @@ public class LogicalAndTerm {
 		
 		
 		int k = data.size();
+		int r = cm.r; 
+		int l = cm.l; 
+		int f = cm.f;
+		int t = cm.t; 
 		
-		
-		
+		return k*r + (k-1) * l + k*f + t; 
 	}
 	
 	/**
