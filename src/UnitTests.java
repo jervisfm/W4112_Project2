@@ -1,8 +1,8 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -149,13 +149,42 @@ public class UnitTests {
 		LogicalAndTerm terms = getSampleTerms2();
 		CostModel cm = CostModel.getDefaultCostModel(); 
 		Algorithm alg = new Algorithm(terms); 
-		// PlanRecord actual = alg.findOptimialPlan(cm);
+		PlanRecord actual = alg.findOptimialPlan(cm);
 
+		if (true) return;
 		// Compute expected answer: 
 		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
 		subsets = Util.removeEmptySubset(subsets); 
+		Util.printSubsets(subsets);
+		int count = 1; 
 		
+		for(LogicalAndTerm subset: subsets) {
+			System.out.println("cost == " + subset.getCost(cm) + " | " + subset.getNoBranchAlgCost() );
+		}
 		
 		//PlanRecord expected = new PlanRecord(n, p, b, c, plan, left, right, subset); 
+	}
+	
+	@Test
+	public void testGetCommonsElementsSize() throws CloneNotSupportedException {
+		LinkedHashSet<BasicTerm> s1 = new LinkedHashSet<BasicTerm>() ;
+		LinkedHashSet<BasicTerm> s2 = new LinkedHashSet<BasicTerm>(); 
+		
+		BasicTerm b1 = new BasicTerm("t1", "blah", 0.6);
+		BasicTerm b2 = new BasicTerm("t2", "blah2", 0.4);
+		
+		s1.add((BasicTerm) b1.clone()); 
+		s2.add((BasicTerm) b1.clone());
+		s2.add((BasicTerm) b2.clone());
+		
+		int actual = Util.getCommonElementsSize(s1, s2);
+		int expected = 1;
+		assertTrue("Expected Common Size = " + expected + " but got " + actual,
+				   actual == expected);
+		
+		System.out.println( "COMMMONNN SIZE == " + actual);
+		s1.retainAll(s2); 
+		System.out.println( "### COMMMONNN Item java == " + s1.size());
+		
 	}
 }

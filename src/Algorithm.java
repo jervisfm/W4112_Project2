@@ -37,12 +37,41 @@ public class Algorithm {
 			LinkedHashSet<BasicTerm> set1 = Util.convertToSet(p1.subset);
 			for(PlanRecord p2 : plans) {
 				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
-				set1.retainAll(set2);
-				if (set1.size() > 0) {
-					System.out.println("Debug: Skipping Common set: "+ set1);
+				
+				// Debug: delete the printouts
+				System.out.print("s1 = ");
+				Util.printSubset(set1); 
+				System.out.print("s2 = ");
+				Util.printSubset(set2); 
+				System.out.print( " my common size  = " + Util.getCommonElementsSize(set1, set2));
+				System.out.print( " ");
+				
+				
+				
+				// set1.retainAll(set2);
+				
+				System.out.print("[AFTER s1 = ");
+				Util.printSubset(set1);
+				System.out.print("]");
+				
+				
+				 
+				System.out.print(p1.subset.getSubsetNo()); 
+				System.out.print(" | ");
+				System.out.print(p2.subset.getSubsetNo());
+				System.out.print(" :  ");
+				System.out.println( " size  = " + set1.size());
+				
+								
+				if (!Util.isDisjointSets(set1, set2)) {
+					System.out.print("Debug: Skipping Common sets: s1 = ");
+					Util.printSubset(set1); 
+					System.out.print(" | s2 = "); 
+					Util.printSubset(set2); 
+					System.out.println("");
 					continue;
 				}
-
+				
 				BranchingAndPlan p = makeBranchingAndPlan(p1.subset, p2.subset);
 
 				/**
