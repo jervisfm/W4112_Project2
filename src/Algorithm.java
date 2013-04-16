@@ -1,7 +1,13 @@
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
-
+/**
+ * 
+ * @author Jervis
+ *
+ * Contains the Algorithm to Optimize Cost of Branch 
+ * Mis-prediction for selection conditions in main memory. 
+ */
 public class Algorithm {
 
 	

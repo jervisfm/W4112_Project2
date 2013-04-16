@@ -51,6 +51,12 @@ public class LogicalAndTerm {
 		return Util.computeNoBranchCost(data, CostModel.getDefaultCostModel());
 	}
 	
+	/**
+	 * Get the full cost of this group of basic terms being 
+	 * logically - anded together. 
+	 * @param cost
+	 * @return
+	 */
 	public double getCost(CostModel cost) {
 		/**
 		 * General Cost Formula is as follows: 
@@ -78,7 +84,7 @@ public class LogicalAndTerm {
 		double q = selectivities <= 0.5 ? selectivities : 1 - selectivities;
 		int a = cost.a; 
 		
-		// Note: we assume each function has equal cost that's wy
+		// Note: we assume each function has equal cost that's why
 		// we multiply it (f) by # of terms (k)	
 		return k*r + (k-1)*l + k*f + t + m*q + selectivities*a;
 	}

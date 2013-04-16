@@ -7,7 +7,6 @@ import org.junit.Test;
 
 
 public class UnitTests {
-
 	
 	private LogicalAndTerm getSampleTerms() {
 		double [] selectionConditions = {0.700000, 0.800000, 
