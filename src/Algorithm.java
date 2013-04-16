@@ -90,7 +90,9 @@ public class Algorithm {
 					continue;
 				} else {
 					double combinedCost = Util.planCost(p,cm);
-					int idx = plans.size() - 1;
+					LogicalAndTerm union = Util.getUnionTerm(p1.subset,
+															 p2.subset);
+					int idx = getIndexOfSubset(plans, union);
 					if (combinedCost < plans.get(idx).c) {
 						PlanRecord ans = plans.get(idx);
 						ans.c = combinedCost;
@@ -104,6 +106,8 @@ public class Algorithm {
 		return plans.get(lastIdx);
 	}
 
+	
+	
 	private BranchingAndPlan makeBranchingAndPlan(PlanRecord left,
 												  PlanRecord right) {
 		

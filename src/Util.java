@@ -169,6 +169,24 @@ public class Util {
 	}
 	
 	/**
+	 * Unites the two given logical and terms into one term. 
+	 * @param t1
+	 * @param t2
+	 * @return
+	 */
+	public static LogicalAndTerm getUnionTerm(LogicalAndTerm t1, 
+											  LogicalAndTerm t2) {
+		LogicalAndTerm result = new LogicalAndTerm(); 
+		for(BasicTerm t : t1.getTerms()) {
+			result.add(t);
+		}
+		for (BasicTerm t: t2.getTerms()) {
+			result.add(t);
+		}
+		return result; 
+	}
+	
+	/**
 	 * Compute the cost for the combined branching And plan.
 	 * @param p
 	 * @return
