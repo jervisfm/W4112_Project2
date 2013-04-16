@@ -195,10 +195,10 @@ public class Util {
 		
 		if (p.left == null && p.right == null) {
 			if (p.terms != null) {
-				LogicalAndTerm lat = new LogicalAndTerm(p.terms);
-				System.out.println("Warn: wierd case in PlanCost");
+				LogicalAndTerm lat = new LogicalAndTerm(p.terms);				
 				return lat.getCost(cm);
 			} else {
+				System.out.println("Warn: wierd case in PlanCost");
 				return 0; 
 			}
 		}

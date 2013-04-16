@@ -149,9 +149,9 @@ public class UnitTests {
 		LogicalAndTerm terms = getSampleTerms2();
 		CostModel cm = CostModel.getDefaultCostModel(); 
 		Algorithm alg = new Algorithm(terms); 
-		PlanRecord actual = alg.findOptimialPlan(cm);
+		//PlanRecord actual = alg.findOptimialPlan(cm);
 
-		if (true) return;
+		
 		// Compute expected answer: 
 		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
 		subsets = Util.removeEmptySubset(subsets); 
@@ -161,6 +161,12 @@ public class UnitTests {
 		for(LogicalAndTerm subset: subsets) {
 			System.out.println("cost == " + subset.getCost(cm) + " | " + subset.getNoBranchAlgCost() );
 		}
+		
+		Plan left = new LogicalAndPlan(null, null, subsets.get(0).getTerms());
+		Plan right = new LogicalAndPlan(null, null, subsets.get(1).getTerms());
+		BranchingAndPlan bap = new BranchingAndPlan(left, right, null); 
+		double totalCost = Util.planCost(bap, cm);
+		System.out.println ("Total Cost == " + totalCost);
 		
 		//PlanRecord expected = new PlanRecord(n, p, b, c, plan, left, right, subset); 
 	}
@@ -181,10 +187,5 @@ public class UnitTests {
 		int expected = 1;
 		assertTrue("Expected Common Size = " + expected + " but got " + actual,
 				   actual == expected);
-		
-		System.out.println( "COMMMONNN SIZE == " + actual);
-		s1.retainAll(s2); 
-		System.out.println( "### COMMMONNN Item java == " + s1.size());
-		
 	}
 }
