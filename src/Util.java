@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 
 /**
@@ -104,7 +105,7 @@ public class Util {
 	public static int getCommonElementsSize(LinkedHashSet<BasicTerm> s1, 
 											LinkedHashSet<BasicTerm> s2) {
 		int count = 0; 
-		for (BasicTerm t1 : s1) {
+		for (BasicTerm t1 : s1) {			
 			for (BasicTerm t2: s2) {
 				if (t1.equals(t2)) {
 					++count;
@@ -186,6 +187,14 @@ public class Util {
 		return leftTermFixedCost + m * q + selectivities * rightTermCost;
 	}
 
+	public static boolean contains(Collection<?> c, Object item) {		
+		for (Object obj : c) {
+			if (obj.equals(item))
+				return true;
+		}
+		return false;
+	}
+	
 	private static double planCost(Plan p, CostModel cm) {
 		if (cm == null)
 			throw new IllegalArgumentException("cost model cannot be null");

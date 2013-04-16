@@ -90,9 +90,9 @@ public class Algorithm {
 					continue;
 				} else {
 					double combinedCost = Util.planCost(p,cm);
-					int lastIdx = plans.size() - 1;
-					if (combinedCost < plans.get(lastIdx).c) {
-						PlanRecord ans = plans.get(lastIdx);
+					int idx = plans.size() - 1;
+					if (combinedCost < plans.get(idx).c) {
+						PlanRecord ans = plans.get(idx);
 						ans.c = combinedCost;
 						ans.left = p1.subset.getSubsetNo();
 						ans.right = p2.subset.getSubsetNo();
@@ -145,6 +145,30 @@ public class Algorithm {
 			plans.add(record);
 		}
 		return plans;
+	}
+	
+	public static int getIndexOfSubset(ArrayList<PlanRecord> plans, 
+									   LogicalAndTerm term) {
+		
+		int i = 0; 
+		for (PlanRecord p : plans) {
+			LogicalAndTerm curr = new LogicalAndTerm(p.plan.terms);
+			if (term.size() == curr.size()) {
+				boolean allMatch = true;
+				
+				for (BasicTerm t : term.getTerms()) {
+					if (!Util.contains(curr.getTerms(), t)) {
+							allMatch = false;
+							break;
+					}
+				}
+				if (allMatch) {
+					return i;
+				}
+			}
+			++i;
+		}
+		return 0; 
 	}
 
 }
