@@ -107,4 +107,15 @@ public class UnitTests {
 		ArrayList<PlanRecord> plans = Algorithm.createPlanRecordsArray(lat);
 		assertTrue(plans.size() == (long) (Math.pow(2, lat.size()) - 1));
 	}
+	
+	@Test
+	public void testGetFixedCostLogicalAndTerm() {
+		LogicalAndTerm lat = getSampleTerms();
+		int k = lat.size(); 
+		CostModel cm = CostModel.getDefaultCostModel(); 
+		double actual = lat.getFixedCost(cm); 
+		double expected  = k * cm.r + (k-1)*cm.l + k*cm.f + cm.t; 		
+		assertTrue("Expected Fixed Cost = " + expected + " but got " + actual, 
+				   actual == expected);
+	}
 }
