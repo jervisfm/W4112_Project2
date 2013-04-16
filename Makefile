@@ -2,10 +2,10 @@ CLASSPATH="lib/*:."
 
 all: algorithm
 
-algorithm:
+algorithm: setup
 	javac -cp $(CLASSPATH) src/*.java -d bin/
 
-.PHONY: clean test
+.PHONY: clean test setup
 
 setup:
 	@mkdir -p bin/ lib/
