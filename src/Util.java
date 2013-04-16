@@ -181,10 +181,37 @@ public class Util {
 		int m = cm.m;
 		double selectivities = leftTerm.getSelectivity(); 
 		double q = Math.min(selectivities , 1 - selectivities);
-		double rightTermCost = rightTerm.getCost(cm); 
+		double rightTermCost = Util.planCost(p.right, cm);  
 		
 		return leftTermFixedCost + m * q + selectivities * rightTermCost;
 	}
 
-
+	private static double planCost(Plan p, CostModel cm) {
+		if (cm == null)
+			throw new IllegalArgumentException("cost model cannot be null");
+		
+		if (p == null)
+			return 0; 
+		
+		if (p.left == null && p.right == null) {
+			if (p.terms != null) {
+				LogicalAndTerm lat = new LogicalAndTerm(p.terms);
+				System.out.println("Warn: wierd case in PlanCost");
+				return lat.getCost(cm);
+			} else {
+				return 0; 
+			}
+		}
+			
+		
+		if (p.left instanceof LogicalAndPlan) {
+			LogicalAndTerm left  = new LogicalAndTerm(p.left.terms); 
+			double fixedCost = left.getFixedCost(cm); 
+			double selectivity = left.getSelectivity();
+			double q = Math.min(selectivity, 1 - selectivity);
+			return fixedCost + cm.m * q + planCost(p.right, cm);
+		} else {
+			return planCost(p.left, cm) + planCost(p.right, cm);
+		}
+	}
 }
