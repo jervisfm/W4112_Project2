@@ -172,9 +172,18 @@ public class Util {
 	 * @param p
 	 * @return
 	 */
-	public static double planCost(BranchingAndPlan p) {
-		// TODO(jervis): Implement this.
-		return 0;
+	public static double planCost(BranchingAndPlan p, CostModel cm) {
+		
+		LogicalAndTerm leftTerm = new LogicalAndTerm(p.left.terms);
+		LogicalAndTerm rightTerm = new LogicalAndTerm(p.right.terms); 
+		
+		double leftTermFixedCost =leftTerm.getFixedCost(cm);
+		int m = cm.m;
+		double selectivities = leftTerm.getSelectivity(); 
+		double q = Math.min(selectivities , 1 - selectivities);
+		double rightTermCost = rightTerm.getCost(cm); 
+		
+		return leftTermFixedCost + m * q + selectivities * rightTermCost;
 	}
 
 

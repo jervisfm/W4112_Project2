@@ -18,6 +18,13 @@ public class LogicalAndTerm {
 		this.data  = new ArrayList<BasicTerm>();
 		data.add(term);
 	}
+	
+	public LogicalAndTerm(ArrayList<BasicTerm> data) {
+		if (data ==  null)
+			throw new IllegalArgumentException("data cannot be null");
+		this.data = data;
+	}
+	
 	public LogicalAndTerm() {
 		this.data  = new ArrayList<BasicTerm>();
 	}
