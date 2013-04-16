@@ -13,7 +13,7 @@ public class Algorithm {
 
 
 	public ArrayList<PlanRecord> plans;
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	private LogicalAndTerm terms;
 
 	public Algorithm(LogicalAndTerm terms) {
@@ -66,7 +66,7 @@ public class Algorithm {
 					dln(". Debug: Skipping Common sets");					
 					continue;
 				}
-				System.out.println("");
+				dln("");
 				
 				BranchingAndPlan p = makeBranchingAndPlan(p1, p2);
 

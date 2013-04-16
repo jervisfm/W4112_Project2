@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -150,16 +151,67 @@ public class UnitTests {
 				   actual.equals(expected));
 	}
 	
+
+	private Algorithm getAlg(double[] q) {
+		LogicalAndTerm terms = getSampleTerms(q);
+		CostModel cm = CostModel.getDefaultCostModel(); 
+		return new Algorithm(terms); 
+	}
+	
 	@Test
-	public void testAlgorithmOnSmallInputs() {
-		LogicalAndTerm terms = getSampleTerms2();
+	public void testAlgorithm() {
+		CostModel cm = CostModel.getDefaultCostModel();
+		double err = Math.pow(10,-1);
+		double [] q1 = {0.4,0.6}; 
+		double [] q2 = {0.7, 0.8, 0.8, 0.9};
+		double [] q3 = {0.7, 0.4, 0.2, 0.3, 0.6};
+		double[] q4 = {0.65, 0.79, 0.43, 0.26, 0.75, 0.37, 0.19, 0.53};
+		// expected values
+		double e1 = 13.0;
+		double e2 = 25.0;
+		double e3 = 13.495999999999999;
+		double e4 = 13.109047394369998; 
+		
+		// Query 1
+		double actual = getAlg(q1).findOptimialPlan(cm).c; 
+		assertEquals("Expected Q1 Cost = " + e1+ " but got " + actual,
+					 e1, actual, err);
+		
+		// Query 2
+		actual = getAlg(q2).findOptimialPlan(cm).c; 
+		assertEquals("Expected Q2 Cost = " + e2+ " but got " + actual,
+					 e2, actual, err);
+		
+		// Query 3	
+		actual = getAlg(q3).findOptimialPlan(cm).c; 
+		assertEquals("Expected Q3 Cost = " + e3+ " but got " + actual,
+					 e3, actual, err);
+		
+		// Query 4
+		actual = getAlg(q4).findOptimialPlan(cm).c; 
+		assertEquals("Expected Q4 Cost = " + e4+ " but got " + actual,
+					 e4, actual, err);
+		
+	}
+	
+	@Test
+	public void testAlgorithmDebug() {
+		double [] q1 = {0.4,0.6}; 
+		double [] q2 = {0.7, 0.8, 0.8, 0.9};
+		double [] q3 = {0.7, 0.4, 0.2, 0.3, 0.6};
+		double[] q4 = {0.65, 0.79, 0.43, 0.26, 0.75, 0.37, 0.19, 0.53};
+		
+		LogicalAndTerm terms = getSampleTerms(q4);
 		CostModel cm = CostModel.getDefaultCostModel(); 
 		Algorithm alg = new Algorithm(terms); 
-		//PlanRecord actual = alg.findOptimialPlan(cm);
+		PlanRecord actual = alg.findOptimialPlan(cm);
 
 		
+		
+		System.out.println("Final cost == " + actual.c);
+		
 		// Compute expected answer: 
-		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
+		/*ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
 		subsets = Util.removeEmptySubset(subsets); 
 		Util.printSubsets(subsets);
 		int count = 1; 
@@ -172,7 +224,7 @@ public class UnitTests {
 		Plan right = new LogicalAndPlan(null, null, subsets.get(1).getTerms());
 		BranchingAndPlan bap = new BranchingAndPlan(left, right, null); 
 		double totalCost = Util.planCost(bap, cm);
-		System.out.println ("Total Cost == " + totalCost);
+		System.out.println ("Total Cost == " + totalCost); */
 		
 		//PlanRecord expected = new PlanRecord(n, p, b, c, plan, left, right, subset); 
 	}
