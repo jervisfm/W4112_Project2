@@ -8,6 +8,9 @@ public class Pair {
 	public double x;
 	public double y; 
 		
+	public Pair() {
+		this.x = this.y = 0; 
+	}
 	public Pair(double x, double y) {
 		this.x = x;
 		this.y = y;
