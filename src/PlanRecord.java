@@ -63,5 +63,15 @@ public class PlanRecord {
 		this.plan = plan;
 		this.subset = subset;
 	}
+	
+	public String toString() {
+		return String.format("No of terms: %d \n" +
+							 " Combined Selectivities:%f\n" +
+							 "Uses No Branch? %b \n " +
+							 "Best Cost: %f \n " +
+							 "Left Subplan Index: %d \n" +
+							 "Right Subplan Index: %d\n", 
+							 n, p, b, c, left, right); 		
+	}
 
 }
