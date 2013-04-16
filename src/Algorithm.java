@@ -13,6 +13,7 @@ public class Algorithm {
 
 
 	public ArrayList<PlanRecord> plans;
+	public static final boolean DEBUG = true;
 	private LogicalAndTerm terms;
 
 	public Algorithm(LogicalAndTerm terms) {
@@ -38,39 +39,23 @@ public class Algorithm {
 			for(PlanRecord p2 : plans) {
 				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
 				
-				// Debug: delete the printouts
+				// debug, delete me later
 				System.out.print("s1 = ");
 				Util.printSubset(set1); 
 				System.out.print("s2 = ");
 				Util.printSubset(set2); 
 				System.out.print( " my common size  = " + Util.getCommonElementsSize(set1, set2));
-				System.out.print( " ");
-				
-				
-				
-				// set1.retainAll(set2);
-				
-				System.out.print("[AFTER s1 = ");
-				Util.printSubset(set1);
-				System.out.print("]");
-				
-				
-				 
+				System.out.print( " ## ");
+								 
 				System.out.print(p1.subset.getSubsetNo()); 
 				System.out.print(" | ");
-				System.out.print(p2.subset.getSubsetNo());
-				System.out.print(" :  ");
-				System.out.println( " size  = " + set1.size());
-				
+				System.out.print(p2.subset.getSubsetNo());				
 								
 				if (!Util.isDisjointSets(set1, set2)) {
-					System.out.print("Debug: Skipping Common sets: s1 = ");
-					Util.printSubset(set1); 
-					System.out.print(" | s2 = "); 
-					Util.printSubset(set2); 
-					System.out.println("");
+					System.out.println(". Debug: Skipping Common sets:");					
 					continue;
 				}
+				System.out.println("");
 				
 				BranchingAndPlan p = makeBranchingAndPlan(p1.subset, p2.subset);
 
