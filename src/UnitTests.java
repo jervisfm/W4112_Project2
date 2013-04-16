@@ -22,6 +22,12 @@ public class UnitTests {
 		queries.add(selectionConditions);
 		return Util.getBasicTerms(queries).get(0);
 	}
+	
+	private LogicalAndTerm getSampleTerms(double[] selectionConditions) {
+		ArrayList<double[]> queries = new ArrayList<double[]>();
+		queries.add(selectionConditions);
+		return Util.getBasicTerms(queries).get(0);
+	}
 
 	@Test
 	public void testGetBasicTerms() {
@@ -187,5 +193,42 @@ public class UnitTests {
 		int expected = 1;
 		assertTrue("Expected Common Size = " + expected + " but got " + actual,
 				   actual == expected);
+	}
+	
+	
+	@Test
+	public void testGetIndexOfSubset() {
+		double[] functionSelectivity = {0.1, 0.2, 0.3};
+		LogicalAndTerm terms = getSampleTerms(functionSelectivity);
+		CostModel cm = CostModel.getDefaultCostModel(); 
+		Algorithm alg = new Algorithm(terms); 
+		alg.findOptimialPlan(cm);
+		ArrayList<PlanRecord> plans = alg.plans;
+		
+		int expected;
+		int actual; 
+		// Test 1
+		LogicalAndTerm t1 = new LogicalAndTerm();
+		t1.add(terms.get(1));
+		t1.add(terms.get(2));
+		expected = 5;
+		actual = alg.getIndexOfSubset(plans, t1);
+		
+		assertTrue("Expected Index = " + expected + " but got " + actual,
+				   actual == expected);
+		// Test 2
+		t1 = new LogicalAndTerm(terms.get(0));	
+		t1.add(terms.get(2));
+		t1.add(terms.get(1));
+		expected = 6;
+		actual = alg.getIndexOfSubset(plans, t1);
+		
+		assertTrue("Expected Index = " + expected + " but got " + actual,
+				   actual == expected);
+				
+		/*
+		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
+		subsets = Util.removeEmptySubset(subsets); 
+		Util.printSubsets(subsets); */
 	}
 }
