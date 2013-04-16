@@ -68,7 +68,7 @@ public class Algorithm {
 				}
 				System.out.println("");
 				
-				BranchingAndPlan p = makeBranchingAndPlan(p1.subset, p2.subset);
+				BranchingAndPlan p = makeBranchingAndPlan(p1, p2);
 
 				/**
 				 * TODO(jervis): double check again to make sure I do the
@@ -80,9 +80,11 @@ public class Algorithm {
 
 				Pair s1DMetric = p1.subset.getDMetric(cm);
 				Pair s2DMetric = p2.subset.getDMetric(cm);
-				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
+				if ( false && /* TODO: correct this condition */
+					s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
-				} else if (p1.subset.getSelectivity() <= 0.5 &&
+				} else if ( false && /* TODO: correct this condition */
+							p1.subset.getSelectivity() <= 0.5 &&
 						   s2DMetric.y < s1DMetric.y &&
 						   s2DMetric.x < s1DMetric.x) {
 					continue;
@@ -102,12 +104,11 @@ public class Algorithm {
 		return plans.get(lastIdx);
 	}
 
-	private BranchingAndPlan makeBranchingAndPlan(LogicalAndTerm leftSubset,
-												   LogicalAndTerm rightSubset) {
-		Plan left = new LogicalAndPlan(null, null, leftSubset.getTerms());
+	private BranchingAndPlan makeBranchingAndPlan(PlanRecord left,
+												  PlanRecord right) {
+		
 		// TODO:(jervis): double-check that expression below is OK.
-		Plan right = new LogicalAndPlan(null,null, rightSubset.getTerms());
-		BranchingAndPlan p = new BranchingAndPlan(left, right, null);
+		BranchingAndPlan p = new BranchingAndPlan(left.plan, right.plan, null);
 		return p;
 	}
 
