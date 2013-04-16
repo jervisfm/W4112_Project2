@@ -107,15 +107,15 @@ public class Algorithm {
 			long left, right;
 			left = right = 0;
 			int n = subset.size();
-			double p = subset.getSelectivity();
-			boolean b = false;
+			double p = subset.getSelectivity();			
+			boolean doNoBranch = false;
 			double c = subset.getCost(CostModel.getDefaultCostModel());
 			if (subset.getNoBranchAlgCost() < c) {
 				c = subset.getNoBranchAlgCost();
-				b = true;
+				doNoBranch = true;
 			}
 			Plan plan = new LogicalAndPlan(null, null, subset.getTerms());
-			PlanRecord record = new PlanRecord(n,p,b,c,plan,left,right, subset);
+			PlanRecord record = new PlanRecord(n,p,doNoBranch,c,plan,left,right, subset);
 			plans.add(record);
 		}
 		return plans;
