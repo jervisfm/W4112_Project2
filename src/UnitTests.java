@@ -117,4 +117,17 @@ public class UnitTests {
 		assertTrue("Expected Fixed Cost = " + expected + " but got " + actual, 
 				   actual == expected);
 	}
+	
+	@Test
+	public void testGetCMetricLogicalAndTerm() {
+		LogicalAndTerm lat = getSampleTerms(); 
+		CostModel cm = CostModel.getDefaultCostModel(); 
+		double p = lat.getSelectivity(); 
+		double x = (p-1) / lat.getFixedCost(cm); 
+		double y = p ;
+		Pair expected = new Pair(x,y); 
+		Pair actual = lat.getCMetric(cm);
+		assertTrue("Expected CMetric Cost = " + expected + " but got " + actual, 
+				   actual.equals(expected));
+	}
 }
