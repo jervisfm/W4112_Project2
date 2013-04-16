@@ -124,6 +124,46 @@ public class LogicalAndTerm {
 	}
 	
 	/**
+	 * Computes the C-Metric for this &-term.
+	 * @param cm - CostModel to use 
+	 * @return
+	 */
+	public Pair getCMetric(CostModel cm) {
+		if (cm == null)
+			throw new IllegalArgumentException("CostModel cannot be null");
+		/**
+		 * C-metric is ( (p-1)/fcost(E) , p )
+		 * where: 
+		 * 		p = combined selectivity
+		 * 		fcost(E) = fixed cost of this &-term
+		 */
+		double fixedCost = getFixedCost(cm);
+		double selectivites = getSelectivity(); 
+		double x = (selectivites - 1) / fixedCost;
+		double y = selectivites; 
+		return new Pair(x,y); 
+	}
+	
+	/**
+	 * Computes the D-Metric for this &-term
+	 * @param cm - CostModel to use
+	 * @return
+	 */
+	public Pair getDMetric(CostModel cm) {
+		if (cm == null)
+			throw new IllegalArgumentException("CostModel cannot be null");
+		/**
+		 * D-metric is ( fcost(E) , p)
+		 * where: 
+		 * 		p = combined selectivity
+		 * 		fcost(E) = fixed cost of this &-term
+		 */
+		double fixedCost = getFixedCost(cm);
+		double selectivities = getSelectivity(); 
+		return new Pair(fixedCost, selectivities);
+	}
+	
+	/**
 	 * Computes the compound selectivity of all the basic terms
 	 * that we have. 
 	 * @return
