@@ -5,9 +5,9 @@ import java.util.LinkedHashSet;
  *
  * @author Jervis
  *
- * Contains the Algorithm 4.11 to Optimize Cost of Branch 
+ * Contains the Algorithm 4.11 to Optimize Cost of Branch
  * Mis-prediction From the Paper 'Selection conditions in main memory'
- * By Kenneth Ross. 
+ * By Kenneth Ross.
  */
 public class Algorithm {
 
@@ -24,12 +24,12 @@ public class Algorithm {
 		this.terms = terms;
 		this.plans = new ArrayList<PlanRecord>();
 	}
-	
+
 	public PlanRecord findOptimialPlan(CostModel cm) {
-		
+
 		if (cm == null)
 			throw new IllegalArgumentException("Cost Model cannot be null");
-		
+
 
 		generateAllPlans(terms);
 
@@ -44,21 +44,21 @@ public class Algorithm {
 				}
 
 				BranchingAndPlan p = makeBranchingAndPlan(p1.subset, p2.subset);
-				
+
 				/**
-				 * TODO(jervis): double check again to make sure I do the 
-				 * checks correctly for both metrics. (esp. wrt to condition 
+				 * TODO(jervis): double check again to make sure I do the
+				 * checks correctly for both metrics. (esp. wrt to condition
 				 * "leftmost &-term in set2 (aka 's' in paper)")
 				 */
-				Pair s1CMetric = p1.subset.getCMetric(cm); 
+				Pair s1CMetric = p1.subset.getCMetric(cm);
 				Pair s2CMetric = p2.subset.getCMetric(cm);
-				
-				Pair s1DMetric = p1.subset.getDMetric(cm); 
+
+				Pair s1DMetric = p1.subset.getDMetric(cm);
 				Pair s2DMetric = p2.subset.getDMetric(cm);
-				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) { 						
-					continue; 
+				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
+					continue;
 				} else if (p1.subset.getSelectivity() <= 0.5 &&
-						   s2DMetric.y < s1DMetric.y && 
+						   s2DMetric.y < s1DMetric.y &&
 						   s2DMetric.x < s1DMetric.x) {
 					continue;
 				} else {
@@ -120,5 +120,5 @@ public class Algorithm {
 		}
 		return plans;
 	}
-	
+
 }
