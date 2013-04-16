@@ -111,6 +111,17 @@ public class Util {
 		return k*r + (k-1)*l + f*k + a;
 	}
 
+	public static void printSubsets(ArrayList<LogicalAndTerm> subsets) {
+		int count = 1;		
+		for (LogicalAndTerm subset : subsets) {
+			System.out.println("Subset No " + count);
+			System.out.println("-------------------");
+			System.out.println(subset);
+			System.out.println("====================");
+			++count;
+		}
+	}
+	
 	/**
 	 * Compute the cost for the combined branching And plan.
 	 * @param p

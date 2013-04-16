@@ -42,15 +42,7 @@ public class UnitTests {
 	public void testGetAllSubSets() throws Exception {
 		LogicalAndTerm lat = getSampleTerms();
 		int setSize = lat.size();
-		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(lat);
-		int count = 1;
-		for (LogicalAndTerm subset : subsets) {
-			System.out.println("Subset No " + count);
-			System.out.println("-------------------");
-			System.out.println(subset);
-			System.out.println("====================");
-			++count;
-		}
+		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(lat);		
 
 		int expectedSize = 1 << setSize;
 		int actualSize = subsets.size();
@@ -154,6 +146,16 @@ public class UnitTests {
 	
 	@Test
 	public void testAlgorithmOnSmallInputs() {
+		LogicalAndTerm terms = getSampleTerms2();
+		CostModel cm = CostModel.getDefaultCostModel(); 
+		Algorithm alg = new Algorithm(terms); 
+		// PlanRecord actual = alg.findOptimialPlan(cm);
+
+		// Compute expected answer: 
+		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
+		subsets = Util.removeEmptySubset(subsets); 
 		
+		
+		//PlanRecord expected = new PlanRecord(n, p, b, c, plan, left, right, subset); 
 	}
 }
