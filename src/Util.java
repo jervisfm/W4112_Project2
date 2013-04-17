@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 /**
  * Contains useful utility methods
  * @author Jervis
+ * @author Varun
  *
  */
 public class Util {
@@ -160,8 +161,8 @@ public class Util {
 		   j += (t1[o1[i]] & t2[o2[i]]);
 		 **/
 
-		   // TODO: Varun
-		   return null;
+	   // TODO: Varun
+	   return null;
 	}
 
 
@@ -173,7 +174,7 @@ public class Util {
 		// Will happen when the last &-term has NoBranch Bit set.
 
 	   // TODO: Varun
-	   return null;
+	   return "hi";
 	}
 
 

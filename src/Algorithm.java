@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 /**
  *
  * @author Jervis
+ * @author Varun
  *
  * Contains the Algorithm 4.11 to Optimize Cost of Branch
  * Mis-prediction From the Paper 'Selection conditions in main memory'

@@ -12,8 +12,22 @@ public class QueryDriver
 		Properties config = QueryParser.parseConfig(configPath);
 		CostModel cm = new CostModel(config);
 
-		printList(queries);
-		System.out.println(config);
+		ArrayList<LogicalAndTerm> queryTerms = Util.getBasicTerms(queries);
+
+		for(LogicalAndTerm query : queryTerms)
+		{
+			Algorithm queryInstance = new Algorithm(query);
+			PlanRecord solution = queryInstance.findOptimalPlan(cm);
+			String solutionCode = Util.getSolutionCode(solution);
+			double solutionCost = solution.c;
+
+			System.out.println("==================================================================");
+			System.out.println(query.selectivitiesToString());
+			System.out.println("------------------------------------------------------------------");
+			System.out.println(solutionCode);
+			System.out.println("------------------------------------------------------------------");
+			System.out.println("cost: " + solutionCost);
+		}
 	}
 
 	private static void t0 () {

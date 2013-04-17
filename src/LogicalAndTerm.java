@@ -5,6 +5,7 @@ import java.util.ArrayList;
  *
  * Represents a Collection of BasicTerms
  * @author Jervis
+ * @author Varun
  */
 public class LogicalAndTerm {
 
@@ -201,6 +202,17 @@ public class LogicalAndTerm {
 			sb.append(" & ");
 			sb.append("\n");
 		}
+		return sb.toString();
+	}
+
+	public String selectivitiesToString() {
+		StringBuffer sb = new StringBuffer();
+
+		for(BasicTerm t : data) {
+			sb.append(t.selectivity);
+			sb.append(" ");
+		}
+
 		return sb.toString();
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Properties;
  * Represents the cost model to use in finding
  * optimal query plan.
  * @author Jervis
+ * @author Varun
  *
  */
 public class CostModel {
