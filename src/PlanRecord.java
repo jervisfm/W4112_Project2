@@ -66,14 +66,24 @@ public class PlanRecord {
 		this.subset = subset;
 	}
 	
+	
+	
 	public String toString() {
+		
+		StringBuffer s= new StringBuffer(); 
+		for (BasicTerm t : this.subset.getTerms()) {
+			s.append(t.function + ",");
+		}
+		
 		return String.format("No of terms: %d \n" +
-							 " Combined Selectivities:%f\n" +
-							 "Uses No Branch? %b \n " +
-							 "Best Cost: %f \n " +
+							 "Combined Selectivities:%f\n" +
+							 "Uses No Branch? %b \n" +
+							 "Best Cost: %f \n" +
 							 "Left Subplan Index: %d \n" +
-							 "Right Subplan Index: %d\n", 
-							 n, p, b, c, left, right); 		
+							 "Right Subplan Index: %d\n" +
+							 "Terms: %s\n" +
+							 "------------------------\n", 
+							 n, p, b, c, left, right, s.toString()); 		
 	}
 	
 	public LogicalAndTerm getLeftMostLogicalAndTerm(ArrayList<PlanRecord> plans) {
