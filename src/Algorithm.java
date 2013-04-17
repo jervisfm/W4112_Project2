@@ -14,7 +14,7 @@ public class Algorithm {
 
 
 	public ArrayList<PlanRecord> plans;
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	private LogicalAndTerm terms;
 
 	public Algorithm(LogicalAndTerm terms) {
@@ -52,22 +52,21 @@ public class Algorithm {
 				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
 
 				// debug, delete me later
-				d("s1 = ");
-				d(Util.printSubset(set1, false));
-				d("s2 = ");
-				d(Util.printSubset(set2, false));
-				d(" my common size  = " + Util.getCommonElementsSize(set1, set2));
-				d(" ## ");
+				// d("s1 = ");
+				// d(Util.printSubset(set1, false));
+				// d("s2 = ");
+				// d(Util.printSubset(set2, false));
+				// d(" my common size  = " + Util.getCommonElementsSize(set1, set2));
+				// d(" ## ");
 
-				d(String.valueOf(p1.subset.getSubsetNo()));
-				d(" | ");
-				d(String.valueOf(p2.subset.getSubsetNo()));
+				// d(String.valueOf(p1.subset.getSubsetNo()));
+				// d(" | ");
+				// d(String.valueOf(p2.subset.getSubsetNo()));
 
 				if (!Util.isDisjointSets(set1, set2)) {
-					dln(". Debug: Skipping Common sets");
+					// dln(". Debug: Skipping Common sets");
 					continue;
 				}
-				dln("");
 
 				BranchingAndPlan p = makeBranchingAndPlan(p1, p2);
 
@@ -83,6 +82,18 @@ public class Algorithm {
 
 				Pair s1DMetric = p1.subset.getDMetric(cm);
 				Pair s2DMetric = p2.subset.getDMetric(cm);
+
+				d("s1 = ");
+				d(Util.printSubset(set1, false));
+				d("s2 = ");
+				d(Util.printSubset(set2, false));
+				dln("");
+				d("s1.c = " + s1CMetric);
+				d("s2.c = " + s2CMetric);
+				d("s1.d = " + s1DMetric);
+				d("s2.d = " + s2DMetric);
+				dln("");
+
 				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
 				} else if (p2.p <= 0.5 &&

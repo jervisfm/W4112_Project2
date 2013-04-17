@@ -161,24 +161,24 @@ public class Util {
 	 * @return
 	 */
 	private static String tab(int depth){
-		StringBuffer sb = new StringBuffer(); 
+		StringBuffer sb = new StringBuffer();
 		for(int i = 0; i < depth; i++){
 			sb.append("\t");
 		}
-		return sb.toString(); 
+		return sb.toString();
 	}
-	
+
 	public static void printPlan(PlanRecord p, ArrayList<PlanRecord> plans) {
 		printPlanHelper(p,0, plans);
 	}
-	
+
 	private static void printPlanHelper(PlanRecord p, int depth, ArrayList<PlanRecord> plans) {
 		if ( p == null) {
 			return;
 		}
 		System.out.println(tab(depth));
 		if (Util.isBranchAndTerm(p)) {
-			System.out.println (" && ");			
+			System.out.println (" && ");
 		}
 		if (Util.isLogicalAndTerm(p)) {
 			for (BasicTerm t : p.subset.getTerms()) {
@@ -187,17 +187,17 @@ public class Util {
 			}
 			System.out.println("");
 		}
-		
+
 		if (p.left >= 0) {
-			printPlanHelper(plans.get((int)p.left), depth + 1, plans); 
+			printPlanHelper(plans.get((int)p.left), depth + 1, plans);
 		}
 		if (p.right >= 0) {
-			printPlanHelper(plans.get((int) p.right), depth + 1, plans); 
+			printPlanHelper(plans.get((int) p.right), depth + 1, plans);
 		}
-		
+
 	}
-	
-	
+
+
 	public static String getAnswerNoBranch(PlanRecord p, ArrayList<PlanRecord> plans, StringBuffer sb) {
 
 		/* Output should look like this:
@@ -227,14 +227,16 @@ public class Util {
 		}
 		else {
 			sb.append(p.toString());
-			PlanRecord left = plans.get((int) p.right);
+			PlanRecord left = plans.get((int) p.left);
+			ArrayList<BasicTerm> lefts = left.subset.getTerms();
 			PlanRecord right = plans.get((int) p.right);
+			ArrayList<BasicTerm> rights = right.subset.getTerms();
 			sb.append("\n");
 			sb.append(left.toString());
 			sb.append("\n");
 			sb.append(right.toString());
 		}
-		// sb.append(p.toString());
+
 		return sb.toString();
 	}
 
@@ -247,7 +249,7 @@ public class Util {
 		// Will happen when the last &-term has NoBranch Bit set.
 
 		Util.printPlan(ans, plans);
-		
+
 		StringBuffer sb = new StringBuffer();
 
 
