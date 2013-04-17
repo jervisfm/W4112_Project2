@@ -14,7 +14,7 @@ public class Algorithm {
 
 
 	public ArrayList<PlanRecord> plans;
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	private LogicalAndTerm terms;
 
 	public Algorithm(LogicalAndTerm terms) {
@@ -79,9 +79,24 @@ public class Algorithm {
 				Pair s1CMetric = lat.getCMetric(cm);
 				Pair s2CMetric = p2.subset.getCMetric(cm);
 
-
 				Pair s1DMetric = p1.subset.getDMetric(cm);
 				Pair s2DMetric = p2.subset.getDMetric(cm);
+
+				boolean isDMetricOfSPrimeDominated = false;
+
+				if(p2.p <= 0.5) {
+					// Check each set in S to see if s' is dominated by it
+					for(PlanRecord p3 : plans) {
+						Pair s3DMetric = p3.subset.getDMetric(cm);
+
+						if(s2DMetric.y < s3DMetric.y &&
+						   s2DMetric.x < s3DMetric.x){
+							isDMetricOfSPrimeDominated = true;
+							break;
+						}
+					}
+				}
+
 
 				d("s1 = ");
 				d(Util.printSubset(set1, false));
@@ -96,9 +111,7 @@ public class Algorithm {
 
 				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
-				} else if (p2.p <= 0.5 &&
-						   s2DMetric.y < s1DMetric.y &&
-						   s2DMetric.x < s1DMetric.x) {
+				} else if (p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
 					continue;
 				} else {
 					double combinedCost = Util.getAndPlanCost(p1, p2, plans, cm);
