@@ -119,24 +119,22 @@ public class Algorithm {
 															 p1.subset);
 					int idx = Util.getIndexOfSubset(plans, union);
 					double currentCost = plans.get(idx).c;
-					
-					System.out.println("We NOT doing && ");
-					System.out.print("s1 = ");
-					System.out.print(Util.printSubset(set1, false));
-					System.out.print("s2 = ");
-					System.out.print(Util.printSubset(set2, false));
-					System.out.println("\n======\n");
-					
+
+					// System.out.println("We NOT doing && ");
+					// System.out.print("s1 = ");
+					// System.out.print(Util.printSubset(set1, false));
+					// System.out.print("s2 = ");
+					// System.out.print(Util.printSubset(set2, false));
+					// System.out.println("\n======\n");
+
 					if (combinedCost < currentCost) {
-						System.out.println("We doing && coz its better");
-						System.out.print("s1 = ");
-						System.out.print(Util.printSubset(set1, false));
-						System.out.print("s2 = ");
-						System.out.print(Util.printSubset(set2, false));
-						System.out.println("\n======\n");
-						
-						
-						
+						// System.out.println("We doing && coz its better");
+						// System.out.print("s1 = ");
+						// System.out.print(Util.printSubset(set1, false));
+						// System.out.print("s2 = ");
+						// System.out.print(Util.printSubset(set2, false));
+						// System.out.println("\n======\n");
+
 						PlanRecord ans = plans.get(idx);
 						ans.c = combinedCost;
 						ans.left = p2.subset.getSubsetNo();
