@@ -18,6 +18,11 @@ public class QueryDriver
 
 		ArrayList<double[]> queries = QueryParser.parseQuery(queryPath);
 		Properties config = QueryParser.parseConfig(configPath);
+		if (queries == null || config == null) { // files not found
+			System.out.println("Please ensure given config and query " +
+							    "files exist and try again");
+			System.exit(-1);
+		}
 		CostModel cm = new CostModel(config);
 
 		ArrayList<LogicalAndTerm> queryTerms = Util.getBasicTerms(queries);
