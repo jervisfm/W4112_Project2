@@ -1,3 +1,4 @@
+import java.util.Properties;
 
 /**
  * Represents the cost model to use in finding
@@ -41,6 +42,22 @@ public class CostModel {
 	 * @param r - Cost of accessing an array element rj[i]
 	 */
 	public CostModel(int a, int f, int l, int m, int t, int r) {
+		this.a = a;
+		this.f = f;
+		this.l = l;
+		this.m = m;
+		this.t = t;
+		this.r = r;
+	}
+
+	public CostModel(Properties prop) {
+		int r = Integer.parseInt(prop.getProperty("r"));
+		int t = Integer.parseInt(prop.getProperty("t"));
+		int l = Integer.parseInt(prop.getProperty("l"));
+		int m = Integer.parseInt(prop.getProperty("m"));
+		int a = Integer.parseInt(prop.getProperty("a"));
+		int f = Integer.parseInt(prop.getProperty("f"));
+
 		this.a = a;
 		this.f = f;
 		this.l = l;

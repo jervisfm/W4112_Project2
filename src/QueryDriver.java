@@ -10,11 +10,10 @@ public class QueryDriver
 
 		ArrayList<double[]> queries = QueryParser.parseQuery(queryPath);
 		Properties config = QueryParser.parseConfig(configPath);
-
+		CostModel cm = new CostModel(config);
 
 		printList(queries);
 		System.out.println(config);
-		t0();
 	}
 
 	private static void t0 () {
@@ -25,8 +24,6 @@ public class QueryDriver
 			System.out.println(mask);
 		}
 	}
-
-
 
 	private static void printList(ArrayList<double[]> query) {
 		for(double[] array : query) {
