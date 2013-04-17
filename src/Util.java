@@ -333,9 +333,9 @@ public class Util {
 		if (p == null)
 			throw new IllegalArgumentException("plan cannot be null");
 
-		if (p.right >= 0) {
-			PlanRecord rightSubPlan = plans.get((int)p.right);
-			if (isLogicalAndTerm(rightSubPlan)) {
+		if (p.left >= 0) {
+			PlanRecord leftSubPlan = plans.get((int)p.left);
+			if (isLogicalAndTerm(leftSubPlan)) {
 				return true;
 			} else {
 				return false;
