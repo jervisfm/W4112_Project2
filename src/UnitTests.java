@@ -283,4 +283,57 @@ public class UnitTests {
 		subsets = Util.removeEmptySubset(subsets);
 		Util.printSubsets(subsets); */
 	}
+	
+	private PlanRecord getEmptyRecord() {
+		return new PlanRecord(1, 0, false, 0, null, -1, -1, null);
+	}
+	
+	@Test
+	public void test() {
+		
+		// Make the leaves
+		PlanRecord t1 = getEmptyRecord(); 
+		LogicalAndTerm t1lat = new LogicalAndTerm(new BasicTerm("t1", "", 0));
+		t1.subset = t1lat;
+		
+		PlanRecord t2 = getEmptyRecord(); 
+		LogicalAndTerm t2lat = new LogicalAndTerm(new BasicTerm("t2", "", 0));
+		t2.subset = t2lat; 
+		
+		PlanRecord t3 = getEmptyRecord(); 
+		LogicalAndTerm t3lat = new LogicalAndTerm(new BasicTerm("t3", "", 0));
+		t3.subset = t3lat; 
+		
+		PlanRecord t4 = getEmptyRecord(); 
+		LogicalAndTerm t1t2lat = Util.getUnionTerm(t1lat, t2lat);
+		t4.subset = t1t2lat;
+		
+		PlanRecord t5 = getEmptyRecord(); 
+		LogicalAndTerm t1t2t3lat = Util.getUnionTerm(t1t2lat, t3lat); 
+		t4.subset = t1t2t3lat; 
+		
+		ArrayList<PlanRecord> plans = new ArrayList<PlanRecord>(); 
+		plans.add(t1);
+		plans.add(t2);
+		plans.add(t3); 
+		plans.add(t4);
+		plans.add(t5); 
+		
+		// set root note
+		t5.right = 2;
+		t5.left = 3; 
+		
+		// set second level and node
+		t4.left = 0; 
+		t4.right = 1;
+		
+		PlanRecord ans = t5; 
+		
+		System.out.println("************************");
+		
+		Util.printPlan(ans, plans); 
+		
+		
+	}
+	
 }
