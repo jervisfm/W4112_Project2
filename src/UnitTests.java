@@ -201,7 +201,7 @@ public class UnitTests {
 		double [] q3 = {0.7, 0.4, 0.2, 0.3, 0.6};
 		double[] q4 = {0.65, 0.79, 0.43, 0.26, 0.75, 0.37, 0.19, 0.53};
 		
-		LogicalAndTerm terms = getSampleTerms(q4);
+		LogicalAndTerm terms = getSampleTerms(q3);
 		CostModel cm = CostModel.getDefaultCostModel(); 
 		Algorithm alg = new Algorithm(terms); 
 		PlanRecord actual = alg.findOptimialPlan(cm);

@@ -151,6 +151,29 @@ public class Util {
 		} 
 		return sb.toString();
 	}
+
+	
+	public static String getAnswerNoBranch(PlanRecord p, StringBuffer sb) {
+		
+		/* Output should look like this: 
+		 * answer[j] = i;
+		   j += (t1[o1[i]] & t2[o2[i]]);
+		 **/
+		
+		
+	}
+	
+	
+	public static String getSolutionCode(PlanRecord ans) {
+		// There 3 main cases
+		// Case 1: Have NoBranch bit At the top root level		
+		// Case 2: Have Just the && And-terms. 
+		// Case 3: Mixed Plan.
+		// Will happen when the last &-term has NoBranch Bit set. 
+	
+	}
+
+	
 	
 	/**
 	 * Unites the two given logical and terms into one term. 

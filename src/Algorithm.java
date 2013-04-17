@@ -89,7 +89,7 @@ public class Algorithm {
 						   s2DMetric.x < s1DMetric.x) {
 					continue;
 				} else {
-					double combinedCost = Util.planCost(p,cm);
+					double combinedCost = Util.getAndPlanCost(p1, p2, plans, cm);
 					LogicalAndTerm union = Util.getUnionTerm(p1.subset,
 															 p2.subset);
 					int idx = Util.getIndexOfSubset(plans, union);
