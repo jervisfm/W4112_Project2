@@ -168,24 +168,17 @@ public class Util {
 		return sb.toString(); 
 	}
 	
-	public static void printPlan(PlanRecord p) {
-		printPlanHelper(p,0);
+	public static void printPlan(PlanRecord p, ArrayList<PlanRecord> plans) {
+		printPlanHelper(p,0, plans);
 	}
 	
-	private static void printPlanHelper(PlanRecord p, int depth) {
+	private static void printPlanHelper(PlanRecord p, int depth, ArrayList<PlanRecord> plans) {
 		if ( p == null) {
 			return;
 		}
 		System.out.println(tab(depth));
 		if (Util.isBranchAndTerm(p)) {
-			System.out.println (" && ");
-			
-			if (p.left >= 0) {
-				printPlanHelper(p, depth + 1); 
-			}
-			if (p.right >= 0) {
-				printPlanHelper(p, depth + 1); 
-			}
+			System.out.println (" && ");			
 		}
 		if (Util.isLogicalAndTerm(p)) {
 			for (BasicTerm t : p.subset.getTerms()) {
@@ -195,6 +188,12 @@ public class Util {
 			System.out.println("");
 		}
 		
+		if (p.left >= 0) {
+			printPlanHelper(plans.get((int)p.left), depth + 1, plans); 
+		}
+		if (p.right >= 0) {
+			printPlanHelper(plans.get((int) p.right), depth + 1, plans); 
+		}
 		
 	}
 	
@@ -247,7 +246,7 @@ public class Util {
 		// Case 3: Mixed Plan.
 		// Will happen when the last &-term has NoBranch Bit set.
 
-		Util.printPlan(ans);
+		Util.printPlan(ans, plans);
 		
 		StringBuffer sb = new StringBuffer();
 
