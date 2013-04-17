@@ -155,10 +155,47 @@ public class Util {
 		return sb.toString();
 	}
 
-
-	public static void printPlan(PlanRecrod p) {
-		
+	/**
+	 * // applies given no. of tabs
+	 * @param depth
+	 * @return
+	 */
+	private static String tab(int depth){
+		StringBuffer sb = new StringBuffer(); 
+		for(int i = 0; i < depth; i++){
+			sb.append("\t");
+		}
+		return sb.toString(); 
 	}
+	
+	public static void printPlan(PlanRecord p) {
+		printPlanHelper(p,0);
+	}
+	
+	private static void printPlanHelper(PlanRecord p, int depth) {
+		if ( p == null) {
+			return;
+		}
+		System.out.println(tab(depth));
+		if (Util.isBranchAndTerm(p)) {
+			System.out.println (" && ");
+		}
+		if (Util.isLogicalAndTerm(p)) {
+			for (BasicTerm t : p.subset.getTerms()) {
+				System.out.print(t.function);
+				System.out.print(",");
+			}
+			System.out.println("");
+		}
+		
+		if (p.left >= 0) {
+			printPlanHelper(p, depth + 1); 
+		}
+		if (p.right >= 0) {
+			printPlanHelper(p, depth + 1); 
+		}
+	}
+	
 	
 	public static String getAnswerNoBranch(PlanRecord p, StringBuffer sb) {
 
@@ -192,6 +229,8 @@ public class Util {
 		// Case 3: Mixed Plan.
 		// Will happen when the last &-term has NoBranch Bit set.
 
+		Util.printPlan(ans);
+		
 		StringBuffer sb = new StringBuffer();
 
 
