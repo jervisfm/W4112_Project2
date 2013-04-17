@@ -50,6 +50,7 @@ Where
 # Output Format
 The output that the program produces will have the following format: 
 
+<pre>
 ======================================
 0.4 0.6
 --------------------------------------
@@ -57,8 +58,9 @@ answer[j] = i;
 j += (t1[o1[i]] & t2[o2[i]]);
 --------------------------------------
 cost = 13.0
+</pre>
 
-The number in the first line are the selectivities found in the query. 
+The number in the first line are the sensitivities found in the query. 
 The code is the middle is C-code that describes the optimal plan with minimal cost in branch-mispredictions. 
 The number in the last line is the estimated cost for this query using the specified config parameters. 
 
@@ -69,6 +71,11 @@ Assuming you have JUnit dependency installed, you can run all the tests we have 
 
 `make test`
 
+# Sample Runs
+We have some sample queries and config files included with the project. 
+To see the program in action being executed on sample inputs, do the following:
+
+`./stage2.sh query.txt config.txt`
 
 
 # Error Checking
