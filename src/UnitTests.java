@@ -264,7 +264,7 @@ public class UnitTests {
 		t1.add(terms.get(1));
 		t1.add(terms.get(2));
 		expected = 5;
-		actual = alg.getIndexOfSubset(plans, t1);
+		actual = Util.getIndexOfSubset(plans, t1);
 		
 		assertTrue("Expected Index = " + expected + " but got " + actual,
 				   actual == expected);
@@ -273,7 +273,7 @@ public class UnitTests {
 		t1.add(terms.get(2));
 		t1.add(terms.get(1));
 		expected = 6;
-		actual = alg.getIndexOfSubset(plans, t1);
+		actual = Util.getIndexOfSubset(plans, t1);
 		
 		assertTrue("Expected Index = " + expected + " but got " + actual,
 				   actual == expected);

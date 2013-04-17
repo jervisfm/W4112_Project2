@@ -274,11 +274,47 @@ public class Util {
 		
 	}
 	
+	public int getPlanRecordIndex(ArrayList<PlanRecord> plans, PlanRecord item ) {
+		
+		if (plans == null || item == null)
+			throw new IllegalArgumentException("args cannot be null");
+		LogicalAndTerm lat = item.subset; 
+		return 0;
+	}
+	
+	public static int getIndexOfSubset(ArrayList<PlanRecord> plans, 
+									   LogicalAndTerm term) {
+		
+		int i = 0; 
+		for (PlanRecord p : plans) {
+			LogicalAndTerm curr = new LogicalAndTerm(p.plan.terms);
+			if (term.size() == curr.size()) {
+				boolean allMatch = true;
+				
+				for (BasicTerm t : term.getTerms()) {
+					if (!contains(curr.getTerms(), t)) {
+							allMatch = false;
+							break;
+					}
+				}
+				if (allMatch) {
+					return i;
+				}
+			}
+			++i;
+		}
+		return 0; 
+	}
+
 	public static double getAndPlanCost(PlanRecord p1, PlanRecord p2,
 										ArrayList<PlanRecord> plans,CostModel cm) {
 		
 		if (p1 == null || p2 == null || plans == null || cm == null)
 			throw new IllegalArgumentException("Cannot have null args");
+		
+		
+		return 0;
+		//PlanRecord combiend = new PlanRecord(n, p, b, c, null, left, right, subset); 
 	}
 	
 	/**
