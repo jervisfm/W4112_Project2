@@ -228,8 +228,12 @@ public class Util {
 		}
 		else {
 			sb.append(p.toString());
-
-			// ArrayList<BasicTerm> terms = p.right;
+			PlanRecord left = plans.get((int) p.right);
+			PlanRecord right = plans.get((int) p.right);
+			sb.append("\n");
+			sb.append(left.toString());
+			sb.append("\n");
+			sb.append(right.toString());
 		}
 		// sb.append(p.toString());
 		return sb.toString();
