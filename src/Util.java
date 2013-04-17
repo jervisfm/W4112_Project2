@@ -161,8 +161,11 @@ public class Util {
 		   j += (t1[o1[i]] & t2[o2[i]]);
 		 **/
 
-	   // TODO: Varun
-	   return null;
+		// TODO: Varun
+		sb.append("answer[j] = i;");
+		sb.append("answer[j] = i;");
+		sb.append(p.toString());
+		return sb.toString();
 	}
 
 
@@ -173,8 +176,21 @@ public class Util {
 		// Case 3: Mixed Plan.
 		// Will happen when the last &-term has NoBranch Bit set.
 
-	   // TODO: Varun
-	   return "hi";
+		StringBuffer sb = new StringBuffer();
+
+
+
+
+		if(ans.b) {
+			getAnswerNoBranch(ans, sb);
+		}
+		else if(false) {
+
+		}
+
+		// TODO: Varun
+		sb.append("hi");
+		return sb.toString();
 	}
 
 
