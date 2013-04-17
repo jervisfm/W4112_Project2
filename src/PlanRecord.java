@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class PlanRecord {
 	/**
@@ -73,5 +75,12 @@ public class PlanRecord {
 							 "Right Subplan Index: %d\n", 
 							 n, p, b, c, left, right); 		
 	}
-
+	
+	public LogicalAndTerm getLeftMostLogicalAndTerm(ArrayList<PlanRecord> plans) {
+		PlanRecord c = this;
+		while (c.left >= 0) {
+			c = plans.get((int)c.left);
+		}
+		return c.subset; 
+	}
 }

@@ -76,15 +76,16 @@ public class Algorithm {
 				 * "leftmost &-term in set2 (aka 's' in paper)")
 				 */
 				Pair s1CMetric = p1.subset.getCMetric(cm);
-				Pair s2CMetric = p2.subset.getCMetric(cm);
+				LogicalAndTerm lat = p2.getLeftMostLogicalAndTerm(plans);
+				Pair s2CMetric = lat.getCMetric(cm);
 
+				
 				Pair s1DMetric = p1.subset.getDMetric(cm);
 				Pair s2DMetric = p2.subset.getDMetric(cm);
-				if ( false && /* TODO: correct this condition */
-					s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
+				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
 				} else if ( false && /* TODO: correct this condition */
-							p1.subset.getSelectivity() <= 0.5 &&
+							p1.p <= 0.5 &&
 						   s2DMetric.y < s1DMetric.y &&
 						   s2DMetric.x < s1DMetric.x) {
 					continue;
@@ -135,7 +136,7 @@ public class Algorithm {
 		ArrayList<PlanRecord> plans = new ArrayList<PlanRecord>();
 		for (LogicalAndTerm subset : subsets) {
 			long left, right;
-			left = right = 0;
+			left = right = -1;
 			int n = subset.size();
 			double p = subset.getSelectivity();			
 			boolean doNoBranch = false;

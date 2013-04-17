@@ -20,4 +20,7 @@ public abstract class Plan {
 		this.right = right;
 		this.terms = terms;
 	}
+	
+	
+	
 }
