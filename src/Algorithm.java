@@ -109,16 +109,34 @@ public class Algorithm {
 				d("s2.d = " + s2DMetric);
 				dln("");
 
-				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
+				if (false && s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
-				} else if (p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
+				} else if ( false && p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
 					continue;
 				} else {
-					double combinedCost = Util.getAndPlanCost(p1, p2, plans, cm);
-					LogicalAndTerm union = Util.getUnionTerm(p1.subset,
-															 p2.subset);
+					double combinedCost = Util.getAndPlanCost(p2, p1, plans, cm);
+					LogicalAndTerm union = Util.getUnionTerm(p2.subset,
+															 p1.subset);
 					int idx = Util.getIndexOfSubset(plans, union);
-					if (combinedCost < plans.get(idx).c) {
+					double currentCost = plans.get(idx).c;
+					
+					System.out.println("We NOT doing && ");
+					System.out.print("s1 = ");
+					System.out.print(Util.printSubset(set1, false));
+					System.out.print("s2 = ");
+					System.out.print(Util.printSubset(set2, false));
+					System.out.println("\n======\n");
+					
+					if (combinedCost < currentCost) {
+						System.out.println("We doing && coz its better");
+						System.out.print("s1 = ");
+						System.out.print(Util.printSubset(set1, false));
+						System.out.print("s2 = ");
+						System.out.print(Util.printSubset(set2, false));
+						System.out.println("\n======\n");
+						
+						
+						
 						PlanRecord ans = plans.get(idx);
 						ans.c = combinedCost;
 						ans.left = p2.subset.getSubsetNo();
