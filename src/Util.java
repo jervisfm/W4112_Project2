@@ -186,6 +186,101 @@ public class Util {
 		return result; 
 	}
 	
+	public static boolean isLogicalAndTerm(PlanRecord p) {
+		if (p == null)
+			throw new IllegalArgumentException("plan cannot be null");
+		
+		return p.left <0 && p.right < 0; 
+	}
+	
+	/**
+	 * Tests if the plan record is a real Branching And Term. 
+	 * i.e. it contains two children two it's is ANDing together.  
+	 * @param p
+	 * @return
+	 */
+	public static boolean isBranchAndTerm(PlanRecord p) {
+		if (p == null)
+			throw new IllegalArgumentException("plan cannot be null");
+		
+		return p.left >=0 && p.right >= 0; 
+	}
+	
+	/**
+	 * Check if this branch And Term is the lowest, 
+	 * i.e. its children are NOT Other BranchAndTerms
+	 * but rather just regular logical and term
+	 * @param p
+	 * @return
+	 */
+	public static boolean isLowestBranchAndTerm(PlanRecord p, ArrayList<PlanRecord> plans) {
+		if (p == null)
+			throw new IllegalArgumentException("plan cannot be null");
+		
+		if (p.left >= 0) {
+			PlanRecord leftSubPlan = plans.get((int)p.left); 
+			if (isLogicalAndTerm(leftSubPlan)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	public static double getPlanCost(PlanRecord p, 
+									ArrayList<PlanRecord> plans, CostModel cm) {
+		
+		if ( p == null)
+			return 0; 
+		
+		// Case 1: Logical And Plan only
+		if  (isLogicalAndTerm(p)) {
+			return p.subset.getCost(cm);
+		}
+		
+		// Case 2: We have Branching And Plan made up 
+		// from the logical and terms. 
+		if (isLowestBranchAndTerm(p, plans)) {
+			PlanRecord leftPlan = plans.get((int)p.left);			 
+			double fixedCost = leftPlan.subset.getFixedCost(cm);
+			double selectivity = leftPlan.p;
+			double m = cm.m;
+			double q = Math.min(selectivity, 1 - selectivity); 
+			
+			if (p.right < 0) { // error case : should never happen
+				throw new Error("WARNING: Really wierd case in getPlanCost" +
+							    "The RHS child is not defined for And-Plan");
+			} else {
+				PlanRecord rPlan = plans.get((int) p.right); 			
+				return fixedCost + m*q + selectivity * getPlanCost(rPlan, plans, cm);
+			}
+			
+		} else {
+			PlanRecord lPlan = plans.get((int)p.left);
+			PlanRecord rPlan = plans.get((int)p.right);
+			
+			// Sanity check
+			if (p.left < 0 || p.right < 0) {
+				System.out.println("ERROR: Unexpected Null child in And-Plan" +
+								   "when computing PlanCost" );
+			}
+			
+			return getPlanCost(lPlan, plans, cm) + getPlanCost(rPlan, plans, cm);
+		}
+		
+		
+		
+	}
+	
+	public static double getAndPlanCost(PlanRecord p1, PlanRecord p2,
+										ArrayList<PlanRecord> plans,CostModel cm) {
+		
+		if (p1 == null || p2 == null || plans == null || cm == null)
+			throw new IllegalArgumentException("Cannot have null args");
+	}
+	
 	/**
 	 * Compute the cost for the combined branching And plan.
 	 * @param p
