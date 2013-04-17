@@ -176,6 +176,7 @@ public class Util {
 		if ( p == null) {
 			return;
 		}
+
 		System.out.print(tab(depth));
 		if (Util.isBranchAndTerm(p)) {
 			System.out.println ("&&");
@@ -194,12 +195,9 @@ public class Util {
 			}
 			System.out.println("");
 		}
-
-
-
 	}
 
-	public static String getAnswerLeafNode(PlanRecord p, ArrayList<PlanRecord> plans, boolean atRoot) {
+	public static String getAnswerLeafNode(PlanRecord p, ArrayList<PlanRecord> plans, boolean atRoot, boolean shouldIndent) {
 		StringBuffer sb = new StringBuffer();
 
 		if(isLogicalAndTerm(p)) {
@@ -215,7 +213,11 @@ public class Util {
 			}
 
 			if(p.b && atRoot) {
-				sb.insert(0, "answer[j] = i;" + "\n" + "j += (");
+				if(!shouldIndent)
+					sb.insert(0, "answer[j] = i;" + "\n" + "j += (");
+				else
+					sb.insert(0, "\tanswer[j] = i;" + "\n\t" + "j += (");
+
 				sb.append(");");
 			}
 			else if(!p.b){
@@ -251,7 +253,7 @@ public class Util {
 
 		// if leaf node
 		if(isLogicalAndTerm(ans)) {
-			String leafNode = getAnswerLeafNode(ans, plans, atRoot);
+			String leafNode = getAnswerLeafNode(ans, plans, atRoot, false);
 			sb.append(leafNode);
 		}
 		// must have children, so check branch bit
@@ -262,17 +264,32 @@ public class Util {
 			if(atRoot) {
 				sb.append("if(");
 				sb.append(getSolutionCode(left, plans, false) + " && " + getSolutionCode(right, plans, false));
-				// sb.append("\n\t");
 				sb.append(") {");
+				sb.append("\n");
+
+				// if rightmost child has branch bit, add it here
+				// otherwise, add answer[j++] = i;
+				PlanRecord rightmostChild = Util.getRightmostChild(ans, plans);
+
+				if(rightmostChild.b) {
+					// System.out.println(rightmostChild);
+					String leafNode = getAnswerLeafNode(rightmostChild, plans, true, true);
+					sb.append(leafNode);
+				}
+				else {
+					sb.append("\tanswer[j++] = i;");
+				}
+
+
 				sb.append("\n}");
 			}
 			else {
 				sb.append("(");
-				if(!isLogicalAndTerm(right)) {
-					sb.append(getSolutionCode(left, plans, false) + " && " + getSolutionCode(right, plans, false));
+				if(isLogicalAndTerm(right) && right.b) {
+					sb.append(getSolutionCode(left, plans, false));
 				}
 				else {
-					sb.append(getSolutionCode(left, plans, false));
+					sb.append(getSolutionCode(left, plans, false) + " && " + getSolutionCode(right, plans, false));
 				}
 				sb.append(")");
 			}
@@ -282,6 +299,27 @@ public class Util {
 		return sb.toString();
 	}
 
+
+	public static PlanRecord getRightmostChild(PlanRecord p, ArrayList<PlanRecord> plans) {
+		if(isLogicalAndTerm(p)) {
+			throw new IllegalArgumentException("Require a plan with chldren");
+		}
+
+		PlanRecord temp = p;
+
+		while(temp.right > 0) {
+			PlanRecord right = plans.get((int) temp.right);
+
+			if(isLogicalAndTerm(right)) {
+				return right;
+			}
+			else {
+				temp = right;
+			}
+		}
+
+		return temp;
+	}
 
 
 	/**
