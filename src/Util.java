@@ -168,11 +168,12 @@ public class Util {
 		 **/
 
 		// TODO: Varun
-		sb.append("answer[j] = i;");
-		sb.append("\n");
-		sb.append("j += (");
 
 		if(isLogicalAndTerm(p)) {
+			sb.append("answer[j] = i;");
+			sb.append("\n");
+			sb.append("j += (");
+
 			ArrayList<BasicTerm> terms = p.subset.getTerms();
 
 			for(int i = 0; i < terms.size(); i++) {
@@ -183,9 +184,9 @@ public class Util {
 					sb.append(" & ");
 				}
 			}
-		}
 
-		sb.append(");");
+			sb.append(");");
+		}
 		// sb.append(p.toString());
 		return sb.toString();
 	}
