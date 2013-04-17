@@ -3,8 +3,16 @@ import java.util.Properties;
 
 public class QueryDriver
 {
+	
+	
 	public static void main(String[] args)
 	{
+		if (args.length != 2) {
+			System.out.println("Error: Need Exactly 2 Parameters");
+			System.out.println("Program Usage: java QueryDriver [query] [config]"); 
+			System.exit(-1);
+		}
+		
 		String queryPath = args[0];
 		String configPath = args[1];
 
