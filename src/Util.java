@@ -179,7 +179,7 @@ public class Util {
 		System.out.print(tab(depth));
 		if (Util.isBranchAndTerm(p)) {
 			System.out.println ("&&");
-			
+
 			if (p.left >= 0) {
 				printPlanHelper(plans.get((int)p.left), depth + 1, plans);
 			}
@@ -195,7 +195,7 @@ public class Util {
 			System.out.println("");
 		}
 
-		
+
 
 	}
 
@@ -261,26 +261,19 @@ public class Util {
 
 			if(atRoot) {
 				sb.append("if(");
-			}
-
-
-			if(ans.b && atRoot) {
-				sb.append(getSolutionCode(left, plans, false));
+				sb.append(getSolutionCode(left, plans, false) + " && " + getSolutionCode(right, plans, false));
+				// sb.append("\n\t");
 				sb.append(") {");
-				sb.append("\n\t");
-				sb.append(getSolutionCode(right, plans, true));
-				sb.append("\n}");
-			}
-			else if(!ans.b && atRoot) {
-				sb.append("(");
-				sb.append(getSolutionCode(left, plans, false) + ") && (" + getSolutionCode(right, plans, false));
-				sb.append(") {");
-				sb.append("\n\tanswer[j++] = i;");
 				sb.append("\n}");
 			}
 			else {
 				sb.append("(");
-				sb.append(getSolutionCode(left, plans, false) + ") && (" + getSolutionCode(right, plans, false));
+				if(!isLogicalAndTerm(right)) {
+					sb.append(getSolutionCode(left, plans, false) + " && " + getSolutionCode(right, plans, false));
+				}
+				else {
+					sb.append(getSolutionCode(left, plans, false));
+				}
 				sb.append(")");
 			}
 		}
@@ -360,7 +353,7 @@ public class Util {
 
 		// Case 1: Logical And Plan only
 		if  (isLogicalAndTerm(p)) {
-			
+
 			if (p.b)
 				return p.subset.getNoBranchAlgCost(cm);
 			return p.subset.getCost(cm);
