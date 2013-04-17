@@ -82,7 +82,8 @@ public class Algorithm {
 				
 				Pair s1DMetric = p1.subset.getDMetric(cm);
 				Pair s2DMetric = p2.subset.getDMetric(cm);
-				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
+				if (false && /* TODO: enable this check later */ 
+					s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
 				} else if ( false && /* TODO: correct this condition */
 							p1.p <= 0.5 &&
