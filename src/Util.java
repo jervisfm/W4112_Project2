@@ -199,8 +199,9 @@ public class Util {
 
 	}
 
-	public static String getAnswerLeafNode(PlanRecord p, ArrayList<PlanRecord> plans,
-	                                       StringBuffer sb) {
+	public static String getAnswerLeafNode(PlanRecord p, ArrayList<PlanRecord> plans, boolean atRoot) {
+		StringBuffer sb = new StringBuffer();
+
 		if(isLogicalAndTerm(p)) {
 			ArrayList<BasicTerm> terms = p.subset.getTerms();
 
@@ -213,11 +214,11 @@ public class Util {
 				}
 			}
 
-			if(p.b) {
+			if(p.b && atRoot) {
 				sb.insert(0, "answer[j] = i;" + "\n" + "j += (");
 				sb.append(");");
 			}
-			else {
+			else if(!p.b){
 				if(terms.size() > 1) {
 					sb.insert(0, "(");
 					sb.append(")");
@@ -231,60 +232,57 @@ public class Util {
 		return sb.toString();
 	}
 
-
-	public static String getAnswerNoBranch(PlanRecord p, ArrayList<PlanRecord> plans, StringBuffer sb) {
-
-		/* Output should look like this:
-		 * answer[j] = i;
-		   j += (t1[o1[i]] & t2[o2[i]]);
-		 **/
-
-		// TODO: Varun
-
-		if(isLogicalAndTerm(p)) {
-			getAnswerLeafNode(p, plans, sb);
-		}
-		else {
-			sb.append(p.toString());
-			PlanRecord left = plans.get((int) p.left);
-			ArrayList<BasicTerm> lefts = left.subset.getTerms();
-			PlanRecord right = plans.get((int) p.right);
-			ArrayList<BasicTerm> rights = right.subset.getTerms();
-			sb.append("\n");
-			sb.append(left.toString());
-			sb.append("\n");
-			sb.append(right.toString());
-		}
-
-		return sb.toString();
+	public static String getSolutionCode(PlanRecord ans, ArrayList<PlanRecord> plans) {
+		return getSolutionCode(ans, plans, true);
 	}
 
 
-	public static String getSolutionCode(PlanRecord ans, ArrayList<PlanRecord> plans) {
+	public static String getSolutionCode(PlanRecord ans, ArrayList<PlanRecord> plans, boolean atRoot) {
 		// There 3 main cases
 		// Case 1: Have NoBranch bit At the top root level
 		// Case 2: Have Just the && And-terms.
 		// Case 3: Mixed Plan.
 		// Will happen when the last &-term has NoBranch Bit set.
 
-		Util.printPlan(ans, plans);
+		if(atRoot)
+			Util.printPlan(ans, plans);
 
 		StringBuffer sb = new StringBuffer();
 
-		// if leaf node and no-branch
-		if(isLogicalAndTerm(ans) && ans.b) {
-			String noBranch = getAnswerLeafNode(ans, plans, sb);
-		}
-		// if leaf node otherwise
-		else if(isLogicalAndTerm(ans) && !ans.b) {
-
+		// if leaf node
+		if(isLogicalAndTerm(ans)) {
+			String leafNode = getAnswerLeafNode(ans, plans, atRoot);
+			sb.append(leafNode);
 		}
 		// must have children, so check branch bit
-		else if(ans.b){
+		else {
+			PlanRecord left = plans.get((int) ans.left);
+			PlanRecord right = plans.get((int) ans.right);
 
-		}
-		else if (!ans.b) {
+			if(atRoot) {
+				sb.append("if(");
+			}
 
+
+			if(ans.b && atRoot) {
+				sb.append(getSolutionCode(left, plans, false));
+				sb.append(") {");
+				sb.append("\n\t");
+				sb.append(getSolutionCode(right, plans, true));
+				sb.append("\n}");
+			}
+			else if(!ans.b && atRoot) {
+				sb.append("(");
+				sb.append(getSolutionCode(left, plans, false) + ") && (" + getSolutionCode(right, plans, false));
+				sb.append(") {");
+				sb.append("\n\tanswer[j++] = i;");
+				sb.append("\n}");
+			}
+			else {
+				sb.append("(");
+				sb.append(getSolutionCode(left, plans, false) + ") && (" + getSolutionCode(right, plans, false));
+				sb.append(")");
+			}
 		}
 
 		// TODO: Varun
