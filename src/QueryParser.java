@@ -19,6 +19,7 @@ public class QueryParser
 		catch (IOException e)
 		{
 			System.err.println("The config file cannot be found.");
+			return null;
 		}
 
 		return prop;
@@ -35,6 +36,7 @@ public class QueryParser
 		catch(FileNotFoundException e)
 		{
 			System.err.println("The query file cannot be found.");
+			return null; 
 		}
 
 		ArrayList<double[]> query = new ArrayList<double[]>();
