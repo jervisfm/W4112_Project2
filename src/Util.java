@@ -169,13 +169,19 @@ public class Util {
 		sb.append("j += (");
 
 		if(isLogicalAndTerm(p)) {
-			for(BasicTerm t : p.subset.getTerms()) {
+			ArrayList<BasicTerm> terms = p.subset.getTerms();
+
+			for(int i = 0; i < terms.size(); i++) {
+				BasicTerm t = terms.get(i);
 				sb.append(t);
-				sb.append(" & ");
+
+				if(i != terms.size() - 1) {
+					sb.append(" & ");
+				}
 			}
 		}
 
-		sb.append(")");
+		sb.append(");");
 		// sb.append(p.toString());
 		return sb.toString();
 	}
