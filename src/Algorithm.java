@@ -43,7 +43,7 @@ public class Algorithm {
 			throw new IllegalArgumentException("Cost Model cannot be null");
 
 
-		generateAllPlans(terms);
+		generateAllPlans(terms, cm);
 
 		for(PlanRecord p1 : plans) {
 			LinkedHashSet<BasicTerm> set1 = Util.convertToSet(p1.subset);
@@ -116,8 +116,8 @@ public class Algorithm {
 		return p;
 	}
 
-	public ArrayList<PlanRecord> generateAllPlans(LogicalAndTerm terms) {
-		plans = createPlanRecordsArray(terms);
+	public ArrayList<PlanRecord> generateAllPlans(LogicalAndTerm terms, CostModel cm) {
+		plans = createPlanRecordsArray(terms, cm);
 		return plans;
 	}
 
@@ -128,7 +128,7 @@ public class Algorithm {
 	 * @param terms
 	 */
 	public static ArrayList<PlanRecord> createPlanRecordsArray(LogicalAndTerm
-																terms) {
+																terms, CostModel cm) {
 		ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
 		subsets = Util.removeEmptySubset(subsets);
 		Util.numberSubsets(subsets);
@@ -139,8 +139,6 @@ public class Algorithm {
 			int n = subset.size();
 			double p = subset.getSelectivity();
 			boolean doNoBranch = false;
-			// TODO: change getDefaultCostModel to model from config file
-			CostModel cm = CostModel.getDefaultCostModel();
 			double c = subset.getCost(cm);
 			if (subset.getNoBranchAlgCost(cm) < c) {
 				c = subset.getNoBranchAlgCost(cm);

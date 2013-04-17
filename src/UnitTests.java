@@ -109,7 +109,7 @@ public class UnitTests {
 	@Test
 	public void testCreatePlanRecordsArray() {
 		LogicalAndTerm lat = getSampleTerms();
-		ArrayList<PlanRecord> plans = Algorithm.createPlanRecordsArray(lat);
+		ArrayList<PlanRecord> plans = Algorithm.createPlanRecordsArray(lat, CostModel.getDefaultCostModel());
 		assertTrue(plans.size() == (long) (Math.pow(2, lat.size()) - 1));
 
 	}
