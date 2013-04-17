@@ -205,18 +205,25 @@ public class Util {
 		 **/
 
 		// TODO: Varun
-		sb.append("answer[j] = i;");
-		sb.append("\n");
-		sb.append("j += (");
 
 		if(isLogicalAndTerm(p)) {
-			for(BasicTerm t : p.subset.getTerms()) {
-				sb.append(t);
-				sb.append(" & ");
-			}
-		}
+			sb.append("answer[j] = i;");
+			sb.append("\n");
+			sb.append("j += (");
 
-		sb.append(")");
+			ArrayList<BasicTerm> terms = p.subset.getTerms();
+
+			for(int i = 0; i < terms.size(); i++) {
+				BasicTerm t = terms.get(i);
+				sb.append(t);
+
+				if(i != terms.size() - 1) {
+					sb.append(" & ");
+				}
+			}
+
+			sb.append(");");
+		}
 		// sb.append(p.toString());
 		return sb.toString();
 	}
