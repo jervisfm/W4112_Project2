@@ -197,21 +197,9 @@ public class Util {
 
 	}
 
-
-	public static String getAnswerNoBranch(PlanRecord p, ArrayList<PlanRecord> plans, StringBuffer sb) {
-
-		/* Output should look like this:
-		 * answer[j] = i;
-		   j += (t1[o1[i]] & t2[o2[i]]);
-		 **/
-
-		// TODO: Varun
-
+	public static String getAnswerLeafNode(PlanRecord p, ArrayList<PlanRecord> plans,
+	                                       StringBuffer sb) {
 		if(isLogicalAndTerm(p)) {
-			sb.append("answer[j] = i;");
-			sb.append("\n");
-			sb.append("j += (");
-
 			ArrayList<BasicTerm> terms = p.subset.getTerms();
 
 			for(int i = 0; i < terms.size(); i++) {
@@ -223,7 +211,36 @@ public class Util {
 				}
 			}
 
-			sb.append(");");
+			if(p.b) {
+				sb.insert(0, "answer[j] = i;" + "\n" + "j += (");
+				sb.append(");");
+			}
+			else {
+				if(terms.size() > 1) {
+					sb.insert(0, "(");
+					sb.append(")");
+				}
+			}
+		}
+		else {
+			throw new IllegalArgumentException("Plan must be a leaf node");
+		}
+
+		return sb.toString();
+	}
+
+
+	public static String getAnswerNoBranch(PlanRecord p, ArrayList<PlanRecord> plans, StringBuffer sb) {
+
+		/* Output should look like this:
+		 * answer[j] = i;
+		   j += (t1[o1[i]] & t2[o2[i]]);
+		 **/
+
+		// TODO: Varun
+
+		if(isLogicalAndTerm(p)) {
+			getAnswerLeafNode(p, plans, sb);
 		}
 		else {
 			sb.append(p.toString());
@@ -252,18 +269,23 @@ public class Util {
 
 		StringBuffer sb = new StringBuffer();
 
-
-
-
-		if(ans.b) {
-			getAnswerNoBranch(ans, plans, sb);
+		// if leaf node and no-branch
+		if(isLogicalAndTerm(ans) && ans.b) {
+			String noBranch = getAnswerLeafNode(ans, plans, sb);
 		}
-		else if(false) {
+		// if leaf node otherwise
+		else if(isLogicalAndTerm(ans) && !ans.b) {
+
+		}
+		// must have children, so check branch bit
+		else if(ans.b){
+
+		}
+		else if (!ans.b) {
 
 		}
 
 		// TODO: Varun
-		// sb.append("hi");
 		return sb.toString();
 	}
 
