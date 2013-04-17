@@ -16,7 +16,7 @@ public class BasicTerm implements Cloneable {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(function);
-		sb.append("(" + argument + ")");
+		sb.append("[" + argument + "]");
 		// sb.append("@" + selectivity);
 		return sb.toString();
 	}
