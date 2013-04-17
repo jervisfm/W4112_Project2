@@ -37,7 +37,7 @@ public class Algorithm {
 			System.out.println(msg);
 	}
 
-	public PlanRecord findOptimialPlan(CostModel cm) {
+	public PlanRecord findOptimalPlan(CostModel cm) {
 
 		if (cm == null)
 			throw new IllegalArgumentException("Cost Model cannot be null");

@@ -173,22 +173,22 @@ public class UnitTests {
 		double e4 = 13.109047394369998;
 
 		// Query 1
-		double actual = getAlg(q1).findOptimialPlan(cm).c;
+		double actual = getAlg(q1).findOptimalPlan(cm).c;
 		assertEquals("Expected Q1 Cost = " + e1+ " but got " + actual,
 					 e1, actual, err);
 
 		// Query 2
-		actual = getAlg(q2).findOptimialPlan(cm).c;
+		actual = getAlg(q2).findOptimalPlan(cm).c;
 		assertEquals("Expected Q2 Cost = " + e2+ " but got " + actual,
 					 e2, actual, err);
 
 		// Query 3
-		actual = getAlg(q3).findOptimialPlan(cm).c;
+		actual = getAlg(q3).findOptimalPlan(cm).c;
 		assertEquals("Expected Q3 Cost = " + e3+ " but got " + actual,
 					 e3, actual, err);
 
 		// Query 4
-		actual = getAlg(q4).findOptimialPlan(cm).c;
+		actual = getAlg(q4).findOptimalPlan(cm).c;
 		assertEquals("Expected Q4 Cost = " + e4+ " but got " + actual,
 					 e4, actual, err);
 
@@ -204,7 +204,7 @@ public class UnitTests {
 		LogicalAndTerm terms = getSampleTerms(q3);
 		CostModel cm = CostModel.getDefaultCostModel();
 		Algorithm alg = new Algorithm(terms);
-		PlanRecord actual = alg.findOptimialPlan(cm);
+		PlanRecord actual = alg.findOptimalPlan(cm);
 
 
 
@@ -254,7 +254,7 @@ public class UnitTests {
 		LogicalAndTerm terms = getSampleTerms(functionSelectivity);
 		CostModel cm = CostModel.getDefaultCostModel();
 		Algorithm alg = new Algorithm(terms);
-		alg.findOptimialPlan(cm);
+		alg.findOptimalPlan(cm);
 		ArrayList<PlanRecord> plans = alg.plans;
 
 		int expected;
