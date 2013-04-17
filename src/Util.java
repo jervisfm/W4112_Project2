@@ -176,9 +176,16 @@ public class Util {
 		if ( p == null) {
 			return;
 		}
-		System.out.println(tab(depth));
+		System.out.print(tab(depth));
 		if (Util.isBranchAndTerm(p)) {
-			System.out.println (" && ");
+			System.out.println ("&&");
+			
+			if (p.left >= 0) {
+				printPlanHelper(plans.get((int)p.left), depth + 1, plans);
+			}
+			if (p.right >= 0) {
+				printPlanHelper(plans.get((int) p.right), depth + 1, plans);
+			}
 		}
 		if (Util.isLogicalAndTerm(p)) {
 			for (BasicTerm t : p.subset.getTerms()) {
@@ -188,12 +195,7 @@ public class Util {
 			System.out.println("");
 		}
 
-		if (p.left >= 0) {
-			printPlanHelper(plans.get((int)p.left), depth + 1, plans);
-		}
-		if (p.right >= 0) {
-			printPlanHelper(plans.get((int) p.right), depth + 1, plans);
-		}
+		
 
 	}
 
