@@ -156,6 +156,10 @@ public class Util {
 	}
 
 
+	public static void printPlan(PlanRecrod p) {
+		
+	}
+	
 	public static String getAnswerNoBranch(PlanRecord p, StringBuffer sb) {
 
 		/* Output should look like this:
