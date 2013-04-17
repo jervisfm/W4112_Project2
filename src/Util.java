@@ -84,6 +84,8 @@ public class Util {
 			}
 			if (lat.size() > 0)
 				result.add(lat);
+
+			count = 1;
 		}
 		return result;
 	}
@@ -163,8 +165,18 @@ public class Util {
 
 		// TODO: Varun
 		sb.append("answer[j] = i;");
-		sb.append("answer[j] = i;");
-		sb.append(p.toString());
+		sb.append("\n");
+		sb.append("j += (");
+
+		if(isLogicalAndTerm(p)) {
+			for(BasicTerm t : p.subset.getTerms()) {
+				sb.append(t);
+				sb.append(" & ");
+			}
+		}
+
+		sb.append(")");
+		// sb.append(p.toString());
 		return sb.toString();
 	}
 
@@ -189,7 +201,7 @@ public class Util {
 		}
 
 		// TODO: Varun
-		sb.append("hi");
+		// sb.append("hi");
 		return sb.toString();
 	}
 
