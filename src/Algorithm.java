@@ -139,9 +139,11 @@ public class Algorithm {
 			int n = subset.size();
 			double p = subset.getSelectivity();
 			boolean doNoBranch = false;
-			double c = subset.getCost(CostModel.getDefaultCostModel());
-			if (subset.getNoBranchAlgCost() < c) {
-				c = subset.getNoBranchAlgCost();
+			// TODO: change getDefaultCostModel to model from config file
+			CostModel cm = CostModel.getDefaultCostModel();
+			double c = subset.getCost(cm);
+			if (subset.getNoBranchAlgCost(cm) < c) {
+				c = subset.getNoBranchAlgCost(cm);
 				doNoBranch = true;
 			}
 			Plan plan = new LogicalAndPlan(null, null, subset.getTerms());

@@ -98,7 +98,7 @@ public class UnitTests {
 	public void testComputeCostNoBranch() {
 		CostModel c = CostModel.getDefaultCostModel();
 		LogicalAndTerm lat = getSampleTerms();
-		double actual = Util.computeNoBranchCost(lat.getTerms(), c);
+		double actual = lat.getNoBranchAlgCost(c);
 		double s = lat.getSelectivity();
 		double k = 4;
 		double expected  = k*c.r + (k-1) * c.l + k*c.f + c.a;

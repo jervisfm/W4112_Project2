@@ -129,22 +129,6 @@ public class Util {
 	}
 	
 
-	public static double computeNoBranchCost(ArrayList<BasicTerm> terms,
-											 CostModel cm) {
-		if (cm == null || terms == null)
-			throw new NullPointerException("terms or cost model is null");
-		if (terms.size() < 1)
-			throw new IllegalArgumentException("Need at least 1 term");
-
-		int k = terms.size();
-		int r = cm.r;
-		int l = cm.l;
-		int f = cm.f;
-		int a = cm.a;
-
-		return k*r + (k-1)*l + f*k + a;
-	}
-
 	public static void printSubsets(ArrayList<LogicalAndTerm> subsets) {
 		int count = 1;		
 		for (LogicalAndTerm subset : subsets) {
@@ -253,7 +237,7 @@ public class Util {
 				throw new Error("WARNING: Really wierd case in getPlanCost" +
 							    "The RHS child is not defined for And-Plan");
 			} else {
-				PlanRecord rPlan = plans.get((int) p.right); 			
+				PlanRecord rPlan = plans.get((int) p.right);			
 				return fixedCost + m*q + selectivity * getPlanCost(rPlan, plans, cm);
 			}
 			

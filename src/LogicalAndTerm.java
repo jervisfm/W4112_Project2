@@ -18,13 +18,13 @@ public class LogicalAndTerm {
 		this.data  = new ArrayList<BasicTerm>();
 		data.add(term);
 	}
-	
+
 	public LogicalAndTerm(ArrayList<BasicTerm> data) {
 		if (data ==  null)
 			throw new IllegalArgumentException("data cannot be null");
 		this.data = data;
 	}
-	
+
 	public LogicalAndTerm() {
 		this.data  = new ArrayList<BasicTerm>();
 	}
@@ -54,8 +54,19 @@ public class LogicalAndTerm {
 	}
 
 
-	public double getNoBranchAlgCost() {
-		return Util.computeNoBranchCost(data, CostModel.getDefaultCostModel());
+	public double getNoBranchAlgCost(CostModel cm) {
+		if (cm == null)
+			throw new NullPointerException("terms or cost model is null");
+		if (data.size() < 1)
+			throw new IllegalArgumentException("Need at least 1 term");
+
+		int k = data.size();
+		int r = cm.r;
+		int l = cm.l;
+		int f = cm.f;
+		int a = cm.a;
+
+		return k*r + (k-1)*l + f*k + a;
 	}
 
 	/**
@@ -80,20 +91,14 @@ public class LogicalAndTerm {
 		 * q = p1*...*pk if p1*...*pk <= 0.5 ; else q = 1 - (p1*...*pk)
 		 * a = cost of writing an answer to the answer array.
 		 */
-		double total = 0;
 		double selectivities = getSelectivity();
-		double k = size();
-		int l = cost.l;
-		int t = cost.t;
 		int m = cost.m;
-		int r = cost.r;
-		int f = cost.f;
 		double q = selectivities <= 0.5 ? selectivities : 1 - selectivities;
 		int a = cost.a;
 
 		// Note: we assume each function has equal cost that's why
 		// we multiply it (f) by # of terms (k)
-		return k*r + (k-1)*l + k*f + t + m*q + selectivities*a;
+		return getFixedCost(cost) + m*q + selectivities*a;
 	}
 
 	public int size() {
@@ -141,8 +146,8 @@ public class LogicalAndTerm {
 		/**
 		 * C-metric is ( (p-1)/fcost(E) , p )
 		 * where:
-		 * 		p = combined selectivity
-		 * 		fcost(E) = fixed cost of this &-term
+		 *		p = combined selectivity
+		 *		fcost(E) = fixed cost of this &-term
 		 */
 		double fixedCost = getFixedCost(cm);
 		double selectivites = getSelectivity();
@@ -162,8 +167,8 @@ public class LogicalAndTerm {
 		/**
 		 * D-metric is ( fcost(E) , p)
 		 * where:
-		 * 		p = combined selectivity
-		 * 		fcost(E) = fixed cost of this &-term
+		 *		p = combined selectivity
+		 *		fcost(E) = fixed cost of this &-term
 		 */
 		double fixedCost = getFixedCost(cm);
 		double selectivities = getSelectivity();
@@ -178,9 +183,8 @@ public class LogicalAndTerm {
 	public double getSelectivity() {
 		if (isEmpty())
 			return 0;
-		double start = data.get(0).selectivity;
-		double result = start;
-		for (int i = 1; i < data.size(); ++i) {
+		double result = 1.0;
+		for (int i = 0; i < data.size(); ++i) {
 			result *= data.get(i).selectivity;
 		}
 		return result;
