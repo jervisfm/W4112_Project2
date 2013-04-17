@@ -26,17 +26,17 @@ public class Algorithm {
 		this.plans = new ArrayList<PlanRecord>();
 	}
 
-	
+
 	private void d(String msg) {
 		if (DEBUG)
 			System.out.print(msg);
 	}
-	
+
 	private void dln(String msg) {
 		if (DEBUG)
 			System.out.println(msg);
 	}
-	
+
 	public PlanRecord findOptimialPlan(CostModel cm) {
 
 		if (cm == null)
@@ -49,25 +49,25 @@ public class Algorithm {
 			LinkedHashSet<BasicTerm> set1 = Util.convertToSet(p1.subset);
 			for(PlanRecord p2 : plans) {
 				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
-				
+
 				// debug, delete me later
 				d("s1 = ");
-				d(Util.printSubset(set1, false)); 
+				d(Util.printSubset(set1, false));
 				d("s2 = ");
-				d(Util.printSubset(set2, false)); 
+				d(Util.printSubset(set2, false));
 				d(" my common size  = " + Util.getCommonElementsSize(set1, set2));
 				d(" ## ");
-								 
-				d(String.valueOf(p1.subset.getSubsetNo())); 
+
+				d(String.valueOf(p1.subset.getSubsetNo()));
 				d(" | ");
-				d(String.valueOf(p2.subset.getSubsetNo()));				
-								
+				d(String.valueOf(p2.subset.getSubsetNo()));
+
 				if (!Util.isDisjointSets(set1, set2)) {
-					dln(". Debug: Skipping Common sets");					
+					dln(". Debug: Skipping Common sets");
 					continue;
 				}
 				dln("");
-				
+
 				BranchingAndPlan p = makeBranchingAndPlan(p1, p2);
 
 				/**
@@ -75,18 +75,16 @@ public class Algorithm {
 				 * checks correctly for both metrics. (esp. wrt to condition
 				 * "leftmost &-term in set2 (aka 's' in paper)")
 				 */
-				Pair s1CMetric = p1.subset.getCMetric(cm);
-				LogicalAndTerm lat = p2.getLeftMostLogicalAndTerm(plans);
-				Pair s2CMetric = lat.getCMetric(cm);
+				LogicalAndTerm lat = p1.getLeftMostLogicalAndTerm(plans);
+				Pair s1CMetric = lat.getCMetric(cm);
+				Pair s2CMetric = p2.subset.getCMetric(cm);
 
-				
+
 				Pair s1DMetric = p1.subset.getDMetric(cm);
 				Pair s2DMetric = p2.subset.getDMetric(cm);
-				if (false && /* TODO: enable this check later */ 
-					s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
+				if (s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
-				} else if ( false && /* TODO: correct this condition */
-							p1.p <= 0.5 &&
+				} else if (p2.p <= 0.5 &&
 						   s2DMetric.y < s1DMetric.y &&
 						   s2DMetric.x < s1DMetric.x) {
 					continue;
@@ -98,8 +96,8 @@ public class Algorithm {
 					if (combinedCost < plans.get(idx).c) {
 						PlanRecord ans = plans.get(idx);
 						ans.c = combinedCost;
-						ans.left = p1.subset.getSubsetNo();
-						ans.right = p2.subset.getSubsetNo();
+						ans.left = p2.subset.getSubsetNo();
+						ans.right = p1.subset.getSubsetNo();
 					}
 				}
 			}
@@ -108,11 +106,11 @@ public class Algorithm {
 		return plans.get(lastIdx);
 	}
 
-	
-	
+
+
 	private BranchingAndPlan makeBranchingAndPlan(PlanRecord left,
 												  PlanRecord right) {
-		
+
 		// TODO:(jervis): double-check that expression below is OK.
 		BranchingAndPlan p = new BranchingAndPlan(left.plan, right.plan, null);
 		return p;
@@ -139,7 +137,7 @@ public class Algorithm {
 			long left, right;
 			left = right = -1;
 			int n = subset.size();
-			double p = subset.getSelectivity();			
+			double p = subset.getSelectivity();
 			boolean doNoBranch = false;
 			double c = subset.getCost(CostModel.getDefaultCostModel());
 			if (subset.getNoBranchAlgCost() < c) {

@@ -10,7 +10,7 @@ algorithm: setup
 setup:
 	@mkdir -p bin/ lib/
 
-test:
+test: algorithm
 	java -cp bin/:$(CLASSPATH) org.junit.runner.JUnitCore UnitTests
 
 clean:
