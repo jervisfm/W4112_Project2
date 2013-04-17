@@ -312,9 +312,18 @@ public class Util {
 		if (p1 == null || p2 == null || plans == null || cm == null)
 			throw new IllegalArgumentException("Cannot have null args");
 		
+		// Note: we assume that p1 and p2 record contain disjoint elements		
+		int n = p1.n + p2.n; 
+		double selectivity = p1.p * p2.p; 
+		// dont care about best cost / subset filed  when computing new 
+		// cost of plan as our method does not use/rely on them. 
+		int c = -1; 
+		LogicalAndTerm subset = null;
+		int leftIdx = getIndexOfSubset(plans, p1.subset);
+		int rightIdx = getIndexOfSubset(plans, p2.subset);
 		
-		return 0;
-		//PlanRecord combiend = new PlanRecord(n, p, b, c, null, left, right, subset); 
+		PlanRecord combined = new PlanRecord(n, selectivity, false, c, null, leftIdx, rightIdx, subset); 
+		return getPlanCost(combined, plans, cm); 
 	}
 	
 	/**
