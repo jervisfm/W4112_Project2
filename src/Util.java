@@ -360,9 +360,9 @@ public class Util {
 
 		// Case 1: Logical And Plan only
 		if  (isLogicalAndTerm(p)) {
-			/*
+			
 			if (p.b)
-				return p.subset.getNoBranchAlgCost(cm); */
+				return p.subset.getNoBranchAlgCost(cm);
 			return p.subset.getCost(cm);
 		}
 

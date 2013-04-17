@@ -159,7 +159,7 @@ public class UnitTests {
 	}
 
 	// TODO: ensure test is enabled. 
-	// @Test
+	@Test
 	public void testAlgorithm() {
 		CostModel cm = CostModel.getDefaultCostModel();
 		double err = Math.pow(10,-1);
