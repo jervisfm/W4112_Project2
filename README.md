@@ -24,7 +24,7 @@ programming algorithm. This algorithm's cost is O(4^n).
 * JUnit - You need this to run the tests. It is included in the lib/ folder by default. If for some reason it is not present, you can obtain a copy of [Junit] online. Please note that you need both the junit.jar and hamcrest-core.jar files. 
 
 # Query File Format
-Query file just contains a different query on each line. Each query will have the selectivites listed for the functions that are applied in that query. See the included query.txt for an example. 
+Query file just contains a different query on each line. Each query will have the selectivity listed for the functions that are applied in that query. See the included query.txt for an example. 
 
 
 # Config File Format
