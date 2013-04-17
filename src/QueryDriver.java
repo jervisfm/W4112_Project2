@@ -18,7 +18,8 @@ public class QueryDriver
 		{
 			Algorithm queryInstance = new Algorithm(query);
 			PlanRecord solution = queryInstance.findOptimalPlan(cm);
-			String solutionCode = Util.getSolutionCode(solution);
+			ArrayList<PlanRecord> plans = queryInstance.plans;
+			String solutionCode = Util.getSolutionCode(solution, plans);
 			double solutionCost = solution.c;
 
 			System.out.println("==================================================================");

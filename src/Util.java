@@ -156,11 +156,11 @@ public class Util {
 	}
 
 
-	public static void printPlan(PlanRecrod p) {
+	public static void printPlan(PlanRecord p) {
 		
 	}
 	
-	public static String getAnswerNoBranch(PlanRecord p, StringBuffer sb) {
+	public static String getAnswerNoBranch(PlanRecord p, ArrayList<PlanRecord> plans, StringBuffer sb) {
 
 		/* Output should look like this:
 		 * answer[j] = i;
@@ -187,12 +187,17 @@ public class Util {
 
 			sb.append(");");
 		}
+		else {
+			sb.append(p.toString());
+
+			// ArrayList<BasicTerm> terms = p.right;
+		}
 		// sb.append(p.toString());
 		return sb.toString();
 	}
 
 
-	public static String getSolutionCode(PlanRecord ans) {
+	public static String getSolutionCode(PlanRecord ans, ArrayList<PlanRecord> plans) {
 		// There 3 main cases
 		// Case 1: Have NoBranch bit At the top root level
 		// Case 2: Have Just the && And-terms.
@@ -205,7 +210,7 @@ public class Util {
 
 
 		if(ans.b) {
-			getAnswerNoBranch(ans, sb);
+			getAnswerNoBranch(ans, plans, sb);
 		}
 		else if(false) {
 
