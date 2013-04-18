@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Scanner;
 
+/**
+ * Read in the config.txt and query.txt text files
+ * containing the configuration and queries respectively. 
+ * @author Varun
+ *
+ */
 public class QueryParser
 {
 	public static Properties parseConfig(String configPath)
