@@ -46,6 +46,9 @@ public class Algorithm {
 
 		generateAllPlans(terms, cm);
 
+		// p1 is S
+		// p2 is S'
+
 		for(PlanRecord p1 : plans) {
 			LinkedHashSet<BasicTerm> set1 = Util.convertToSet(p1.subset);
 			for(PlanRecord p2 : plans) {
@@ -71,10 +74,13 @@ public class Algorithm {
 				if(p2.p <= 0.5) {
 					// Check each set in S to see if s' is dominated by it
 					for(PlanRecord p3 : plans) {
+						if(!Util.isLogicalAndTerm(p3))
+							continue;
+
 						Pair s3DMetric = p3.subset.getDMetric(cm);
 
-						if(s2DMetric.y < s3DMetric.y &&
-						   s2DMetric.x < s3DMetric.x){
+						if(s2DMetric.y > s3DMetric.y &&
+						   s2DMetric.x > s3DMetric.x){
 							isDMetricOfSPrimeDominated = true;
 							break;
 						}
@@ -95,7 +101,7 @@ public class Algorithm {
 
 				if (s2CMetric.x > s1CMetric.x && s2CMetric.y >= s1CMetric.y) {
 					continue;
-				} else if (false && p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
+				} else if (p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
 					continue;
 				} else {
 					double combinedCost = Util.getAndPlanCost(p2, p1, plans, cm);

@@ -65,16 +65,16 @@ public class PlanRecord {
 		this.plan = plan;
 		this.subset = subset;
 	}
-	
-	
-	
+
+
+
 	public String toString() {
-		
-		StringBuffer s= new StringBuffer(); 
+
+		StringBuffer s= new StringBuffer();
 		for (BasicTerm t : this.subset.getTerms()) {
 			s.append(t.function + ",");
 		}
-		
+
 		return String.format("No of terms: %d \n" +
 							 "Combined Selectivities:%f\n" +
 							 "Uses No Branch? %b \n" +
@@ -82,15 +82,15 @@ public class PlanRecord {
 							 "Left Subplan Index: %d \n" +
 							 "Right Subplan Index: %d\n" +
 							 "Terms: %s\n" +
-							 "------------------------\n", 
-							 n, p, b, c, left, right, s.toString()); 		
+							 "------------------------\n",
+							 n, p, b, c, left, right, s.toString());
 	}
-	
+
 	public LogicalAndTerm getLeftMostLogicalAndTerm(ArrayList<PlanRecord> plans) {
 		PlanRecord c = this;
 		while (c.left >= 0) {
 			c = plans.get((int)c.left);
 		}
-		return c.subset; 
+		return c.subset;
 	}
 }
