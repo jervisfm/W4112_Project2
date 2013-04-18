@@ -62,7 +62,7 @@ public class Algorithm {
 				BranchingAndPlan p = makeBranchingAndPlan(p1, p2);
 
 				LogicalAndTerm lat = p1.getLeftMostLogicalAndTerm(plans);
-				
+
 				Pair s1CMetric = lat.getCMetric(cm);
 				Pair s2CMetric = p2.subset.getCMetric(cm);
 
