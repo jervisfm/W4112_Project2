@@ -59,6 +59,7 @@ public class Algorithm {
 				BranchingAndPlan p = makeBranchingAndPlan(p1, p2);
 
 				LogicalAndTerm lat = p1.getLeftMostLogicalAndTerm(plans);
+				
 				Pair s1CMetric = lat.getCMetric(cm);
 				Pair s2CMetric = p2.subset.getCMetric(cm);
 
@@ -92,7 +93,7 @@ public class Algorithm {
 				d("s2.d = " + s2DMetric);
 				dln("");
 
-				if (false && s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
+				if (s2CMetric.x > s1CMetric.x && s2CMetric.y >= s1CMetric.y) {
 					continue;
 				} else if (false && p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
 					continue;
