@@ -109,7 +109,7 @@ public class Algorithm {
 
 				if (s2CMetric.x > s1CMetric.x && s2CMetric.y >= s1CMetric.y) {
 					continue;
-				} else if (p2.p <= 0.5 && isDMetricOfSPrimeDominated && false) {
+				} else if (p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
 					continue;
 				} else {
 					double combinedCost = Util.getAndPlanCost(p2, p1, plans, cm);
