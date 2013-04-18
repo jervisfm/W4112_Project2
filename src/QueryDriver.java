@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * Contain the Main Java Program.  
+ * @author Jervis
+ * @author Varun
+ */
 public class QueryDriver
-{
-	
-	
+{		
 	public static void main(String[] args)
 	{
 		if (args.length != 2) {
@@ -42,23 +45,5 @@ public class QueryDriver
 			System.out.println("------------------------------------------------------------------");
 			System.out.println("cost: " + solutionCost);
 		}
-	}
-
-	private static void t0 () {
-		long mask = 1;
-		System.out.println(mask);
-		for (int i = 0; i < 10; ++i) {
-			mask <<= 1;
-			System.out.println(mask);
-		}
-	}
-
-	private static void printList(ArrayList<double[]> query) {
-		for(double[] array : query) {
-			for(double d : array)  {
-				System.out.printf("%f, ", d);
-			}
-			System.out.println("");
-		}
-	}
+	}		
 }
