@@ -51,18 +51,6 @@ public class Algorithm {
 			for(PlanRecord p2 : plans) {
 				LinkedHashSet<BasicTerm> set2 = Util.convertToSet(p2.subset);
 
-				// debug, delete me later
-				// d("s1 = ");
-				// d(Util.printSubset(set1, false));
-				// d("s2 = ");
-				// d(Util.printSubset(set2, false));
-				// d(" my common size  = " + Util.getCommonElementsSize(set1, set2));
-				// d(" ## ");
-
-				// d(String.valueOf(p1.subset.getSubsetNo()));
-				// d(" | ");
-				// d(String.valueOf(p2.subset.getSubsetNo()));
-
 				if (!Util.isDisjointSets(set1, set2)) {
 					// dln(". Debug: Skipping Common sets");
 					continue;
@@ -70,11 +58,6 @@ public class Algorithm {
 
 				BranchingAndPlan p = makeBranchingAndPlan(p1, p2);
 
-				/**
-				 * TODO(jervis): double check again to make sure I do the
-				 * checks correctly for both metrics. (esp. wrt to condition
-				 * "leftmost &-term in set2 (aka 's' in paper)")
-				 */
 				LogicalAndTerm lat = p1.getLeftMostLogicalAndTerm(plans);
 				Pair s1CMetric = lat.getCMetric(cm);
 				Pair s2CMetric = p2.subset.getCMetric(cm);
@@ -111,7 +94,7 @@ public class Algorithm {
 
 				if (false && s2CMetric.x < s1CMetric.x && s2CMetric.y <= s1CMetric.y) {
 					continue;
-				} else if ( false && p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
+				} else if (false && p2.p <= 0.5 && isDMetricOfSPrimeDominated) {
 					continue;
 				} else {
 					double combinedCost = Util.getAndPlanCost(p2, p1, plans, cm);

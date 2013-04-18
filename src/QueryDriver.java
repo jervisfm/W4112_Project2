@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 /**
- * Contain the Main Java Program.  
+ * Contain the Main Java Program.
  * @author Jervis
  * @author Varun
  */
 public class QueryDriver
-{		
+{
 
 
 	public static void main(String[] args)
@@ -49,5 +49,5 @@ public class QueryDriver
 			System.out.println("------------------------------------------------------------------");
 			System.out.println("cost: " + solutionCost);
 		}
-	}		
+	}
 }

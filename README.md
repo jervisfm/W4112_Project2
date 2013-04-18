@@ -46,7 +46,7 @@ m = 16
 a = 2  
 f = 4  
 
-The meaning of these parameters is as follows: 
+The meaning of these parameters is as follows:
 
 	 r = Cost of accessing an array element rj[i]  
 	 t = Cost of performing an if test
@@ -87,8 +87,50 @@ In case, you don't have JUnit installed, please refer to the 'Dependency' sectio
 We have some sample queries and config files included with the project. 
 To see the program in action being executed on sample inputs, do the following:
 
-`./stage2.sh query.txt config.txt`
-
+```
+$ ./stage2.sh query.txt config.txt 
+==================================================================
+0.4 0.6 
+------------------------------------------------------------------
+answer[j] = i;
+j += (t1[o1[i]] & t2[o2[i]]);
+------------------------------------------------------------------
+cost: 13.0
+==================================================================
+0.7 0.8 0.8 0.9 
+------------------------------------------------------------------
+answer[j] = i;
+j += (t1[o1[i]] & t2[o2[i]] & t3[o3[i]] & t4[o4[i]]);
+------------------------------------------------------------------
+cost: 25.0
+==================================================================
+0.7 0.4 0.2 0.3 0.6 
+------------------------------------------------------------------
+if(t3[o3[i]] && ((t2[o2[i]] & t4[o4[i]]))) {
+	answer[j] = i;
+	j += (t1[o1[i]] & t5[o5[i]]);
+}
+------------------------------------------------------------------
+cost: 13.495999999999999
+==================================================================
+0.65 0.79 0.43 0.26 0.75 0.37 0.19 0.53 
+------------------------------------------------------------------
+if(t7[o7[i]] && (t4[o4[i]] && ((t3[o3[i]] & t6[o6[i]]) && ((t1[o1[i]] & t8[o8[i]]))))) {
+	answer[j] = i;
+	j += (t2[o2[i]] & t5[o5[i]]);
+}
+------------------------------------------------------------------
+cost: 13.109047394369998
+==================================================================
+0.01 0.04 0.19 0.75 0.25 0.94 0.27 0.65 0.98 
+------------------------------------------------------------------
+if(t1[o1[i]] && (t2[o2[i]] && (t3[o3[i]] && (t5[o5[i]] && (t7[o7[i]] && (t8[o8[i]])))))) {
+	answer[j] = i;
+	j += (t4[o4[i]] & t6[o6[i]] & t9[o9[i]]);
+}
+------------------------------------------------------------------
+cost: 7.2415950735
+```
 
 # Error Checking
 We try to do reasonable error checking in our code to handle unexpected or missing inputs. Thus, more most reasonable inputs the program should run without issues.
