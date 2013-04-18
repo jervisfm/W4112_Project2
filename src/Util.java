@@ -220,7 +220,7 @@ public class Util {
 
 				sb.append(");");
 			}
-			else if(!p.b){
+			else if(p.b){
 				if(terms.size() > 1) {
 					sb.insert(0, "(");
 					sb.append(")");
@@ -246,8 +246,8 @@ public class Util {
 		// Case 3: Mixed Plan.
 		// Will happen when the last &-term has NoBranch Bit set.
 
-		if(atRoot)
-			Util.printPlan(ans, plans);
+		// if(atRoot)
+		//	Util.printPlan(ans, plans);
 
 		StringBuffer sb = new StringBuffer();
 
@@ -272,7 +272,6 @@ public class Util {
 				PlanRecord rightmostChild = Util.getRightmostChild(ans, plans);
 
 				if(rightmostChild.b) {
-					// System.out.println(rightmostChild);
 					String leafNode = getAnswerLeafNode(rightmostChild, plans, true, true);
 					sb.append(leafNode);
 				}
@@ -284,18 +283,45 @@ public class Util {
 				sb.append("\n}");
 			}
 			else {
+				// children but not at the root node
+				ArrayList<BasicTerm> terms = ans.subset.getTerms();
+				ArrayList<BasicTerm> leftTerms = left.subset.getTerms();
+				ArrayList<BasicTerm> rightTerms = right.subset.getTerms();
+
+				// put parens around every right child after the root
 				sb.append("(");
+
+				// only handle left child if at bottom of tree
+				// right child is handled at the root level, and is appended after
+	            // the curly brace
 				if(isLogicalAndTerm(right) && right.b) {
+
 					sb.append(getSolutionCode(left, plans, false));
 				}
 				else {
-					sb.append(getSolutionCode(left, plans, false) + " && " + getSolutionCode(right, plans, false));
+					// left child and right child should be &&, and the no-branch bit
+					// is not set. Add extra parentheses around the right child to
+					// account for a discrepancy. Note: hacky.
+					sb.append(getSolutionCode(left, plans, false) + " && ");
+
+					if(isLogicalAndTerm(right) && !right.b) {
+						sb.append("(");
+					}
+
+					sb.append(getSolutionCode(right, plans, false));
+
+					if(isLogicalAndTerm(right) && !right.b) {
+						sb.append(")");
+					}
+
+
 				}
+
+				// close parens around every right child after the root
 				sb.append(")");
 			}
 		}
 
-		// TODO: Varun
 		return sb.toString();
 	}
 
@@ -307,7 +333,7 @@ public class Util {
 
 		PlanRecord temp = p;
 
-		while(temp.right > 0) {
+		while(temp.right >= 0) {
 			PlanRecord right = plans.get((int) temp.right);
 
 			if(isLogicalAndTerm(right)) {
