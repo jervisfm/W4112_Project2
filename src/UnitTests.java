@@ -162,7 +162,7 @@ public class UnitTests {
 	@Test
 	public void testAlgorithm() {
 		CostModel cm = CostModel.getDefaultCostModel();
-		double err = Math.pow(10,-1);
+		double err = Math.pow(10,-2);
 		double [] q1 = {0.4,0.6};
 		double [] q2 = {0.7, 0.8, 0.8, 0.9};
 		double [] q3 = {0.7, 0.4, 0.2, 0.3, 0.6};

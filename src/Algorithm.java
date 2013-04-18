@@ -72,8 +72,16 @@ public class Algorithm {
 				boolean isDMetricOfSPrimeDominated = false;
 
 				if(p2.p <= 0.5) {
+					
+					ArrayList<LogicalAndTerm> others = Util.getAllLogicalTerms(p1,plans);
+					for (LogicalAndTerm t: others) {
+						Pair tempDMetric = t.getDMetric(cm);
+						if (tempDMetric.x  < s2DMetric.x && tempDMetric.y < s2DMetric.y) {
+							isDMetricOfSPrimeDominated = true;
+						}
+					}
 					// Check each set in S to see if s' is dominated by it
-					for(PlanRecord p3 : plans) {
+					/* for(PlanRecord p3 : plans) {
 						if(!Util.isLogicalAndTerm(p3))
 							continue;
 
@@ -84,7 +92,7 @@ public class Algorithm {
 							isDMetricOfSPrimeDominated = true;
 							break;
 						}
-					}
+					} */
 				}
 
 

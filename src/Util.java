@@ -238,6 +238,28 @@ public class Util {
 		return getSolutionCode(ans, plans, true);
 	}
 
+	
+	private static void getAllLogicalTermsHelper(PlanRecord p, ArrayList<PlanRecord> plans, ArrayList<LogicalAndTerm> output) {
+		
+		if (p.left < 0 && p.right < 0) { 
+			output.add(p.subset);
+			return ;
+		}
+		if (p.left >= 0) {
+			PlanRecord left = plans.get((int)p.left);
+			getAllLogicalTermsHelper(left, plans, output);
+		}
+		if (p.right >= 0) {
+			PlanRecord right = plans.get((int)p.right);
+			getAllLogicalTermsHelper(right, plans, output);
+		}
+	}
+	
+	public static ArrayList<LogicalAndTerm> getAllLogicalTerms(PlanRecord p, ArrayList<PlanRecord> plans) {
+		ArrayList<LogicalAndTerm> output = new ArrayList<LogicalAndTerm>(); 
+		getAllLogicalTermsHelper(p, plans, output);
+		return output; 
+	}
 
 	public static String getSolutionCode(PlanRecord ans, ArrayList<PlanRecord> plans, boolean atRoot) {
 		// There 3 main cases
