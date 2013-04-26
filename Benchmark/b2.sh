@@ -1,6 +1,7 @@
 #! /bin/bash
 
 # Runs query 2 benchmarks and appends to result files. 
+echo "Running Benchmarks..."
 ./branch_mispred_optimal_q1_0 0 0 0 0 >> result_q2_0.txt
 ./branch_mispred_optimal_q1_1 0.590 0.536 0.585 0.541 >> result_q2_1
 ./branch_mispred_optimal_q1_2 0.702 0.637 0.695 0.643 >> result_q2_2
@@ -12,3 +13,4 @@
 ./branch_mispred_optimal_q1_8 0.993 0.901 0.984 0.909 >> result_q2_8
 ./branch_mispred_optimal_q1_9 0.993 0.955 0.984 0.964 >> result_q2_9
 ./branch_mispred_optimal_q1_10 1 1 1 1 >> result_q2_10
+echo "Done"
