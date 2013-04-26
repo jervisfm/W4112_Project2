@@ -137,7 +137,7 @@ def main():
 	file_prefix = args['prefix']
 	print 'Compiling benchmark %s' % file_prefix
 	compiled_results = compile_benchmark(file_prefix)
-	compiled_filename = 'compiled_' + file_prefix
+	compiled_filename = 'compiled_' + file_prefix + '.txt'
 	f = open(compiled_filename, 'w')
 	f.write(compiled_results)
 	f.close()
