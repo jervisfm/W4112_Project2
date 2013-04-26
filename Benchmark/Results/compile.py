@@ -138,9 +138,9 @@ def compile_benchmark(file_prefix):
 
 		compiled_record = compile_result_from_file(file)
 		if i == 10:
-			compiled_record.name = 'Combined Selectivity 1.0'
+			compiled_record.name = file_prefix + ' | ' + 'Combined Selectivity 1.0'
 		else:
-			compiled_record.name = 'Combined Selectivity 0.%d' % i
+			compiled_record.name = file_prefix + ' | ' + 'Combined Selectivity 0.%d' % i
 		result += compiled_record.__str__()
 		result += '\n====\n'
 	return result
