@@ -9,7 +9,7 @@ echo "done"
 # Compile Branching And base result
 echo "Compile branching and base results"
 ./compile.py -p result_pand_q1
-./compile.py -p reuslt_pand_w2
+./compile.py -p result_pand_q2
 echo "done"
 
 # Compile No-Branch Base result
