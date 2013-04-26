@@ -16,4 +16,4 @@ all: $(PROGS)
 	$(CC) $(CFLAGS) $(LIB_INCLUDE) -o $@ $<
 
 clean:
-	rm -f *.o *~ $(TARGETS)
+	rm -f *.o *.s *.i *~ $(TARGETS)
