@@ -24,7 +24,7 @@ echo "Benchmarking selectivity 0.8"
 echo "Benchmarking selectivity 0.9"
 ./branch_mispred_land 0.993 0.955 0.984 0.964 >> result_land_q2_9.txt
 echo "Benchmarking selectivity 1.0"
-./branch_mispred_land 1 1 1 1 >> result_land_q2_10
+./branch_mispred_land 1 1 1 1 >> result_land_q2_10.txt
 echo "Done"
 
 
