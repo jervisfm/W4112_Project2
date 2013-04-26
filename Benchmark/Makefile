@@ -13,7 +13,7 @@ PROGS = $(patsubst %.c,%,$(SRCS))
 all: $(PROGS)
 
 %: %.c
-	$(CC) $(CFLAGS) $(LIB_INCLUDE) -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $<
 
 clean:
 	rm -f *.o *.s *.i *~ $(TARGETS)
