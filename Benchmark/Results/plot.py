@@ -21,8 +21,7 @@ def main():
 		r = parse_record(record)
 		results.append(r)
 
-	
-	print results[]
+	print results
 
 if __name__ == '__main__':
 	main()
