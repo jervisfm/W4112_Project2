@@ -235,7 +235,7 @@ char * createData(double selectivity, char * data) {
     }
     data++;
   }
-  *data = '\0';
+  *data = '\\0';
   return data;
 }
 
