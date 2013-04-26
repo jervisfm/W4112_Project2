@@ -3,7 +3,7 @@
 __author__ = 'Jervis Muindi'
 
 import argparse
-import result
+from result import Result
 
 
 def read_file_to_string(file_path):
