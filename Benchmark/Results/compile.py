@@ -70,6 +70,10 @@ def compile_result_from_file(file):
 	records_string = read_file_to_string(file)
 	MARKER = "Loop start!\nLoop stop!\n"
 	
+
+	print records_string
+	print '********'
+
 	records = records_string.split(MARKER)
 	r = Result()
 	record_count = 0
@@ -81,25 +85,27 @@ def compile_result_from_file(file):
 			if 'elapsed time' in item.lower():
 				# Format is like this
 				# elapsed time : 123123 seconds
-				num = float(item.split(':')[1].split(' ')[0])
+				num = float(item.split(':')[1].strip().split(' ')[0])
 				r.elapsed_time += num
 			elif 'cpu cycles' in item.lower():
 				# Format is like this
 				# cpu cycles : 123123
 				num = float(item.split(':')[1])
-				r.cpu_cyles += num
-			elif 'instructions' in item.lower():
+				r.cpu_cycles += num
+			# This condition should be above the instrunctions
+			# case to ensure properly parsing
+			elif 'branch instructions' in item.lower():
 				num = float(item.split(':')[1])
-				r.instructions += num
+				r.branch_instructions += num
 			elif 'ipc' in item.lower():
 				num = float(item.split(':')[1])
 				r.ipc += num
 			elif 'branch misses' in item.lower():
 				num = float(item.split(':')[1])
 				r.branch_misses += num
-			elif 'branch instructions' in item.lower():
+			elif 'instructions' in item.lower():
 				num = float(item.split(':')[1])
-				r.branch_instructions += num
+				r.instructions += num
 			elif 'branch mispred' in item.lower():
 				# Format is like this
 				# branch mispred rate: 1.12312%
@@ -112,7 +118,7 @@ def compile_result_from_file(file):
 		record_count += 1
 	print 'We found no of  Records = %s' % record_count
 	# Average out the results
-	r.elpased_time /= float(record_count)
+	r.elapsed_time /= float(record_count)
 	r.cpu_cycles /= float(record_count)
 	r.instructions /= float(record_count)
 	r.ipc /= float(record_count)
