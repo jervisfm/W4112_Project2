@@ -46,7 +46,7 @@ def main():
     for code in codes:
         print 'Processing optimal code #%d...' % count
         new_code = make_branch_mispred_source(code)
-        f = open("branch_mispred_optimal_%s_%d" % (suffix,count), 'w')
+        f = open("branch_mispred_optimal_%s_%d.c" % (suffix,count), 'w')
         f.write(new_code)
         f.close()
         count += 1
