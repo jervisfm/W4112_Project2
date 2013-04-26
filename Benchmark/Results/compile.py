@@ -55,8 +55,7 @@ def read_file_to_string(file_path):
 	result = line
 
 	while line:
-        	line = f.readline().strip()
-	        result += '\n'
+        	line = f.readline()
         	result += line
 	f.close()
 	return result
@@ -73,7 +72,7 @@ def compile_result_from_file(file):
 
 	print records_string
 	print '********'
-
+	exit(-1)
 	records = records_string.split(MARKER)
 	r = Result()
 	record_count = 0
@@ -92,8 +91,8 @@ def compile_result_from_file(file):
 				# cpu cycles : 123123
 				num = float(item.split(':')[1])
 				r.cpu_cycles += num
-			# This condition should be above the instrunctions
-			# case to ensure properly parsing
+			# This condition should be above the instructions
+			# case to ensure proper parsing
 			elif 'branch instructions' in item.lower():
 				num = float(item.split(':')[1])
 				r.branch_instructions += num
@@ -137,6 +136,8 @@ def main():
 	p3 = p + p2
 	print p3
 	file =  'result_land_q1_0.txt' 
+	print read_file_to_string(file)
+	exit(-1)
 	print compile_result_from_file(file)
 
 if __name__ == '__main__':
