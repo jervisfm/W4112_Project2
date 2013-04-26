@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 BENCHMARK=branch_mispred_optimal_q1_
 
