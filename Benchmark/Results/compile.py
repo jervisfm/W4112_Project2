@@ -8,9 +8,8 @@ from result import Result
 
 def read_file_to_string(file_path):
 	f = open(file_path)
-	line = f.readline().strip()
+	line = f.readline()
 	result = line
-
 	while line:
         	line = f.readline()
         	result += line
@@ -21,12 +20,17 @@ def parse_record(record):
 	"""
 		Parses a benchmark results record
 	"""
+
+	print record
+	print '*****'
+
 	r = Result()
 	items = record.split('\n')
 	for item in items:
 		if 'elapsed time' in item.lower():
 			# Format is like this
 			# elapsed time : 123123 seconds
+			print items
 			num = float(item.split(':')[1].strip().split(' ')[0])
 			r.elapsed_time += num
 		elif 'cpu cycles' in item.lower():

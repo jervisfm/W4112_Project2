@@ -14,7 +14,7 @@ class Result:
 
         def __str__(self):
                 result = ''
-                result += 'Benchmark name: %s\n' % self.name
+                result += 'Benchmark name: %s \n' % self.name
                 result += 'Elapsed Time: %s seconds\n' % self.elapsed_time
                 result += 'Cpu Cycles: %s\n' % self.cpu_cycles
                 result += 'Instructions: %s\n' % self.instructions
