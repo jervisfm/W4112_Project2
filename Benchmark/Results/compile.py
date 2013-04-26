@@ -128,11 +128,21 @@ def compile_benchmark(file_prefix):
 		
 
 def main():
-	
 	print "hi you"
 	file =  'result_land_q1_0.txt' 
 	file_prefix = 'result_land_q1'
-	print compile_benchmark(file_prefix)
+
+	parser = argparse.ArgumentParser(description='Compiles benchmark results together to 1 file')
+	parser.add_argument('-p', '--prefix', help='name of file prefix to generate compiled results from', required=True)
+	args = vars(parser.parse_args())
+
+	file_prefix = args['prefix']
+	print 'Compiling benchmark %s' % file_prefix
+	compiled_results = compile_benchmark(file_prefix)
+	f = file('compiled_'+file_prefix, 'w')
+	f.write(compiled_results)
+	f.close()
+	print 'Compilation complete'
 
 if __name__ == '__main__':
 	main()
