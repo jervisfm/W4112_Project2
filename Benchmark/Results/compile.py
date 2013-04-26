@@ -50,8 +50,6 @@ def compile_result_from_file(file):
 	records_string = read_file_to_string(file)
 	MARKER = "Loop start!\nLoop stop!\n"
 	
-	print records_string
-	print '********'
 	records = records_string.split(MARKER)
 	r = Result()
 	record_count = 0
@@ -140,7 +138,7 @@ def main():
 	print 'Compiling benchmark %s' % file_prefix
 	compiled_results = compile_benchmark(file_prefix)
 	compiled_filename = 'compiled_' + file_prefix
-	f = file(compiled_filename, 'w')
+	f = open(compiled_filename, 'w')
 	f.write(compiled_results)
 	f.close()
 	print 'Compilation complete: Wrote result to %s'% compiled_filename
