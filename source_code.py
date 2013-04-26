@@ -98,7 +98,7 @@ int main(int argc, char * argv[]) {
 
   // argument check
   if(argc != 5) {
-    printf("argument error!\n");
+    printf("argument error!\\n");
     return -1;
   }
 
@@ -132,7 +132,7 @@ int main(int argc, char * argv[]) {
   createOffsets(o4);
 
   // start
-  printf("Loop start!\n");
+  printf("Loop start!\\n");
   fflush(stdout);
   start = get_timestamp(0.0f);
 
@@ -169,17 +169,17 @@ SOURCE_END = """
 
   stop = get_timestamp(start);
 
-  printf("Loop stop!\n");
-  printf("Elapsed time: %.9lf seconds\n", stop);
-  printf("CPU Cycles:           %lu \n", val2[0] - val1[0]);
-  printf("Instructions:         %lu \n", val2[3] - val1[3]);
-  printf("IPC:                  %lf\n", ((double)val2[3] - val1[3]) / (val2[0] - val1[0]));
-  printf("Branch misses:        %lu \n", val2[1] - val1[1]);
-  printf("Branch instructions:  %lu \n", val2[2] - val1[2]);
-  printf("Branch mispred. rate: %lf%%\n", 100.0*((double)val2[1] - val1[1]) / (val2[2] - val1[2]));
-  printf("\n");
-  printf("overall selectivity = %10.9f\n", (double)j / (double)LOOP);
-  printf("theoretical selectivity = %10.9f\n", s1 * s2 * s3 * s4);
+  printf("Loop stop!\\n");
+  printf("Elapsed time: %.9lf seconds\\n", stop);
+  printf("CPU Cycles:           %lu \\n", val2[0] - val1[0]);
+  printf("Instructions:         %lu \\n", val2[3] - val1[3]);
+  printf("IPC:                  %lf\\n", ((double)val2[3] - val1[3]) / (val2[0] - val1[0]));
+  printf("Branch misses:        %lu \\n", val2[1] - val1[1]);
+  printf("Branch instructions:  %lu \\n", val2[2] - val1[2]);
+  printf("Branch mispred. rate: %lf%%\\n", 100.0*((double)val2[1] - val1[1]) / (val2[2] - val1[2]));
+  printf("\\n");
+  printf("overall selectivity = %10.9f\\n", (double)j / (double)LOOP);
+  printf("theoretical selectivity = %10.9f\\n", s1 * s2 * s3 * s4);
 
   // we need to use the answer just in case so that optimizer does not optimize too much.
   // i.e. optimizer might think that we don't need to calculate answers if we do not use them.
