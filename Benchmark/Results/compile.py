@@ -69,7 +69,6 @@ def compile_result_from_file(file):
 	records_string = read_file_to_string(file)
 	MARKER = "Loop start!\nLoop stop!\n"
 	
-
 	print records_string
 	print '********'
 	records = records_string.split(MARKER)
@@ -124,7 +123,29 @@ def compile_result_from_file(file):
 	r.branch_instructions /= float(record_count)
 	r.branch_mispredict_rate /= float(record_count)
 	return r
+
+def compile_benchmark(file_prefix):
+	"""
+		Compiles all results from a given benchmark 
+		into summarized records. 
+		Returns a string of the summarized records
+	"""
 	
+	NUM = 11 # We have records 0 ... 10
+	result = ''
+	for i in xrange(NUM):
+		file = file_prefix + '_' + str(i) + '.txt'
+
+		compiled_record = compile_result_from_file(file)
+		if i == 10:
+			compiled_record.name = 'Combined Selectivity 1.0'
+		else:
+			compiled_record.name = 'Combined Selectivity 0.%d' % i
+		result += compiled_record.__str__()
+		result += '\n====\n'
+	return result
+		
+
 def main():
 	
 	print "hi you"
@@ -135,7 +156,8 @@ def main():
 	p3 = p + p2
 	print p3
 	file =  'result_land_q1_0.txt' 
-	print compile_result_from_file(file)
+	file_prefix = 'result_land_q1'
+	print compile_benchmark(file_prefix)
 
 if __name__ == '__main__':
 	main()
