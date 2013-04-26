@@ -14,14 +14,17 @@ def main():
 	record_marker = '===='
 	records = file_string.split(record_marker)
 	results = []
+
 	for record in records:
-		if not record: # skip empty records
+		if not record.strip(): # skip empty records
 			continue
 
 		r = parse_record(record)
 		results.append(r)
 
-	print results
+
+	print 'we have this many results: %d' % len(results)
+	#print results
 
 if __name__ == '__main__':
 	main()
