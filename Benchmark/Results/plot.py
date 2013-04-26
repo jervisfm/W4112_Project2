@@ -49,11 +49,32 @@ def get_ipc(results):
 	return ans
 	
 
+def plot_graph(x, y, ylabel, title, file_name):
+	if not filename:
+		raise ValueError('file name must be specified')
+	fig = figure()
+	plt.xlabel('Combined Selectivity')
+	plt.ylabel(ylabel)
+	plt.plot(x, y, 'r--', x, y, 'bo')
+	fig.savefig(file_name)
+	
+
+
 def plot_benchmark_result(results):
-	title = ''
-	if results:
-		title = results[0].name.split('|')[1].strip()
-	for result in results:
+
+	check_results(results)
+	title = results[0].name.split('|')[0].strip()
+	
+	# Plot the Mispredict rate graph
+	fname = title + '_mispredict_rate.png'
+	x = get_x_points()
+	y = get_mispredict_rate(results)
+	ylabel = '% Mispredict rate'
+	plot_graph(x,y,ylabel, title, fname)	
+
+
+
+	
 		
 
 
