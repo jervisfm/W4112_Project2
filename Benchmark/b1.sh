@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Runs query 1 benchmarks and appends to result files. 
-echo "Running Benchmarks..."
+echo "Running Optimal Benchmarks for Query 1..."
 echo "Benchmarking selectivity 0.0"
 ./branch_mispred_optimal_q1_0 0 0 0 0 >> result_optimal_q1_0.txt
 echo "Benchmarking selectivity 0.1"

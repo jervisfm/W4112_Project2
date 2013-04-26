@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Runs query 1 Base benchmarks and appends to result files. 
-echo "Running Base Benchmarks..."
+echo "Running Base Benchmarks for query 1..."
 
 echo "1/3)Running Logical And Base ..."
 echo "Benchmarking selectivity 0.0"
