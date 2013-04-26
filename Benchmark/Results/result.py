@@ -15,12 +15,12 @@ class Result:
         def __str__(self):
                 result = ''
                 result += 'Benchmark name: %s\n' % self.name
-                result += 'Elapsed Time: %s\n' % self.elapsed_time
+                result += 'Elapsed Time: %s seconds\n' % self.elapsed_time
                 result += 'Cpu Cycles: %s\n' % self.cpu_cycles
                 result += 'Instructions: %s\n' % self.instructions
                 result += 'IPC : %s\n' % self.ipc
                 result += 'Branch Misses: %s\n' % self.branch_misses
                 result += 'Branch Instructions: %s\n' % self.branch_instructions
-                result += 'Branch MisPredict Rate: %s\n' % self.branch_mispredict_rate
+                result += 'Branch MisPredict Rate: %s%\n' % self.branch_mispredict_rate
                 return result
 
