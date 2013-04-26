@@ -8,7 +8,7 @@ def main():
 	
 	parser = argparse.ArgumentParser(description='Plots compiled benchmark results')
 	
-	file = 'compile_result_land_q1.txt'
+	file = 'compiled_result_land_q1.txt'
 	
 	file_string = read_file_to_string(file)
 	record_marker = '===='
