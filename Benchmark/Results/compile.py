@@ -17,6 +17,47 @@ def read_file_to_string(file_path):
 	f.close()
 	return result
 
+def parse_record(record):
+	"""
+		Parses a benchmark results record
+	"""
+	r = Result()
+	items = record.split('\n')
+	for item in items:
+		if 'elapsed time' in item.lower():
+			# Format is like this
+			# elapsed time : 123123 seconds
+			num = float(item.split(':')[1].strip().split(' ')[0])
+			r.elapsed_time += num
+		elif 'cpu cycles' in item.lower():
+			# Format is like this
+			# cpu cycles : 123123
+			num = float(item.split(':')[1])
+			r.cpu_cycles += num
+		# This condition should be above the instructions
+		# case to ensure proper parsing
+		elif 'branch instructions' in item.lower():
+			num = float(item.split(':')[1])
+			r.branch_instructions += num
+		elif 'ipc' in item.lower():
+			num = float(item.split(':')[1])
+			r.ipc += num
+		elif 'branch misses' in item.lower():
+			num = float(item.split(':')[1])
+			r.branch_misses += num
+		elif 'instructions' in item.lower():
+			num = float(item.split(':')[1])
+			r.instructions += num
+		elif 'branch mispred' in item.lower():
+			# Format is like this
+			# branch mispred rate: 1.12312%
+			percentage = item.split(':')[1]
+			num = float(percentage.strip()[:-1]) # remove percentage
+			r.branch_mispredict_rate += num				
+		else:
+			pass
+	return r
+
 def compile_result_from_file(file):
 	""" 
 		Compile all the results in the given file
@@ -32,41 +73,16 @@ def compile_result_from_file(file):
 	for record in records:
 		if not record: # Skip empty records
 			continue
-		items = record.split('\n')
-		for item in items:
-			if 'elapsed time' in item.lower():
-				# Format is like this
-				# elapsed time : 123123 seconds
-				num = float(item.split(':')[1].strip().split(' ')[0])
-				r.elapsed_time += num
-			elif 'cpu cycles' in item.lower():
-				# Format is like this
-				# cpu cycles : 123123
-				num = float(item.split(':')[1])
-				r.cpu_cycles += num
-			# This condition should be above the instructions
-			# case to ensure proper parsing
-			elif 'branch instructions' in item.lower():
-				num = float(item.split(':')[1])
-				r.branch_instructions += num
-			elif 'ipc' in item.lower():
-				num = float(item.split(':')[1])
-				r.ipc += num
-			elif 'branch misses' in item.lower():
-				num = float(item.split(':')[1])
-				r.branch_misses += num
-			elif 'instructions' in item.lower():
-				num = float(item.split(':')[1])
-				r.instructions += num
-			elif 'branch mispred' in item.lower():
-				# Format is like this
-				# branch mispred rate: 1.12312%
-				percentage = item.split(':')[1]
-				num = float(percentage.strip()[:-1]) # remove percentage
-				r.branch_mispredict_rate += num				
-			else:
-				pass
-		
+
+		new_r = parse_record(record)
+		r.branch_mispredict_rate += new_r.branch_mispredict_rate
+		r.instructions += new_r.instructions
+		r.branch_misses += new_r.branch_misses
+		r.ipc += new_r.ipc
+		r.branch_instructions += new_r.branch_instructions
+		r.cpu_cycles += new_r.cpu_cycles
+		r.elapsed_time += new_r.elapsed_time
+
 		record_count += 1
 	print 'We found no of  Records = %s' % record_count
 	# Average out the results
