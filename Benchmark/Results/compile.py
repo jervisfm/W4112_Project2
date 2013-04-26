@@ -24,7 +24,10 @@ def parse_record(record):
 	r = Result()
 	items = record.split('\n')
 	for item in items:
-		if 'elapsed time' in item.lower():
+		if 'name' in item.lower():
+			name = item.split(':')[1].strip()
+			r.name = name
+		elif 'elapsed time' in item.lower():
 			# Format is like this
 			# elapsed time : 123123 seconds
 			num = float(item.split(':')[1].strip().split(' ')[0])

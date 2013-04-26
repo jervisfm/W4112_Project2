@@ -12,6 +12,10 @@ class Result:
                 self.branch_mispredict_rate = 0
                 self.name = ''
 
+
+	def __repr__(self):
+		return self.__str__()
+
         def __str__(self):
                 result = ''
                 result += 'Benchmark name: %s \n' % self.name
