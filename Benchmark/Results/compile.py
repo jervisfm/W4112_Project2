@@ -139,10 +139,11 @@ def main():
 	file_prefix = args['prefix']
 	print 'Compiling benchmark %s' % file_prefix
 	compiled_results = compile_benchmark(file_prefix)
-	f = file('compiled_'+file_prefix, 'w')
+	compiled_filename = 'compiled_' + file_prefix
+	f = file(compiled_filename, 'w')
 	f.write(compiled_results)
 	f.close()
-	print 'Compilation complete'
+	print 'Compilation complete: Wrote result to %s'% compiled_filename
 
 if __name__ == '__main__':
 	main()
