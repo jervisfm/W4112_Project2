@@ -21,16 +21,12 @@ def parse_record(record):
 		Parses a benchmark results record
 	"""
 
-	print record
-	print '*****'
-
 	r = Result()
 	items = record.split('\n')
 	for item in items:
 		if 'elapsed time' in item.lower():
 			# Format is like this
 			# elapsed time : 123123 seconds
-			print items
 			num = float(item.split(':')[1].strip().split(' ')[0])
 			r.elapsed_time += num
 		elif 'cpu cycles' in item.lower():
