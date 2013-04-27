@@ -56,34 +56,51 @@ def plot_graph(x, y, ylabel, title, filename):
 	plt.xlabel('Combined Selectivity')
 	plt.ylabel(ylabel)
 	plt.plot(x, y, 'r--', x, y, 'bo')
+	plt.title(title)
 	fig.savefig(filename)
 	
 
 
+def get_graph_title(t):
+	"""
+		Returns the title for the graph
+	"""
+	return { 
+		'result_nb_q1': 'Query 1 No Branch', 
+		'result_nb_q2': 'Query 2 No Branch',
+		'result_pand_q1': 'Query 1 Branching And',
+		'result_pand_q2' : 'Query 2 Branching And',
+		'result_land_q1': 'Query 1 Logical And',
+		'result_land_q2' : 'Query 2 Logical And',
+		'result_optimal_q1' : 'Query 1 Optimal Plan',
+		'result_optimal_q2' : 'Query 2 Optimal Plan'
+		 }.get(t, '')
+
 def plot_benchmark_result(results):
 
 	check_results(results)
-	title = results[0].name.split('|')[0].strip()
-	
+	name = results[0].name.split('|')[0].strip()
+	graph_title = get_graph_title(name)	
+
 	# Plot the Mispredict rate graph
-	fname = title + '_mispredict_rate.png'
+	fname = name + '_mispredict_rate.png'
 	x = get_x_points()
 	y = get_mispredict_rate(results)
 	ylabel = '% Mispredict rate'
-	plot_graph(x,y,ylabel, title, fname)	
+	plot_graph(x,y,ylabel, graph_title, fname)	
 
 
 	# Plot the Elapsed Time Graph
-	fname = title + '_elapsed_time.png'
+	fname = name + '_elapsed_time.png'
 	y = get_elapsed_time(results)
 	ylabel = 'Elapsed Time (seconds)'
-	plot_graph(x,y,ylabel,title,fname)
+	plot_graph(x,y,ylabel,graph_title,fname)
 
 	# Plot the Instructions Per Clock Cycle Rate
-	fname = title + '_ipc.png'
+	fname = name + '_ipc.png'
 	y = get_ipc(results)
 	ylabel = 'Instructions Per Clock Cycle'
-	plot_graph(x,y,ylabel,title,fname)
+	plot_graph(x,y,ylabel,graph_title,fname)
 
 def main():	
 	
