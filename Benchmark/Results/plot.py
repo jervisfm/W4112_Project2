@@ -49,14 +49,14 @@ def get_ipc(results):
 	return ans
 	
 
-def plot_graph(x, y, ylabel, title, file_name):
+def plot_graph(x, y, ylabel, title, filename):
 	if not filename:
 		raise ValueError('file name must be specified')
 	fig = figure()
 	plt.xlabel('Combined Selectivity')
 	plt.ylabel(ylabel)
 	plt.plot(x, y, 'r--', x, y, 'bo')
-	fig.savefig(file_name)
+	fig.savefig(filename)
 	
 
 
@@ -73,17 +73,26 @@ def plot_benchmark_result(results):
 	plot_graph(x,y,ylabel, title, fname)	
 
 
+	# Plot the Elapsed Time Graph
+	fname = title + '_elapsed_time.png'
+	y = get_elapsed_time(results)
+	ylabel = 'Elapsed Time (seconds)'
+	plot_graph(x,y,ylabel,title,fname)
 
-	
-		
-
+	# Plot the Instructions Per Clock Cycle Rate
+	fname = title + '_ipc.png'
+	y = get_ipc(results)
+	ylabel = 'Instructions Per Clock Cycle'
+	plot_graph(x,y,ylabel,title,fname)
 
 def main():	
 	
 	parser = argparse.ArgumentParser(description='Plots compiled benchmark results')
-	
-	file = 'compiled_result_land_q1.txt'
-	
+	parser.add_argument('-f', '--file', help='Compiled Result file to generate graphs from', required=True)
+	args = vars(parser.parser_args())
+		
+	file = args['file']
+
 	file_string = read_file_to_string(file)
 	record_marker = '===='
 	records = file_string.split(record_marker)
@@ -98,7 +107,8 @@ def main():
 
 
 	print 'we have this many results: %d' % len(results)
-	print results
-
+	plot_benchmark_result(results)
+	print 'Plot Completed'
+		
 if __name__ == '__main__':
 	main()
