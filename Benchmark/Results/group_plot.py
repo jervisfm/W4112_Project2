@@ -121,7 +121,7 @@ def plot_elapsed_time(dict):
 	
 
 	# Query 2
-	title = 'Elapsed Time QQuery 2'
+	title = 'Elapsed Time Query 2'
 	fig = init_fig(xlabel, ylabel, title)
 	fname = 'combined_graph_q2_elapsed_time.png'
 
@@ -136,6 +136,43 @@ def plot_elapsed_time(dict):
         fig.savefig(fname)
 
 	
+def plot_ipc(dict):
+
+        # Query 1
+        title = 'Instruction Per Clock Cycle Query 1'
+        ylabel = 'Instructions Per Clock Cycle'
+        xlabel = 'Combined Selectivity'
+        fig = init_fig(xlabel, ylabel, title)
+        fname = 'combined_graph_q1_ipc.png'
+
+        # Get the X-Points
+        x = get_x_points()
+
+        # Get the Y-Points
+        y_land_q1 = get_ipc(dict['compiled_result_land_q1'])
+        y_nb_q1 = get_ipc(dict['compiled_result_nb_q1'])
+        y_pand_q1 = get_ipc(dict['compiled_result_pand_q1'])
+        y_opt_q1 = get_ipc(dict['compiled_result_optimal_q1'])
+
+        #Plot the Combined Results
+        plot_combined_results(x, y_land_q1, y_nb_q1, y_pand_q1, y_opt_q1)
+        fig.savefig(fname)
+
+
+        # Query 2
+        title = 'Elapsed Time Query 2'
+        fig = init_fig(xlabel, ylabel, title)
+        fname = 'combined_graph_q2_ipc.png'
+
+        # Get the Y-Points
+        y_land_q2 = get_ipc(dict['compiled_result_land_q2'])
+        y_nb_q2 = get_ipc(dict['compiled_result_nb_q2'])
+        y_pand_q2 = get_ipc(dict['compiled_result_pand_q2'])
+        y_opt_q2 = get_ipc(dict['compiled_result_optimal_q2'])
+
+        #Plot the Combined Results
+        plot_combined_results(x, y_land_q2, y_nb_q2, y_pand_q2, y_opt_q2)
+        fig.savefig(fname)
 	
 		
 
@@ -166,7 +203,7 @@ def main():
 	plot_elapsed_time(dict)
 
 	# Plot the Instruction Per Clock Cycle Together
-	
+	plot_ipc(dict)
 
 	print 'Our dict of size == %d' % len(dict)
 	#print dict
