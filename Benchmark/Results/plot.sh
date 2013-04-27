@@ -16,7 +16,7 @@ echo "Done"
 # Plot No Branch Alg Results
 echo "Plotting No Branch Alg Results..."
 ./plot.py -f compiled_result_nb_q1.txt
-./plot.py -f compiled_result_nb.q2.txt
+./plot.py -f compiled_result_nb_q2.txt
 echo "Done"
 
 # Plot Optimal Q1 + Q2
