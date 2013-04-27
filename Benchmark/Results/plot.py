@@ -89,7 +89,7 @@ def main():
 	
 	parser = argparse.ArgumentParser(description='Plots compiled benchmark results')
 	parser.add_argument('-f', '--file', help='Compiled Result file to generate graphs from', required=True)
-	args = vars(parser.parser_args())
+	args = vars(parser.parse_args())
 		
 	file = args['file']
 
