@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 # Plot Logical And Base 
 echo "Plotting Logical And Base Results ..."
