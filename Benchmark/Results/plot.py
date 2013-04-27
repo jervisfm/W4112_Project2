@@ -77,7 +77,6 @@ def get_graph_title(t):
 		 }.get(t, '')
 
 def plot_benchmark_result(results):
-
 	check_results(results)
 	name = results[0].name.split('|')[0].strip()
 	graph_title = get_graph_title(name)	
