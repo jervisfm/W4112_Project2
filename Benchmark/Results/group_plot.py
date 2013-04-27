@@ -6,11 +6,9 @@ __author__ = 'Jervis Muindi'
 import argparse
 from compile import parse_record
 from compile import read_file_to_string
-import matplotlib.pyploy as plt
+import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 from plot import get_graph_title
-
-
 
 
 
