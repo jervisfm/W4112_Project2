@@ -21,7 +21,7 @@ def main():
 	files_to_plot = ['compiled_result_nb_q1.txt', 'compiled_result_nb_q2.txt', 
 			 'compiled_result_land_q1.txt', 'compiled_result_land_q2.txt', 
 			 'compiled_result_pand_q1.txt', 'compiled_result_pand_q2.txt',
-			 'compiled_result_optimal_q1.txt', 'compiled_result_optiomal_q2.txt']
+			 'compiled_result_optimal_q1.txt', 'compiled_result_optimal_q2.txt']
 	file_strings = []
 
 	dict = {}
