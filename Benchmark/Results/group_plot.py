@@ -57,7 +57,8 @@ def plot_mispredict_rate(dict):
 	ylabel = '% Branch Misprediction Rate'
 	xlabel = 'Combined Selectivity'
 	fig = init_fig(xlabel, ylabel, title)
-
+	fname = 't.png'
+	
 	# Get the X-Points
 	x = get_x_points()
 
@@ -67,15 +68,15 @@ def plot_mispredict_rate(dict):
 	y_pand_q1 = get_mispredict_rate(dict['compiled_result_pand_q1'])	
 	y_opt_q1 = get_mispredict_rate(dict['compiled_result_optimal_q1'])
 
-	#Plot the Combined Results
+	#Plot the Combined Results	
+	plt.plot(x, y_land_q1, 'ro--', markersize=10, label='Logical And')
+	plt.plot(x, y_nb_q1, 'g2--', markersize=20, markeredgewidth=2, label='No Branch')
+	plt.plot(x, y_pand_q1, 'b+--', markersize=20, markeredgewidth=2, label='Branching And')
+	plt.plot(x, y_opt_q1, 'k', markersize=5, markeredgewidth=5, linewidth=3, label='Optimized Plan') 
+	plt.legend()
+	fig.savefig(fname)
 	
-	plt.plot(x, y_land_q1, 'r--', x, y_land_q1, 'ro', markersize=10)
-	plt.plot(x, y_nb_q1, 'g--', x, y_nb_q1, 'g2', markersize=20, markeredgewidth=2)
-	plt.plot(x, y_pand_q1, 'b--', x, y_pand_q1, 'b+', markersize=20, markeredgewidth=2)
-	plt.plot(x, y_opt_q1, 'k', x, y_opt_q1, 'bo', markersize=5, markeredgewidth=5, linewidth=3) 
-	fig.savefig('t.png')
 	
-
 		
 
 def main():
