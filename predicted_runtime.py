@@ -48,6 +48,7 @@ def main():
     f = open('predicted_runtime_cpu_cycles_%s.txt' % suffix, 'w')
     for cost in costs:
 	f.write(str(cost))
+	f.write('\n')
     f.close()
     print 'Done Processing'
 
