@@ -30,7 +30,7 @@ def get_predicted_costs(file_path):
 	cost_string = lines[2]
 	# cost_string will have format
 	# cost: 123.0
-	cost = float(cost_string.split(':').strip())
+	cost = float(cost_string.split(':')[1].strip())
         result.append(cost)
     return result
 
@@ -47,8 +47,8 @@ def main():
     count = 0
     f = open('predicted_runtime_cpu_cycles_%s.txt' % suffix, 'w')
     for cost in costs:
-        f.write(cost)
-        f.close()
+	f.write(str(cost))
+    f.close()
     print 'Done Processing'
 
 if __name__ == '__main__':
