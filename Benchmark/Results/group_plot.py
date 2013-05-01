@@ -16,6 +16,31 @@ from plot import get_elapsed_time
 from plot import get_ipc
 
 
+def get_dict_from_predicted_cost_files(files):
+        """
+                Returns a dictionary of file -> All Predicted run times in order
+                from the list of the given files
+        """
+        if not files:
+                raise ValueError('files cannot be None')
+
+        dict = {}
+        record_marker = '\n'
+        for file in files:
+                file_string = read_file_to_string(file)
+                records = file_string.split(record_marker)
+                results = []
+
+                for record in records:
+                        if not record.strip(): # skip empty records
+                                continue
+                        results.append(record)
+                key = file[:-4] # skip the extension
+                dict[key] = results
+        return dict
+
+
+
 def get_dict_from_compiled_files(files_to_plot): 
 	"""
 		Returns a dictionary of compiled_file -> All Result records
@@ -176,6 +201,7 @@ def plot_ipc(dict):
 	
 		
 
+
 def main():
 
 	parser = argparse.ArgumentParser(description='Group Plots from compiled results')
@@ -188,10 +214,11 @@ def main():
 			 'compiled_result_optimal_q1.txt', 'compiled_result_optimal_q2.txt']
 
 	
-
+	predicted_cost_files = ['predicted_runtime_cpu_cycles_q1.txt', 
+			        'predicted_runtime_cpu_cycles_q2.txt']
 
 	dict = get_dict_from_compiled_files(files_to_plot)	
-	
+	predicted_dict = get_dict_from_predicted_cost_files(predicted_cost_files)
 
 	# Make the Combined Group Plots
 
@@ -205,6 +232,8 @@ def main():
 	# Plot the Instruction Per Clock Cycle Together
 	plot_ipc(dict)
 
+
+	
 	print 'Our dict of size == %d' % len(dict)
 	#print dict
 
