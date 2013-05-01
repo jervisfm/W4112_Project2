@@ -160,7 +160,7 @@ def plot_ipc(dict):
 
 
         # Query 2
-        title = 'Elapsed Time Query 2'
+        title = 'Instructions Per Clock Cycle Query 2'
         fig = init_fig(xlabel, ylabel, title)
         fname = 'combined_graph_q2_ipc.png'
 
