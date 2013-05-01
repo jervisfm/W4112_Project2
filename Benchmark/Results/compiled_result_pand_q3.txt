@@ -1,0 +1,110 @@
+Benchmark name: result_pand_q3 | Combined Selectivity 0.0 
+Elapsed Time: 0.1098179815 seconds
+Cpu Cycles: 334413113.0
+Instructions: 600093500.5
+IPC : 1.7945835
+Branch Misses: 5275.0
+Branch Instructions: 200016114.0
+Branch MisPredict Rate: 0.002637 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.1 
+Elapsed Time: 0.646898508 seconds
+Cpu Cycles: 1976201018.0
+Instructions: 743271219.5
+IPC : 0.3761335
+Branch Misses: 57183429.0
+Branch Instructions: 244884549.0
+Branch MisPredict Rate: 23.351183 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.2 
+Elapsed Time: 0.739030838 seconds
+Cpu Cycles: 2258379532.0
+Instructions: 778584103.0
+IPC : 0.3447655
+Branch Misses: 68385563.0
+Branch Instructions: 254715788.5
+Branch MisPredict Rate: 26.8477735 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.3 
+Elapsed Time: 0.844671011 seconds
+Cpu Cycles: 2581007046.5
+Instructions: 825738617.5
+IPC : 0.3199355
+Branch Misses: 81115004.5
+Branch Instructions: 267628389.0
+Branch MisPredict Rate: 30.3087985 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.4 
+Elapsed Time: 0.9097169635 seconds
+Cpu Cycles: 2780049364.0
+Instructions: 863469532.0
+IPC : 0.3106575
+Branch Misses: 88846945.5
+Branch Instructions: 277400775.0
+Branch MisPredict Rate: 32.0258895 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.5 
+Elapsed Time: 0.937559009 seconds
+Cpu Cycles: 2865866972.5
+Instructions: 883417055.5
+IPC : 0.308256
+Branch Misses: 92081687.5
+Branch Instructions: 282245769.0
+Branch MisPredict Rate: 32.6244885 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.6 
+Elapsed Time: 0.975420475 seconds
+Cpu Cycles: 2981639242.0
+Instructions: 914214863.0
+IPC : 0.306615
+Branch Misses: 96353075.5
+Branch Instructions: 290086224.0
+Branch MisPredict Rate: 33.2150735 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.7 
+Elapsed Time: 0.996184826 seconds
+Cpu Cycles: 3045258597.0
+Instructions: 936721760.0
+IPC : 0.307605
+Branch Misses: 98687447.5
+Branch Instructions: 295585798.5
+Branch MisPredict Rate: 33.3870215 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.8 
+Elapsed Time: 1.006474495 seconds
+Cpu Cycles: 3076558216.0
+Instructions: 954202219.0
+IPC : 0.3101635
+Branch Misses: 99721660.5
+Branch Instructions: 299268970.0
+Branch MisPredict Rate: 33.321595 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 0.9 
+Elapsed Time: 1.023046374 seconds
+Cpu Cycles: 3127360746.5
+Instructions: 983225781.5
+IPC : 0.314391
+Branch Misses: 101602342.5
+Branch Instructions: 306251411.0
+Branch MisPredict Rate: 33.1761395 % 
+
+====
+Benchmark name: result_pand_q3 | Combined Selectivity 1.0 
+Elapsed Time: 1.0258799795 seconds
+Cpu Cycles: 3135959160.0
+Instructions: 988320837.5
+IPC : 0.315159
+Branch Misses: 101818172.0
+Branch Instructions: 307265825.0
+Branch MisPredict Rate: 33.137017 % 
+
+====

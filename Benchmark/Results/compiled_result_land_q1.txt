@@ -1,4 +1,4 @@
-Benchmark name: result_land_q1 | Combined Selectivity 0.0
+Benchmark name: result_land_q1 | Combined Selectivity 0.0 
 Elapsed Time: 0.294472456 seconds
 Cpu Cycles: 898482972.5
 Instructions: 1200281275.5
@@ -8,7 +8,7 @@ Branch Instructions: 200048955.5
 Branch MisPredict Rate: 0.010017 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.1
+Benchmark name: result_land_q1 | Combined Selectivity 0.1 
 Elapsed Time: 0.4277215 seconds
 Cpu Cycles: 1306296686.5
 Instructions: 1250928572.0
@@ -18,7 +18,7 @@ Branch Instructions: 203276695.5
 Branch MisPredict Rate: 6.5472625 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.2
+Benchmark name: result_land_q1 | Combined Selectivity 0.2 
 Elapsed Time: 0.533466101 seconds
 Cpu Cycles: 1629659267.0
 Instructions: 1301352631.5
@@ -28,7 +28,7 @@ Branch Instructions: 206490175.5
 Branch MisPredict Rate: 12.610069 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.3
+Benchmark name: result_land_q1 | Combined Selectivity 0.3 
 Elapsed Time: 0.6218094825 seconds
 Cpu Cycles: 1899963041.0
 Instructions: 1345071496.0
@@ -38,7 +38,7 @@ Branch Instructions: 209274322.5
 Branch MisPredict Rate: 17.1787425 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.4
+Benchmark name: result_land_q1 | Combined Selectivity 0.4 
 Elapsed Time: 0.712805986 seconds
 Cpu Cycles: 2178021486.0
 Instructions: 1401650124.0
@@ -48,7 +48,7 @@ Branch Instructions: 212881115.5
 Branch MisPredict Rate: 22.0344705 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.5
+Benchmark name: result_land_q1 | Combined Selectivity 0.5 
 Elapsed Time: 0.760093093 seconds
 Cpu Cycles: 2322277627.5
 Instructions: 1450197686.5
@@ -58,7 +58,7 @@ Branch Instructions: 215969709.0
 Branch MisPredict Rate: 23.427144 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.6
+Benchmark name: result_land_q1 | Combined Selectivity 0.6 
 Elapsed Time: 0.7437615395 seconds
 Cpu Cycles: 2272685429.5
 Instructions: 1500517863.0
@@ -68,7 +68,7 @@ Branch Instructions: 219212646.0
 Branch MisPredict Rate: 21.2244385 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.7
+Benchmark name: result_land_q1 | Combined Selectivity 0.7 
 Elapsed Time: 0.6878670455 seconds
 Cpu Cycles: 2101872675.5
 Instructions: 1543733396.5
@@ -78,7 +78,7 @@ Branch Instructions: 221957920.5
 Branch MisPredict Rate: 17.153574 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.8
+Benchmark name: result_land_q1 | Combined Selectivity 0.8 
 Elapsed Time: 0.5984998945 seconds
 Cpu Cycles: 1828539632.0
 Instructions: 1599726377.0
@@ -88,7 +88,7 @@ Branch Instructions: 225497708.5
 Branch MisPredict Rate: 10.995014 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 0.9
+Benchmark name: result_land_q1 | Combined Selectivity 0.9 
 Elapsed Time: 0.524792075 seconds
 Cpu Cycles: 1602973089.0
 Instructions: 1646228768.5
@@ -98,7 +98,7 @@ Branch Instructions: 228452638.0
 Branch MisPredict Rate: 5.965678 % 
 
 ====
-Benchmark name: result_land_q1 | Combined Selectivity 1.0
+Benchmark name: result_land_q1 | Combined Selectivity 1.0 
 Elapsed Time: 0.434599519 seconds
 Cpu Cycles: 1327242903.0
 Instructions: 1696164195.0

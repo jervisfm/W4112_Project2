@@ -1,0 +1,110 @@
+Benchmark name: result_nb_q3 | Combined Selectivity 0.0 
+Elapsed Time: 0.359353423 seconds
+Cpu Cycles: 1097491173.5
+Instructions: 1500313463.0
+IPC : 1.3984605
+Branch Misses: 20448.0
+Branch Instructions: 100053752.0
+Branch MisPredict Rate: 0.0204365 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.1 
+Elapsed Time: 0.350784898 seconds
+Cpu Cycles: 1071153909.0
+Instructions: 1502188793.5
+IPC : 1.4026235
+Branch Misses: 43437.5
+Branch Instructions: 100356336.5
+Branch MisPredict Rate: 0.043283 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.2 
+Elapsed Time: 0.356273055 seconds
+Cpu Cycles: 1087638906.0
+Instructions: 1504185243.0
+IPC : 1.3831135
+Branch Misses: 49205.0
+Branch Instructions: 100677551.5
+Branch MisPredict Rate: 0.048874 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.3 
+Elapsed Time: 0.359922528 seconds
+Cpu Cycles: 1099162265.5
+Instructions: 1506036109.0
+IPC : 1.3703425
+Branch Misses: 54329.0
+Branch Instructions: 100975886.0
+Branch MisPredict Rate: 0.053804 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.4 
+Elapsed Time: 0.363247395 seconds
+Cpu Cycles: 1109145857.0
+Instructions: 1508010888.0
+IPC : 1.359741
+Branch Misses: 59081.5
+Branch Instructions: 101294064.5
+Branch MisPredict Rate: 0.058327 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.5 
+Elapsed Time: 0.3686629535 seconds
+Cpu Cycles: 1125674705.5
+Instructions: 1510032404.0
+IPC : 1.3416545
+Branch Misses: 64348.5
+Branch Instructions: 101619755.5
+Branch MisPredict Rate: 0.0633215 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.6 
+Elapsed Time: 0.3705625535 seconds
+Cpu Cycles: 1131669486.5
+Instructions: 1511676009.5
+IPC : 1.3359035
+Branch Misses: 67877.5
+Branch Instructions: 101884593.0
+Branch MisPredict Rate: 0.0666215 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.7 
+Elapsed Time: 0.372776985 seconds
+Cpu Cycles: 1138492776.5
+Instructions: 1514408567.0
+IPC : 1.330229
+Branch Misses: 73318.5
+Branch Instructions: 102325841.0
+Branch MisPredict Rate: 0.071652 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.8 
+Elapsed Time: 0.371756554 seconds
+Cpu Cycles: 1135173081.5
+Instructions: 1516165879.0
+IPC : 1.335633
+Branch Misses: 77155.0
+Branch Instructions: 102607708.0
+Branch MisPredict Rate: 0.0751945 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 0.9 
+Elapsed Time: 0.372384429 seconds
+Cpu Cycles: 1137170211.0
+Instructions: 1517814911.0
+IPC : 1.3347525
+Branch Misses: 81019.5
+Branch Instructions: 102874788.0
+Branch MisPredict Rate: 0.0787535 % 
+
+====
+Benchmark name: result_nb_q3 | Combined Selectivity 1.0 
+Elapsed Time: 0.3683509825 seconds
+Cpu Cycles: 1124864118.5
+Instructions: 1520238200.5
+IPC : 1.3515095
+Branch Misses: 86700.0
+Branch Instructions: 103263676.5
+Branch MisPredict Rate: 0.083958 % 
+
+====

@@ -130,6 +130,21 @@ def plot_mispredict_rate(dict):
         plot_combined_results(x, y_land_q2, y_nb_q2, y_pand_q2, y_opt_q2)
         fig.savefig(fname)
 
+	# Query 3
+        title = 'Branch MisPrediction Rate Query 3'
+        fig = init_fig(xlabel, ylabel, title)
+        fname = 'combined_graph_q3_mispredict_rate.png'
+
+        # Get the Y-Points
+        y_land_q3 = get_mispredict_rate(dict['compiled_result_land_q3'])
+        y_nb_q3 = get_mispredict_rate(dict['compiled_result_nb_q3'])
+        y_pand_q3 = get_mispredict_rate(dict['compiled_result_pand_q3'])
+        y_opt_q3 = get_mispredict_rate(dict['compiled_result_optimal_q3'])
+
+        #Plot the Combined Results
+        plot_combined_results(x, y_land_q3, y_nb_q3, y_pand_q3, y_opt_q3)
+        fig.savefig(fname)
+
 def plot_elapsed_time(dict):
 	
 	# Query 1
@@ -166,6 +181,21 @@ def plot_elapsed_time(dict):
 
         #Plot the Combined Results
         plot_combined_results(x, y_land_q2, y_nb_q2, y_pand_q2, y_opt_q2)
+        fig.savefig(fname)
+
+	# Query 3
+	title = 'Elapsed Time Query 3'
+	fig = init_fig(xlabel, ylabel, title)
+	fname = 'combined_graph_q3_elapsed_time.png'
+
+	# Get the Y-Points
+        y_land_q3 = get_elapsed_time(dict['compiled_result_land_q3'])
+        y_nb_q3 = get_elapsed_time(dict['compiled_result_nb_q3'])
+        y_pand_q3 = get_elapsed_time(dict['compiled_result_pand_q3'])
+        y_opt_q3 = get_elapsed_time(dict['compiled_result_optimal_q3'])
+
+        #Plot the Combined Results
+        plot_combined_results(x, y_land_q3, y_nb_q3, y_pand_q3, y_opt_q3)
         fig.savefig(fname)
 
 	
@@ -207,6 +237,21 @@ def plot_ipc(dict):
         plot_combined_results(x, y_land_q2, y_nb_q2, y_pand_q2, y_opt_q2)
         fig.savefig(fname)
 	
+
+	# Query 3
+        title = 'Instructions Per Clock Cycle Query 3'
+        fig = init_fig(xlabel, ylabel, title)
+        fname = 'combined_graph_q3_ipc.png'
+
+        # Get the Y-Points
+        y_land_q3 = get_ipc(dict['compiled_result_land_q3'])
+        y_nb_q3 = get_ipc(dict['compiled_result_nb_q3'])
+        y_pand_q3 = get_ipc(dict['compiled_result_pand_q3'])
+        y_opt_q3 = get_ipc(dict['compiled_result_optimal_q3'])
+
+        #Plot the Combined Results
+        plot_combined_results(x, y_land_q3, y_nb_q3, y_pand_q3, y_opt_q3)
+        fig.savefig(fname)
 		
 
 
@@ -259,6 +304,29 @@ def plot_predicted(result_dict, predicted_dict):
         fig.savefig(fname)
 
 
+	 # Query 3
+        title = 'Predicted and Actual Performance  Query 3'
+        ylabel = 'CPU Cycles per record'
+        xlabel = 'Combined Selectivity'
+        fig = init_fig(xlabel, ylabel, title)
+        base_fname = 'predicted_perf_graph_q%d.png'
+        fname = base_fname % 3
+
+        # Get the X-Points
+        x = get_x_points()
+
+        # Get the Y-Points
+
+        y_land_q3 = get_cpu_cycles(result_dict['compiled_result_land_q3'])
+        y_pand_q3 = get_cpu_cycles(result_dict['compiled_result_pand_q3'])
+
+        y_opt_q3 = get_cpu_cycles(result_dict['compiled_result_optimal_q3'])
+        y_pred_q3 = predicted_dict['predicted_runtime_cpu_cycles_q3']
+
+        #Plot the Combined Results
+        plot_combined_predicted_results(x, y_land_q3, y_pred_q3, y_pand_q3, y_opt_q3)
+        fig.savefig(fname)
+
 
 def main():
 
@@ -266,14 +334,15 @@ def main():
 	
 	
 
-	files_to_plot = ['compiled_result_nb_q1.txt', 'compiled_result_nb_q2.txt', 
-			 'compiled_result_land_q1.txt', 'compiled_result_land_q2.txt', 
-			 'compiled_result_pand_q1.txt', 'compiled_result_pand_q2.txt',
-			 'compiled_result_optimal_q1.txt', 'compiled_result_optimal_q2.txt']
+	files_to_plot = ['compiled_result_nb_q1.txt', 'compiled_result_nb_q2.txt', 'compiled_result_nb_q3.txt',
+			 'compiled_result_land_q1.txt', 'compiled_result_land_q2.txt', 'compiled_result_land_q3.txt', 
+			 'compiled_result_pand_q1.txt', 'compiled_result_pand_q2.txt','compiled_result_pand_q3.txt',
+			 'compiled_result_optimal_q1.txt', 'compiled_result_optimal_q2.txt', 'compiled_result_optimal_q3.txt']
 
 	
 	predicted_cost_files = ['predicted_runtime_cpu_cycles_q1.txt', 
-			        'predicted_runtime_cpu_cycles_q2.txt']
+			        'predicted_runtime_cpu_cycles_q2.txt'
+				'predicted_runtime_cpu_cycles_q3.txt']
 
 	dict = get_dict_from_compiled_files(files_to_plot)	
 	predicted_dict = get_dict_from_predicted_cost_files(predicted_cost_files)

@@ -1,4 +1,4 @@
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.0
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.0 
 Elapsed Time: 0.1100360155 seconds
 Cpu Cycles: 334967474.0
 Instructions: 600100158.0
@@ -8,7 +8,7 @@ Branch Instructions: 200017281.5
 Branch MisPredict Rate: 0.00284 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.1
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.1 
 Elapsed Time: 0.6406970025 seconds
 Cpu Cycles: 1957630823.5
 Instructions: 1007948878.0
@@ -18,7 +18,7 @@ Branch Instructions: 232699001.5
 Branch MisPredict Rate: 21.3123705 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.2
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.2 
 Elapsed Time: 0.794161916 seconds
 Cpu Cycles: 2426975102.0
 Instructions: 1118984284.0
@@ -28,7 +28,7 @@ Branch Instructions: 246743206.5
 Branch MisPredict Rate: 27.4899725 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.3
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.3 
 Elapsed Time: 0.3946009875 seconds
 Cpu Cycles: 1204626798.0
 Instructions: 1559466832.5
@@ -38,7 +38,7 @@ Branch Instructions: 109583241.5
 Branch MisPredict Rate: 0.167758 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.4
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.4 
 Elapsed Time: 0.4105899335 seconds
 Cpu Cycles: 1254010362.5
 Instructions: 1578917932.0
@@ -48,7 +48,7 @@ Branch Instructions: 112715817.5
 Branch MisPredict Rate: 0.20552 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.5
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.5 
 Elapsed Time: 0.4256564375 seconds
 Cpu Cycles: 1299697400.0
 Instructions: 1598208229.5
@@ -58,7 +58,7 @@ Branch Instructions: 115823307.0
 Branch MisPredict Rate: 0.241673 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.6
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.6 
 Elapsed Time: 0.438984394 seconds
 Cpu Cycles: 1340273073.0
 Instructions: 1615481725.5
@@ -68,7 +68,7 @@ Branch Instructions: 118605484.5
 Branch MisPredict Rate: 0.2716865 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.7
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.7 
 Elapsed Time: 0.456543565 seconds
 Cpu Cycles: 1394551419.5
 Instructions: 1639696442.5
@@ -78,7 +78,7 @@ Branch Instructions: 122505994.0
 Branch MisPredict Rate: 0.3115495 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.8
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.8 
 Elapsed Time: 0.466873407 seconds
 Cpu Cycles: 1426069273.5
 Instructions: 1657650299.5
@@ -88,7 +88,7 @@ Branch Instructions: 125398503.0
 Branch MisPredict Rate: 0.340836 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 0.9
+Benchmark name: result_optimal_q2 | Combined Selectivity 0.9 
 Elapsed Time: 0.4784954785 seconds
 Cpu Cycles: 1461356767.5
 Instructions: 1676010948.5
@@ -98,7 +98,7 @@ Branch Instructions: 128355741.0
 Branch MisPredict Rate: 0.3674435 % 
 
 ====
-Benchmark name: result_optimal_q2 | Combined Selectivity 1.0
+Benchmark name: result_optimal_q2 | Combined Selectivity 1.0 
 Elapsed Time: 1.2133735415 seconds
 Cpu Cycles: 3709428843.0
 Instructions: 1696493856.0
