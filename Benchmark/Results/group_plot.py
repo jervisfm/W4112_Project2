@@ -14,7 +14,7 @@ from plot import get_x_points
 from plot import get_mispredict_rate
 from plot import get_elapsed_time
 from plot import get_ipc
-
+from plot import get_cpu_cycles
 
 def get_dict_from_predicted_cost_files(files):
         """
@@ -83,6 +83,14 @@ def plot_combined_results(x, y_land, y_nb, y_pand, y_opt):
         plt.plot(x, y_opt, 'k', markersize=5, markeredgewidth=5, linewidth=3, label='Optimized Plan')
         plt.legend()
  
+
+def plot_combined_predicted_results(x, y_land, y_pred, y_pand, y_opt):
+        plt.plot(x, y_land, 'ro--', markersize=10, label='Logical And')
+        plt.plot(x, y_pred, 'g2--', markersize=20, markeredgewidth=2, label='Predicted Cost')
+        plt.plot(x, y_pand, 'b+--', markersize=20, markeredgewidth=2, label='Branching And')
+        plt.plot(x, y_opt, 'k', markersize=5, markeredgewidth=5, linewidth=3, label='Actual Cost')
+        plt.legend()
+
 
 def plot_mispredict_rate(dict):
 
@@ -202,6 +210,56 @@ def plot_ipc(dict):
 		
 
 
+def plot_predicted(result_dict, predicted_dict):
+
+        # Query 1
+        title = 'Predicted and Actual Performance  Query 1'
+        ylabel = 'CPU Cycles per record'
+        xlabel = 'Combined Selectivity'
+        fig = init_fig(xlabel, ylabel, title)
+	base_fname = 'predicted_perf_graph_q%d.png'
+        fname = base_fname % 1
+
+        # Get the X-Points
+        x = get_x_points()
+
+        # Get the Y-Points
+	
+        y_land_q1 = get_cpu_cycles(dict['compiled_result_land_q1'])
+        y_pand_q1 = get_cpu_cycles(dict['compiled_result_pand_q1'])
+
+        y_opt_q1 = get_cpu_cycles(dict['compiled_result_optimal_q1'])
+	y_pred_q1 = predicted_dict['predicted_runtime_cpu_cycles_q1']
+
+        #Plot the Combined Results
+        plot_combined_predicted_results(x, y_land_q1, y_pred_q1, y_pand_q1, y_opt_q1)
+        fig.savefig(fname)
+
+        # Query 2
+        title = 'Predicted and Actual Performance  Query 2'
+        ylabel = 'CPU Cycles per record'
+        xlabel = 'Combined Selectivity'
+        fig = init_fig(xlabel, ylabel, title)
+        base_fname = 'predicted_perf_graph_q%d.png'
+        fname = base_fname % 2
+
+        # Get the X-Points
+        x = get_x_points()
+
+        # Get the Y-Points
+
+        y_land_q2 = get_cpu_cycles(dict['compiled_result_land_q2'])
+        y_pand_q2 = get_cpu_cycles(dict['compiled_result_pand_q2'])
+
+        y_opt_q2 = get_cpu_cycles(dict['compiled_result_optimal_q2'])
+        y_pred_q2 = predicted_dict['predicted_runtime_cpu_cycles_q2']
+
+        #Plot the Combined Results
+        plot_combined_predicted_results(x, y_land_q2, y_pred_q2, y_pand_q2, y_opt_q2)
+        fig.savefig(fname)
+
+
+
 def main():
 
 	parser = argparse.ArgumentParser(description='Group Plots from compiled results')
@@ -231,6 +289,8 @@ def main():
 
 	# Plot the Instruction Per Clock Cycle Together
 	plot_ipc(dict)
+
+	# Plot the Predict Cost / Actual cost 
 
 
 	
