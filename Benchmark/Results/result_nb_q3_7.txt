@@ -1,0 +1,24 @@
+Loop start!
+Loop stop!
+Elapsed time: 0.374866962 seconds
+CPU Cycles:           1144829113 
+Instructions:         1514241478 
+IPC:                  1.322679
+Branch misses:        73569 
+Branch instructions:  102300660 
+Branch mispred. rate: 0.071914%
+
+overall selectivity = 0.070833110
+theoretical selectivity = 0.070000000
+Loop start!
+Loop stop!
+Elapsed time: 0.370687008 seconds
+CPU Cycles:           1132156440 
+Instructions:         1514575656 
+IPC:                  1.337779
+Branch misses:        73068 
+Branch instructions:  102351022 
+Branch mispred. rate: 0.071390%
+
+overall selectivity = 0.073090000
+theoretical selectivity = 0.070000000
