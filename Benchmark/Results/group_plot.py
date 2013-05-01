@@ -341,7 +341,7 @@ def main():
 
 	
 	predicted_cost_files = ['predicted_runtime_cpu_cycles_q1.txt', 
-			        'predicted_runtime_cpu_cycles_q2.txt'
+			        'predicted_runtime_cpu_cycles_q2.txt',
 				'predicted_runtime_cpu_cycles_q3.txt']
 
 	dict = get_dict_from_compiled_files(files_to_plot)	
