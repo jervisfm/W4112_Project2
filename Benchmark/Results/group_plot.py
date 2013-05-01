@@ -278,6 +278,8 @@ def main():
 	dict = get_dict_from_compiled_files(files_to_plot)	
 	predicted_dict = get_dict_from_predicted_cost_files(predicted_cost_files)
 
+
+
 	# Make the Combined Group Plots
 
 	print 'Making Combined Group graps...'
@@ -291,7 +293,7 @@ def main():
 	plot_ipc(dict)
 
 	# Plot the Predict Cost / Actual cost 
-
+	plot_predicted(dict, predicted_dict)
 
 	
 	print 'Our dict of size == %d' % len(dict)

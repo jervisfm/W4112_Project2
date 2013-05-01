@@ -40,7 +40,7 @@ def get_elapsed_time(results):
 
 	return ans
 
-def get_cpu_cyles(results):
+def get_cpu_cycles(results):
 	"""
 		Gets the *PER-RECORD* cpu cycle time
 	"""
