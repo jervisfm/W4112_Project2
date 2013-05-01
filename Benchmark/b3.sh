@@ -3,7 +3,7 @@
 # Runs query 3 benchmarks and appends to result files. 
 echo "Running Optimal Benchmarks for Query 3..."
 
-0="0 0 0 0"
+P0="0 0 0 0"
 P1="0.316227766 0.316227766 0.316227766 0.316227766"
 P2="0.376060309 0.376060309 0.376060309 0.376060309"
 P3="0.416179145 0.416179145 0.416179145 0.416179145"

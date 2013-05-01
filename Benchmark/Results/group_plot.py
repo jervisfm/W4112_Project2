@@ -225,10 +225,10 @@ def plot_predicted(result_dict, predicted_dict):
 
         # Get the Y-Points
 	
-        y_land_q1 = get_cpu_cycles(dict['compiled_result_land_q1'])
-        y_pand_q1 = get_cpu_cycles(dict['compiled_result_pand_q1'])
+        y_land_q1 = get_cpu_cycles(result_dict['compiled_result_land_q1'])
+        y_pand_q1 = get_cpu_cycles(result_dict['compiled_result_pand_q1'])
 
-        y_opt_q1 = get_cpu_cycles(dict['compiled_result_optimal_q1'])
+        y_opt_q1 = get_cpu_cycles(result_dict['compiled_result_optimal_q1'])
 	y_pred_q1 = predicted_dict['predicted_runtime_cpu_cycles_q1']
 
         #Plot the Combined Results
@@ -248,10 +248,10 @@ def plot_predicted(result_dict, predicted_dict):
 
         # Get the Y-Points
 
-        y_land_q2 = get_cpu_cycles(dict['compiled_result_land_q2'])
-        y_pand_q2 = get_cpu_cycles(dict['compiled_result_pand_q2'])
+        y_land_q2 = get_cpu_cycles(result_dict['compiled_result_land_q2'])
+        y_pand_q2 = get_cpu_cycles(result_dict['compiled_result_pand_q2'])
 
-        y_opt_q2 = get_cpu_cycles(dict['compiled_result_optimal_q2'])
+        y_opt_q2 = get_cpu_cycles(result_dict['compiled_result_optimal_q2'])
         y_pred_q2 = predicted_dict['predicted_runtime_cpu_cycles_q2']
 
         #Plot the Combined Results
