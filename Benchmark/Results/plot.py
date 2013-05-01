@@ -40,6 +40,21 @@ def get_elapsed_time(results):
 
 	return ans
 
+def get_cpu_cyles(results):
+	"""
+		Gets the *PER-RECORD* cpu cycle time
+	"""
+	ans = []
+	check_results(results)
+	for result in results:
+		# 100 million is the number of records processed in test benchmark
+		LOOP = float(10 ** 8)
+		val = result.cpu_cycles
+		val /= LOOP
+		ans.append(val)
+
+	return ans
+
 def get_ipc(results):
 	ans = []
 	check_results(results)
