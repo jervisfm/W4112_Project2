@@ -208,17 +208,18 @@ public class UnitTests {
 		double [] q2 = {0.7, 0.8, 0.8, 0.9};
 		double [] q3 = {0.7, 0.4, 0.2, 0.3, 0.6};
 		double[] q4 = {0.65, 0.79, 0.43, 0.26, 0.75, 0.37, 0.19, 0.53};
-
-		LogicalAndTerm terms = getSampleTerms(q3);
+		double[] q5 = {0.562341325, 0.562341325, 0.562341325, 0.562341325};
+		LogicalAndTerm terms = getSampleTerms(q5);
 		CostModel cm = CostModel.getDefaultCostModel();
 		Algorithm alg = new Algorithm(terms);
 		PlanRecord actual = alg.findOptimalPlan(cm);
+		
+		
 
-
-
-		// System.out.println("Final cost == " + actual.c);
-
-		// Util.printPlan(actual, alg.plans);
+		 System.out.println("Final cost == " + actual.c);
+		 System.out.println("Logical Terms cost == " + terms.getCost(cm) );
+		 System.out.println("No Branch Alg cost == " + terms.getNoBranchAlgCost(cm) );
+		Util.printPlan(actual, alg.plans);
 
 		// Compute expected answer:
 		/*ArrayList<LogicalAndTerm> subsets = Util.getAllSubsets(terms);
