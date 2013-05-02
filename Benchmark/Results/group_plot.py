@@ -76,6 +76,16 @@ def init_fig(xlabel, ylabel, title):
 
 
 
+def get_query3_x_points():
+	"""
+		 Returns query 3 x points where we have selectivities going from 0 to 0.1
+	"""
+	ans = []
+	for i in xrange(11):
+		val = 0.01 * i
+		ans.append(val)
+	return ans
+
 def plot_combined_results(x, y_land, y_nb, y_pand, y_opt):
 	plt.plot(x, y_land, 'ro--', markersize=10, label='Logical And')
         plt.plot(x, y_nb, 'g2--', markersize=20, markeredgewidth=2, label='No Branch')
@@ -134,6 +144,7 @@ def plot_mispredict_rate(dict):
         title = 'Branch MisPrediction Rate Query 3'
         fig = init_fig(xlabel, ylabel, title)
         fname = 'combined_graph_q3_mispredict_rate.png'
+	x = get_query3_x_points()
 
         # Get the Y-Points
         y_land_q3 = get_mispredict_rate(dict['compiled_result_land_q3'])
@@ -187,6 +198,7 @@ def plot_elapsed_time(dict):
 	title = 'Elapsed Time Query 3'
 	fig = init_fig(xlabel, ylabel, title)
 	fname = 'combined_graph_q3_elapsed_time.png'
+        x = get_query3_x_points()
 
 	# Get the Y-Points
         y_land_q3 = get_elapsed_time(dict['compiled_result_land_q3'])
@@ -242,6 +254,7 @@ def plot_ipc(dict):
         title = 'Instructions Per Clock Cycle Query 3'
         fig = init_fig(xlabel, ylabel, title)
         fname = 'combined_graph_q3_ipc.png'
+        x = get_query3_x_points()
 
         # Get the Y-Points
         y_land_q3 = get_ipc(dict['compiled_result_land_q3'])
@@ -313,10 +326,10 @@ def plot_predicted(result_dict, predicted_dict):
         fname = base_fname % 3
 
         # Get the X-Points
-        x = get_x_points()
+        x = get_query3_x_points()
+
 
         # Get the Y-Points
-
         y_land_q3 = get_cpu_cycles(result_dict['compiled_result_land_q3'])
         y_pand_q3 = get_cpu_cycles(result_dict['compiled_result_pand_q3'])
 
@@ -351,7 +364,7 @@ def main():
 
 	# Make the Combined Group Plots
 
-	print 'Making Combined Group graps...'
+	print 'Making Combined Group graphs...'
 	# Plot All MisPredict Rate Graphs Together
 	plot_mispredict_rate(dict)
 
